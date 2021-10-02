@@ -6,7 +6,12 @@
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 31.7947, 32.1979 )
 
-[node name="Player" type="Area2D"]
+[node name="Player" type="RigidBody2D"]
+gravity_scale = 0.0
+contacts_reported = 10
+contact_monitor = true
+linear_damp = 1.0
+angular_damp = 5.0
 script = ExtResource( 2 )
 
 [node name="Sprite" type="Sprite" parent="."]

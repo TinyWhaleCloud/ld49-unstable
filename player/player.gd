@@ -1,10 +1,13 @@
-extends Area2D
+extends RigidBody2D
 
 # Define signals
 signal hit
 
 # Define properties and internal variables
-export var speed = 400
+export var speed = 500
+var thrust = Vector2(0, -speed)
+var torque = 10000
+var reset_new_position = null
 var screen_size
 
 
@@ -21,35 +24,44 @@ func start(start_pos):
     show()
 
 
+func reset_position(start_pos):
+    reset_new_position = start_pos
+
+
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-    var velocity = Vector2()
+    pass
     
-    if Input.is_action_pressed("ui_right"):
-        velocity.x += 1
-    if Input.is_action_pressed("ui_left"):
-        velocity.x -= 1
-    if Input.is_action_pressed("ui_down"):
-        velocity.y += 1
-    if Input.is_action_pressed("ui_up"):
-        velocity.y -= 1
-    
-    if velocity.length() > 0:
-        velocity = velocity.normalized() * speed
-        # $AnimatedSprite.play()
-    # else:
-        # $AnimatedSprite.stop()
 
-    position += velocity * delta
-    position.x = clamp(position.x, 0, screen_size.x)
-    position.y = clamp(position.y, 0, screen_size.y)
+func _integrate_forces(state):
+    # Reset player position?
+    if reset_new_position is Vector2:
+        state.transform = Transform2D(0, reset_new_position)
+        state.linear_velocity = Vector2()
+        state.angular_velocity = 0
+        reset_new_position = null
+    
+    # Thrust
+    applied_force = Vector2()
+    if Input.is_action_pressed("ui_up"):
+        applied_force += thrust.rotated(rotation)
+    if Input.is_action_pressed("ui_down"):
+        applied_force -= thrust.rotated(rotation)
+
+    # Rotation
+    var rotation_dir = 0
+    if Input.is_action_pressed("ui_left"):
+        rotation_dir -= 1
+    if Input.is_action_pressed("ui_right"):
+        rotation_dir += 1
+    applied_torque = rotation_dir * torque
 
 
 # Called when a body collides with the player
 func _on_Player_body_entered(body):
-    print("body entered: ", body.name)
+    print("[Player] Body entered: ", body.name)
     emit_signal("hit")
-    
+
     # Destroy asteroid on hit
     if body.has_method("destroy_on_hit"):
         body.destroy_on_hit()

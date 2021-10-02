@@ -19,6 +19,6 @@ CarWaste = ExtResource( 4 )
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource( 1 )
 
-[connection signal="area_entered" from="." to="." method="_on_AsteroidSpawner_area_entered"]
-[connection signal="area_exited" from="." to="." method="_on_AsteroidSpawner_area_exited"]
+[connection signal="body_entered" from="." to="." method="_on_AsteroidSpawner_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_AsteroidSpawner_body_exited"]
 [connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]

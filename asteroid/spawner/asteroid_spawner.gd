@@ -1,4 +1,4 @@
-extends Node2D
+extends Area2D
 export (PackedScene) var SpaceCookie
 export (PackedScene) var NuclearWaste
 export (PackedScene) var CarWaste
@@ -45,12 +45,12 @@ func spawn_asteroid():
     asteroid.spawn(asteroid_position)
 
 
-func _on_AsteroidSpawner_area_entered(area):
-    print("entered" + area.name)
-    if area.name == 'Player':
+func _on_AsteroidSpawner_body_entered(body):
+    print("entered" + body.name)
+    if body.name == 'Player':
         $Timer.start()
 
 
-func _on_AsteroidSpawner_area_exited(area):
-    if area.name == 'Player':
+func _on_AsteroidSpawner_body_exited(body):
+    if body.name == 'Player':
         $Timer.stop()
