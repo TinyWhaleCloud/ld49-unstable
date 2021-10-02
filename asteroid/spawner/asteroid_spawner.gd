@@ -34,9 +34,9 @@ func spawn_asteroid():
         asteroid = NuclearWaste.instance()
     else:
         asteroid = SpaceCookie.instance()
-        
+
     add_child(asteroid)
-    
+
     # Randomize asteroid position
     var asteroid_position = Vector2(
         rand_range($CollisionShape2D.shape.extents.x * -1, $CollisionShape2D.shape.extents.x),
@@ -46,11 +46,11 @@ func spawn_asteroid():
 
 
 func _on_AsteroidSpawner_body_entered(body):
-    print("entered" + body.name)
-    if body.name == 'Player':
+    print("[AsteroidSpawner] Body entered: ", body.name)
+    if body is Spaceship:
         $Timer.start()
 
 
 func _on_AsteroidSpawner_body_exited(body):
-    if body.name == 'Player':
+    if body is Spaceship:
         $Timer.stop()
