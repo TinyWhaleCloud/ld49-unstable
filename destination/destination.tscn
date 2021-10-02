@@ -1,0 +1,47 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://assets/PlanetGoosington.png" type="Texture" id=1]
+[ext_resource path="res://destination/destination.gd" type="Script" id=2]
+[ext_resource path="res://destination/PlanetBody.gd" type="Script" id=3]
+[ext_resource path="res://rocket/rocket.tscn" type="PackedScene" id=4]
+
+[sub_resource type="CircleShape2D" id=1]
+radius = 517.202
+
+[sub_resource type="SpriteFrames" id=3]
+animations = [ {
+"frames": [ ExtResource( 1 ) ],
+"loop": true,
+"name": "default",
+"speed": 5.0
+} ]
+
+[sub_resource type="CircleShape2D" id=2]
+radius = 361.154
+
+[node name="BaseDestination" type="Area2D"]
+position = Vector2( -0.235977, -7.62939e-06 )
+script = ExtResource( 2 )
+Rocket = ExtResource( 4 )
+
+[node name="Atmosphere" type="CollisionShape2D" parent="."]
+position = Vector2( -1.42438, 11.3478 )
+shape = SubResource( 1 )
+
+[node name="Sprite" type="AnimatedSprite" parent="."]
+position = Vector2( -1.5874, -1.5874 )
+frames = SubResource( 3 )
+
+[node name="PlanetBody" type="Area2D" parent="."]
+script = ExtResource( 3 )
+
+[node name="Planet" type="CollisionShape2D" parent="PlanetBody"]
+shape = SubResource( 2 )
+
+[node name="TargetingTimer" type="Timer" parent="."]
+
+[connection signal="body_entered" from="." to="." method="_on_BaseDestination_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_BaseDestination_body_exited"]
+[connection signal="area_entered" from="PlanetBody" to="PlanetBody" method="_on_PlanetBody_area_entered"]
+[connection signal="body_entered" from="PlanetBody" to="PlanetBody" method="_on_PlanetBody_body_entered"]
+[connection signal="timeout" from="TargetingTimer" to="." method="_on_TargetingTimer_timeout"]

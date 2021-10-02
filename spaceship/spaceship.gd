@@ -95,3 +95,11 @@ func _on_Spaceship_body_shape_entered(body_id: int, body: Node, body_shape: int,
     # Destroy asteroid on hit
     if body.has_method("destroy_on_hit"):
         body.destroy_on_hit()
+
+
+func rotate_towards(target, away):
+    look_at(target)
+    if away:
+        rotation = rotation + PI
+    linear_velocity = Vector2()
+    angular_velocity = 0

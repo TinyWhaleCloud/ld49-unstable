@@ -11,3 +11,7 @@ extends Node
 func start(start_pos):
     $Spaceship.start(start_pos)
 #    show()
+
+
+func _on_DestinationMenu_rotate_player(target, away):
+    $Spaceship.rotate_towards(target, away)

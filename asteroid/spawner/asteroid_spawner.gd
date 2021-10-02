@@ -46,7 +46,6 @@ func spawn_asteroid():
 
 
 func _on_AsteroidSpawner_body_entered(body):
-    print("[AsteroidSpawner] Body entered: ", body.name)
     if body is Spaceship:
         $Timer.start()
 
