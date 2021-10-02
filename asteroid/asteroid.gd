@@ -12,8 +12,7 @@ func _ready():
 
 # Called when the asteroid leaves the visible screen
 func _on_VisibilityNotifier2D_screen_exited():
-    # TODO: not sure if we want all asteroid to remove themselves when invisible though?
-    queue_free()
+    $DestructionTimer.start(5)
 
 
 # Initializes a newly spawned asteroid
@@ -30,3 +29,10 @@ func spawn(start_pos):
 # Destroys asteroid on hit
 func destroy_on_hit():
     queue_free()
+
+
+# Destroy asteroid 5 seconds after it left the screen if it has not re-entered 
+func _on_DestructionTimer_timeout():
+    $DestructionTimer.stop()
+    if !$VisibilityNotifier2D.is_on_screen():
+        queue_free()
