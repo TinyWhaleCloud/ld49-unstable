@@ -1,7 +1,8 @@
 extends Node
 
 # Define properties and internal variables
-export (PackedScene) var Asteroid
+export (PackedScene) var Asteroid 
+export (PackedScene) var SpaceCookie
 var screen_size
 
 
@@ -28,22 +29,15 @@ func _on_Player_hit():
     print("player hit!")
 
 
-# Called periodically to spawn new asteroids
-func _on_AsteroidTimer_timeout():
-    print("AsteroidTimer: timeout")
-    spawn_asteroid()
-
-
 # Sets everything up for a new game
 func new_game():
     $Player.start($StartPosition.position)
-    $AsteroidTimer.start()
 
 
 # Spawns a new asteroid
 func spawn_asteroid():
     print("spawning asteroid")
-    var asteroid = Asteroid.instance()
+    var asteroid = SpaceCookie.instance()
     add_child(asteroid)
     
     # Randomize asteroid position

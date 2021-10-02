@@ -1,0 +1,24 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://asteroid/spawner/asteroid_spawner.gd" type="Script" id=1]
+[ext_resource path="res://asteroid/types/space_cookie/space_cookie.tscn" type="PackedScene" id=2]
+[ext_resource path="res://asteroid/types/nuclear_waste/nuclear_waste.tscn" type="PackedScene" id=3]
+[ext_resource path="res://asteroid/types/car_waste/car_waste.tscn" type="PackedScene" id=4]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 529.771, 180.295 )
+
+[node name="AsteroidSpawner" type="Area2D"]
+script = ExtResource( 1 )
+SpaceCookie = ExtResource( 2 )
+NuclearWaste = ExtResource( 3 )
+CarWaste = ExtResource( 4 )
+
+[node name="Timer" type="Timer" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource( 1 )
+
+[connection signal="area_entered" from="." to="." method="_on_AsteroidSpawner_area_entered"]
+[connection signal="area_exited" from="." to="." method="_on_AsteroidSpawner_area_exited"]
+[connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
