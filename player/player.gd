@@ -4,16 +4,16 @@ extends RigidBody2D
 signal hit
 
 # Define properties and internal variables
-export var speed = 500
-var thrust = Vector2(0, -speed)
+export var thrust = 500
+var thrust_direction = Vector2(0, -1)
 var torque = 10000
 var reset_new_position = null
-var screen_size
+var zoom_min = 0.5
+var zoom_max = 4
 
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-    screen_size = get_viewport_rect().size
     hide()
 
 
@@ -28,10 +28,32 @@ func reset_position(start_pos):
     reset_new_position = start_pos
 
 
+func _input(event):
+    if event is InputEventMouseButton:
+        if event.button_index == BUTTON_WHEEL_UP and event.pressed:
+            change_zoom(0.2)
+        if event.button_index == BUTTON_WHEEL_DOWN and event.pressed:
+            change_zoom(-0.2)
+
+
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-    pass
-    
+    # Camera zoom
+    var zoom_delta = 0
+    if Input.is_action_pressed("zoom_in"):
+        zoom_delta += delta
+    if Input.is_action_pressed("zoom_out"):
+        zoom_delta -= delta
+
+    if zoom_delta != 0:
+        change_zoom(zoom_delta)
+
+
+func change_zoom(zoom_delta):
+    var zoom_factor = min(zoom_max, max(zoom_min, $Camera2D.zoom.x - zoom_delta))
+    print("[Player] Zoom factor: ", zoom_factor)
+    $Camera2D.zoom = Vector2(zoom_factor, zoom_factor)
+
 
 func _integrate_forces(state):
     # Reset player position?
@@ -40,13 +62,14 @@ func _integrate_forces(state):
         state.linear_velocity = Vector2()
         state.angular_velocity = 0
         reset_new_position = null
-    
+
     # Thrust
-    applied_force = Vector2()
+    var acceleration = 0
     if Input.is_action_pressed("ui_up"):
-        applied_force += thrust.rotated(rotation)
+        acceleration += thrust
     if Input.is_action_pressed("ui_down"):
-        applied_force -= thrust.rotated(rotation)
+        acceleration -= thrust
+    applied_force = acceleration * thrust_direction.rotated(rotation)
 
     # Rotation
     var rotation_dir = 0
