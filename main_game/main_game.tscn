@@ -31,8 +31,6 @@ position = Vector2( -314.525, 451.23 )
 position = Vector2( 1537.54, 796.948 )
 
 [connection signal="rotate_player" from="DestinationMenu" to="Player" method="_on_DestinationMenu_rotate_player"]
-[connection signal="area_entered" from="Goosington" to="Goosington" method="_on_BaseDestination_area_entered"]
 [connection signal="pause" from="Goosington" to="." method="_on_Goosington_pause"]
-[connection signal="area_entered" from="SuspicousCube" to="SuspicousCube" method="_on_BaseDestination_area_entered"]
 [connection signal="pause" from="SuspicousCube" to="." method="_on_SuspicousCube_pause"]
 [connection signal="pause" from="InhabitableRed" to="." method="_on_InhabitableRed_pause"]

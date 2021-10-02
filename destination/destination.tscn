@@ -42,6 +42,5 @@ shape = SubResource( 3 )
 
 [connection signal="body_entered" from="." to="." method="_on_BaseDestination_body_entered"]
 [connection signal="body_exited" from="." to="." method="_on_BaseDestination_body_exited"]
-[connection signal="area_entered" from="PlanetBody" to="PlanetBody" method="_on_PlanetBody_area_entered"]
 [connection signal="body_entered" from="PlanetBody" to="PlanetBody" method="_on_PlanetBody_body_entered"]
 [connection signal="timeout" from="TargetingTimer" to="." method="_on_TargetingTimer_timeout"]
