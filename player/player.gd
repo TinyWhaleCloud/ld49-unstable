@@ -88,3 +88,11 @@ func _on_Player_body_entered(body):
     # Destroy asteroid on hit
     if body.has_method("destroy_on_hit"):
         body.destroy_on_hit()
+
+
+func _on_DestinationMenu_rotate_player(target, away):
+    look_at(target)
+    if away:
+        rotation = rotation + PI
+    linear_velocity = Vector2()
+    angular_velocity = 0
