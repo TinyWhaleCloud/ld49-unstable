@@ -4,7 +4,7 @@ extends Node
 # Called when the node enters the scene tree for the first time.
 func _ready():
     randomize()
-    
+
     # Start game :)
     new_game()
 
@@ -41,3 +41,19 @@ func handle_debug_keys(event):
         # F10: Spawn new asteroid
         if event.scancode == KEY_F10:
             spawn_asteroid()
+
+
+func _on_BaseDestination_pause(stats, position):
+    $DestinationMenu.show(stats, position)
+
+
+func _on_Goosington_pause(stats, position):
+    $DestinationMenu.show(stats, position)
+
+
+func _on_SuspicousCube_pause(stats, position):
+    $DestinationMenu.show(stats, position)
+
+
+func _on_InhabitableRed_pause(stats, position):
+    $DestinationMenu.show(stats, position)

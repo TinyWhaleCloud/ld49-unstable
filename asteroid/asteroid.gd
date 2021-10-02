@@ -19,7 +19,7 @@ func _on_VisibilityNotifier2D_screen_exited():
 func spawn(start_pos):
     # Set start position
     position = start_pos
-    
+
     # Randomize direction and movement
     rotation = rand_range(0, 2 * PI)
     linear_velocity = Vector2(rand_range(min_speed, max_speed), 0)
@@ -31,7 +31,7 @@ func destroy_on_hit():
     queue_free()
 
 
-# Destroy asteroid 5 seconds after it left the screen if it has not re-entered 
+# Destroy asteroid 5 seconds after it left the screen if it has not re-entered
 func _on_DestructionTimer_timeout():
     $DestructionTimer.stop()
     if !$VisibilityNotifier2D.is_on_screen():
