@@ -16,9 +16,11 @@ func _ready():
     new_game()
 
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-#    pass
+# Called on input events
+func _unhandled_input(event):
+    # Debug mode: Do stuff with keys
+    if OS.is_debug_build():
+        handle_debug_keys(event)
 
 
 # Called when the player is hit by an asteroid
@@ -28,7 +30,7 @@ func _on_Player_hit():
 
 # Called periodically to spawn new asteroids
 func _on_AsteroidTimer_timeout():
-    print("spawn asteroid")
+    print("AsteroidTimer: timeout")
     spawn_asteroid()
 
 
@@ -40,6 +42,7 @@ func new_game():
 
 # Spawns a new asteroid
 func spawn_asteroid():
+    print("spawning asteroid")
     var asteroid = Asteroid.instance()
     add_child(asteroid)
     
@@ -49,3 +52,11 @@ func spawn_asteroid():
         rand_range(0, screen_size.y)
     )
     asteroid.spawn(asteroid_position)
+    
+
+# Debug mode: Handle special keys that to stuff for debugging
+func handle_debug_keys(event):
+    if event is InputEventKey and event.pressed:
+        # F9: Spawn new asteroid
+        if event.scancode == KEY_F9:
+            spawn_asteroid()
