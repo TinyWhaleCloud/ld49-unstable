@@ -15,12 +15,18 @@ _global_script_classes=[ {
 "path": "res://player/player.gd"
 }, {
 "base": "RigidBody2D",
+"class": "Rocket",
+"language": "GDScript",
+"path": "res://rocket/rocket.gd"
+}, {
+"base": "RigidBody2D",
 "class": "Spaceship",
 "language": "GDScript",
 "path": "res://spaceship/spaceship.gd"
 } ]
 _global_script_class_icons={
 "Player": "",
+"Rocket": "",
 "Spaceship": ""
 }
 

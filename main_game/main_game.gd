@@ -56,3 +56,7 @@ func _on_SuspicousCube_pause(stats, position):
 
 func _on_InhabitableRed_pause(stats, position):
     $DestinationMenu.show(stats, position)
+
+
+func _on_ShallowSpaceSeven_pause(stats, position):
+    $DestinationMenu.show(stats, position)
