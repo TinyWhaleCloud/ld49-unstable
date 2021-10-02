@@ -4,7 +4,7 @@
 [ext_resource path="res://assets/BaseSuspiciousCube.png" type="Texture" id=2]
 [ext_resource path="res://destination/types/suspicious_cube/suspicois_cube.gd" type="Script" id=3]
 
-[sub_resource type="CircleShape2D" id=19]
+[sub_resource type="CircleShape2D" id=1]
 radius = 438.525
 
 [sub_resource type="AtlasTexture" id=2]
@@ -95,20 +95,20 @@ animations = [ {
 "speed": 21.0
 } ]
 
-[sub_resource type="RectangleShape2D" id=20]
+[sub_resource type="RectangleShape2D" id=19]
 extents = Vector2( 156.092, 155.356 )
 
 [node name="SuspicousCube" instance=ExtResource( 1 )]
 script = ExtResource( 3 )
 
 [node name="Atmosphere" parent="." index="0"]
-shape = SubResource( 19 )
+shape = SubResource( 1 )
 
 [node name="Sprite" parent="." index="1"]
 frames = SubResource( 18 )
-frame = 3
+frame = 8
 playing = true
 
 [node name="Planet" parent="PlanetBody" index="0"]
 position = Vector2( 0, -6.34961 )
-shape = SubResource( 20 )
+shape = SubResource( 19 )

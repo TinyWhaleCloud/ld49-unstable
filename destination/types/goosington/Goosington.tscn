@@ -6,7 +6,7 @@
 [sub_resource type="CircleShape2D" id=1]
 radius = 555.954
 
-[sub_resource type="CircleShape2D" id=3]
+[sub_resource type="CircleShape2D" id=2]
 radius = 361.154
 
 [node name="Goosington" instance=ExtResource( 1 )]
@@ -16,4 +16,4 @@ script = ExtResource( 2 )
 shape = SubResource( 1 )
 
 [node name="Planet" parent="PlanetBody" index="0"]
-shape = SubResource( 3 )
+shape = SubResource( 2 )
