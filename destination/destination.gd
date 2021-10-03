@@ -8,7 +8,7 @@ var targets = []
 var removing = false
 
 func _ready():
-    stats = destination_stats.new('Base Destination', 100, 0,0, 'Normal', 'Bubble', 'This is the base destination that should not be rendered. Oopsie!')
+    stats = destination_stats.new('Base Destination', 100, 0,0, 'Normal', 'Bubble', 'This is the base destination that should not be rendered. Oopsie!', 0.5)
 
 
 func _on_BaseDestination_body_entered(body):
@@ -17,7 +17,7 @@ func _on_BaseDestination_body_entered(body):
             emit_signal('pause', stats, position)
     elif (!body.has_method('blow_up')):
         if (targets.size() == 0):
-            $TargetingTimer.start(0.5)
+            $TargetingTimer.start(stats.aggression)
         targets.append(body)
 
 
@@ -36,19 +36,22 @@ func _on_BaseDestination_body_exited(body):
     removing = false
 
 
-func shoot_rocket(body):
+func shoot_rocket(body: RigidBody2D):
     print(stats.name + ': Shooting Rocket at ' + body.name)
+    print("Target location x: %d y: %d" % [body.position.x, body.position.y])
     var new_rocket = Rocket.instance()
     add_child(new_rocket)
-    var rocket_target = body.position
-    var rocket_position = Vector2($PlanetBody/Planet.position.x, $PlanetBody/Planet.position.y)
+    var rocket_position = Vector2(randi() % 10, randi() % 10)
+    # TODO: super advanced rocket targeting (#31)
+    var rocket_target = body.global_position + body.linear_velocity
     new_rocket.spawn(rocket_position, rocket_target)
 
 
 func _on_TargetingTimer_timeout():
-    for target in targets:
-        shoot_rocket(target)
-
+    var target_index = randi() % targets.size()
+    if target_index < targets.size():
+        # catch race conditions
+        shoot_rocket(targets[target_index])
 
 
 class destination_stats:
@@ -59,9 +62,10 @@ class destination_stats:
     export var stability = ''
     export var economy = ''
     export var flavor_text = ''
+    export var aggression = 0.5
 
 
-    func _init(iName, ifriendliness_score, iunits_spent, itransported, istability, ieconomy, iflavor_text):
+    func _init(iName, ifriendliness_score, iunits_spent, itransported, istability, ieconomy, iflavor_text, iaggression):
         name = iName
         friendliness_score = ifriendliness_score
         units_spent = iunits_spent
@@ -69,4 +73,5 @@ class destination_stats:
         stability = istability
         economy = ieconomy
         flavor_text = iflavor_text
+        aggression = iaggression
 

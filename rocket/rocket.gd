@@ -1,6 +1,9 @@
 extends RigidBody2D
+class_name Rocket
+
 
 export var thrust = 650
+
 
 func _ready():
     pass # Replace with function body.

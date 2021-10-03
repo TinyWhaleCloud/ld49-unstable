@@ -9,6 +9,7 @@ export var thrust = 500
 var thrust_direction = Vector2(0, -1)
 var torque = 10000
 var reset_new_position = null
+var reset_smooth_cam = false
 var zoom_min = 0.5
 var zoom_max = 4
 
@@ -65,6 +66,8 @@ func _process(delta):
         zoom_delta += delta
     if Input.is_action_pressed("zoom_out"):
         zoom_delta -= delta
+    if Input.is_action_just_pressed("pause"):
+        toggle_pause()
 
     if zoom_delta != 0:
         change_zoom(zoom_delta)
@@ -74,6 +77,12 @@ func change_zoom(zoom_delta):
     var zoom_factor = min(zoom_max, max(zoom_min, $Camera2D.zoom.x - zoom_delta))
     print("[%s] Zoom factor: %f" % [name, zoom_factor])
     $Camera2D.zoom = Vector2(zoom_factor, zoom_factor)
+
+func toggle_pause():
+    if $ZoomedOutCam.current:
+        $Camera2D.make_current()
+    else:
+        $ZoomedOutCam.make_current()
 
 
 func _integrate_forces(state):
@@ -100,6 +109,10 @@ func _integrate_forces(state):
         rotation_dir += 1
     applied_torque = rotation_dir * torque
 
+    if reset_smooth_cam:
+        $Camera2D.reset_smoothing()
+        reset_smooth_cam = false
+
 
 # Called when a body collides with the spaceship
 func _on_Spaceship_body_shape_entered(body_id: int, body: Node, body_shape: int, local_shape: int):
@@ -116,14 +129,22 @@ func _on_Spaceship_body_shape_entered(body_id: int, body: Node, body_shape: int,
         body.destroy_on_hit()
 
 
-func rotate_towards(target, away):
+func rotate_towards(target: Vector2, away: bool, smooth: bool = true):
     print("[%s] Rotate towards/away from: %s" % [name, target])
+    if (!smooth):
+        reset_smooth_cam = true
     look_at(target)
     rotation = rotation + PI / 2
     if away:
         rotation = rotation + PI
     linear_velocity = Vector2()
     angular_velocity = 0
+
+
+func teleport_to(destination: Vector2):
+    # TODO: fix bug that makes player face wrong way after teleport (#32)
+    reset_smooth_cam = true
+    reset_new_position = destination
 
 
 func destroy_hit_module(hit_module: ShipBaseModule):

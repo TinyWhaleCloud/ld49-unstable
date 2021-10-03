@@ -4,6 +4,7 @@
 [ext_resource path="res://assets/LeaveButtonHigherRes.png" type="Texture" id=2]
 
 [node name="PlanetMenu" type="CanvasLayer"]
+layer = 3
 script = ExtResource( 1 )
 
 [node name="PopupMenu" type="Popup" parent="."]
@@ -48,7 +49,6 @@ __meta__ = {
 }
 
 [node name="Ship Repairs" type="MarginContainer" parent="PopupMenu/ColorRect/TabContainer"]
-visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 4.0
@@ -68,9 +68,11 @@ margin_bottom = 261.0
 text = "You ship does not need any repairs currently."
 
 [node name="Ship Upgrades" type="MarginContainer" parent="PopupMenu/ColorRect/TabContainer"]
+visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 4.0
+margin_top = 32.0
 margin_right = -4.0
 margin_bottom = -4.0
 custom_constants/margin_right = 20
@@ -80,9 +82,9 @@ custom_constants/margin_bottom = 20
 
 [node name="Label" type="Label" parent="PopupMenu/ColorRect/TabContainer/Ship Upgrades"]
 margin_left = 20.0
-margin_top = 263.0
+margin_top = 247.0
 margin_right = 597.0
-margin_bottom = 277.0
+margin_bottom = 261.0
 text = "This planet does not have any upgrades available at the moment."
 
 [node name="Potential Passengers" type="MarginContainer" parent="PopupMenu/ColorRect/TabContainer"]

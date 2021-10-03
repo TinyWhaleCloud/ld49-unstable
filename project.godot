@@ -9,6 +9,11 @@
 config_version=4
 
 _global_script_classes=[ {
+"base": "CanvasLayer",
+"class": "Hud",
+"language": "GDScript",
+"path": "res://hud/hud.gd"
+}, {
 "base": "Node",
 "class": "Player",
 "language": "GDScript",
@@ -25,15 +30,28 @@ _global_script_classes=[ {
 "path": "res://spaceship/module_grid.gd"
 }, {
 "base": "RigidBody2D",
+"class": "Rocket",
+"language": "GDScript",
+"path": "res://rocket/rocket.gd"
+}, {
+"base": "RigidBody2D",
 "class": "Spaceship",
 "language": "GDScript",
 "path": "res://spaceship/spaceship.gd"
+}, {
+"base": "Area2D",
+"class": "Teleporter",
+"language": "GDScript",
+"path": "res://teleporter/teleporter.gd"
 } ]
 _global_script_class_icons={
+"Hud": "",
 "Player": "",
+"Rocket": "",
 "ShipBaseModule": "",
 "ShipModuleGrid": "",
-"Spaceship": ""
+"Spaceship": "",
+"Teleporter": ""
 }
 
 [application]
@@ -82,6 +100,11 @@ zoom_in={
 zoom_out={
 "deadzone": 0.5,
 "events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":16777236,"unicode":0,"echo":false,"script":null)
+ ]
+}
+pause={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":32,"unicode":0,"echo":false,"script":null)
  ]
 }
 

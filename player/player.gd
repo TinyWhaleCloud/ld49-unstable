@@ -14,4 +14,7 @@ func start(start_pos):
 
 
 func _on_DestinationMenu_rotate_player(target, away):
-    $Spaceship.rotate_towards(target, away)
+    $Spaceship.rotate_towards(target, away, false)
+
+func _on_Hud_unpaused():
+    $Spaceship.toggle_pause()
