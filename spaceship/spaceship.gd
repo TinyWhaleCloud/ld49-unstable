@@ -142,14 +142,21 @@ func _on_Spaceship_body_shape_entered(body_id: int, body: Node, body_shape: int,
         body.destroy_on_hit()
 
 
+func look_at(target: Vector2):
+    .look_at(target)
+    rotation += PI / 2
+
+func turn_around():
+    rotation += PI
+
+
 func rotate_towards(target: Vector2, away: bool, smooth: bool = true):
     print("[%s] Rotate towards/away from: %s" % [name, target])
     if (!smooth):
         reset_smooth_cam = true
     look_at(target)
-    rotation = rotation + PI / 2
     if away:
-        rotation = rotation + PI
+        turn_around()
     linear_velocity = Vector2()
     angular_velocity = 0
 
