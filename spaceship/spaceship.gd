@@ -15,13 +15,7 @@ var zoom_max = 4
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-    # Copy collision shapes from modules
-    var modules = [$Cockpit1, $Cockpit2, $Cockpit3, $Cockpit4, $Cockpit5, $EngineLeft, $EngineCenter, $EngineRight]
-
-    for module in modules:
-        var shape_owner = create_shape_owner(module)
-        shape_owner_add_shape(shape_owner, module.get_node("CollisionShape2D").shape)
-        shape_owner_set_transform(shape_owner, Transform2D(0, module.position))
+    pass
 
 
 # Initialize player to start a new game
@@ -31,6 +25,28 @@ func start(start_pos):
 
 func reset_position(start_pos):
     reset_new_position = start_pos
+
+
+func _on_ModuleGrid_module_added(added_module: ShipBaseModule):
+    print("[%s] Module added: %s" % [name, added_module])
+
+    # Add module shape to spaceship collision shapes
+    var shape_owner_id = create_shape_owner(added_module)
+    shape_owner_add_shape(shape_owner_id, added_module.get_shape())
+    shape_owner_set_transform(shape_owner_id, Transform2D(0, added_module.position))
+
+
+func _on_ModuleGrid_module_removed(removed_module: ShipBaseModule):
+    print("[%s] Module removed: %s" % [name, removed_module])
+
+    # Remove module shape from spaceship collision shapes
+    for owner_id in get_shape_owners():
+        if shape_owner_get_owner(owner_id) == removed_module:
+            print("[%s] Deleting shape owner ID %d" % [name, owner_id])
+            shape_owner_clear_shapes(owner_id)
+            remove_shape_owner(owner_id)
+
+    # TODO check if there is still a cockpit left o.o
 
 
 func _input(event):
@@ -56,7 +72,7 @@ func _process(delta):
 
 func change_zoom(zoom_delta):
     var zoom_factor = min(zoom_max, max(zoom_min, $Camera2D.zoom.x - zoom_delta))
-    print("[Spaceship] Zoom factor: ", zoom_factor)
+    print("[%s] Zoom factor: %f" % [name, zoom_factor])
     $Camera2D.zoom = Vector2(zoom_factor, zoom_factor)
 
 
@@ -87,16 +103,13 @@ func _integrate_forces(state):
 
 # Called when a body collides with the spaceship
 func _on_Spaceship_body_shape_entered(body_id: int, body: Node, body_shape: int, local_shape: int):
-    print("[Spaceship] Body entered: ", body.name)
-    print("........... Body ID: %d, body shape: %d, local shape: %d" % [body_id, body_shape, local_shape])
-
+    print("[%s] Body entered: %s (local shape: %d)" % [name, body.name, local_shape])
     emit_signal("hit")
 
     # Destroy ship module
-    var shape_owner = shape_find_owner(local_shape)
-    var hit_module = shape_owner_get_owner(shape_owner)
-    if hit_module is ShipBaseModule:
-        destroy_hit_module(hit_module, shape_owner)
+    var hit_module = shape_owner_get_owner(shape_find_owner(local_shape))
+    if is_instance_valid(hit_module) and hit_module is ShipBaseModule:
+        destroy_hit_module(hit_module)
 
     # Destroy asteroid on hit
     if body.has_method("destroy_on_hit"):
@@ -104,7 +117,7 @@ func _on_Spaceship_body_shape_entered(body_id: int, body: Node, body_shape: int,
 
 
 func rotate_towards(target, away):
-    print("[Spaceship] Rotate towards/away from: ", target)
+    print("[%s] Rotate towards/away from: %s" % [name, target])
     look_at(target)
     rotation = rotation + PI / 2
     if away:
@@ -113,9 +126,6 @@ func rotate_towards(target, away):
     angular_velocity = 0
 
 
-func destroy_hit_module(hit_module: ShipBaseModule, shape_owner: int):
-    print("[Spaceship] Body hit module: ", hit_module)
-    shape_owner_clear_shapes(shape_owner)
+func destroy_hit_module(hit_module: ShipBaseModule):
+    print("[%s] Body hit module: %s" % [name, hit_module])
     hit_module.destroy()
-
-    # TODO check if there are modules left o.o
