@@ -14,7 +14,7 @@ func _ready():
 func _on_BaseDestination_body_entered(body):
     if (body is Spaceship and stats.friendliness_score >= 100):
         if (stats.friendliness_score >= 100):
-            emit_signal('pause', stats, $PlanetBody/Planet.position)
+            emit_signal('pause', stats, position)
     elif (!body.has_method('blow_up')):
         if (targets.size() == 0):
             $TargetingTimer.start(0.5)

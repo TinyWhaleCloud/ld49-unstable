@@ -56,7 +56,7 @@ func _process(delta):
 
 func change_zoom(zoom_delta):
     var zoom_factor = min(zoom_max, max(zoom_min, $Camera2D.zoom.x - zoom_delta))
-    print("[Player] Zoom factor: ", zoom_factor)
+    print("[Spaceship] Zoom factor: ", zoom_factor)
     $Camera2D.zoom = Vector2(zoom_factor, zoom_factor)
 
 
@@ -87,8 +87,8 @@ func _integrate_forces(state):
 
 # Called when a body collides with the spaceship
 func _on_Spaceship_body_shape_entered(body_id: int, body: Node, body_shape: int, local_shape: int):
-    print("[Player] Body entered: ", body.name)
-    print("........ Body ID: %d, body shape: %d, local shape: %d" % [body_id, body_shape, local_shape])
+    print("[Spaceship] Body entered: ", body.name)
+    print("........... Body ID: %d, body shape: %d, local shape: %d" % [body_id, body_shape, local_shape])
 
     emit_signal("hit")
 
@@ -98,7 +98,9 @@ func _on_Spaceship_body_shape_entered(body_id: int, body: Node, body_shape: int,
 
 
 func rotate_towards(target, away):
+    print("[Spaceship] Rotate towards/away from: ", target)
     look_at(target)
+    rotation = rotation + PI / 2
     if away:
         rotation = rotation + PI
     linear_velocity = Vector2()
