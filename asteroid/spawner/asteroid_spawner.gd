@@ -58,3 +58,6 @@ func _on_AsteroidSpawner_body_exited(body):
     if body is Spaceship:
         $Timer.stop()
         emit_signal("asteroid_field", false)
+
+func get_info():
+    return "Asteroid field.\n It looks like if you go here you will have to dodge some asteroids."

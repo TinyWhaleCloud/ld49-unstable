@@ -24,3 +24,7 @@ func _on_Hud_waypoint_set(new_position: Vector2):
 func _on_Waypoint_body_entered(body):
     visible = false
     emit_signal("waypoint_removed")
+
+
+func get_info():
+    return "Your current waypoint.\nOnce you unpause the game you will see an arrow showing you the way to it.\nClick here to remove it or somewhere else to move it there."
