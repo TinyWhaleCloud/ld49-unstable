@@ -3,16 +3,21 @@ extends Area2D
 
 signal destroyed
 
-
-# Called when the node enters the scene tree for the first time.
-func _ready():
-    pass # Replace with function body.
+# State
+var destroyed := false
 
 
 func destroy():
     print("[%s] I was destroyed!" % [name])
-    queue_free()
+    hide()
+    destroyed = true
     emit_signal("destroyed")
+
+
+func reset():
+    print("[%s] Reset" % [name])
+    show()
+    destroyed = false
 
 
 func get_shape() -> Shape2D:

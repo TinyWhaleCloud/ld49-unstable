@@ -23,6 +23,18 @@ func start(start_pos):
     position = start_pos
 
 
+func reset_modules():
+    print("[%s] Resetting all modules" % [name])
+
+    # Remove all collision shapes
+    for owner_id in get_shape_owners():
+        shape_owner_clear_shapes(owner_id)
+        remove_shape_owner(owner_id)
+
+    # Reset modules
+    $ModuleGrid.reset_all()
+
+
 func reset_position(start_pos):
     reset_new_position = start_pos
 
@@ -45,8 +57,6 @@ func _on_ModuleGrid_module_removed(removed_module: ShipBaseModule):
             print("[%s] Deleting shape owner ID %d" % [name, owner_id])
             shape_owner_clear_shapes(owner_id)
             remove_shape_owner(owner_id)
-
-    # TODO check if there is still a cockpit left o.o
 
 
 func _input(event):
@@ -132,14 +142,21 @@ func _on_Spaceship_body_shape_entered(body_id: int, body: Node, body_shape: int,
         body.destroy_on_hit()
 
 
+func look_at(target: Vector2):
+    .look_at(target)
+    rotation += PI / 2
+
+func turn_around():
+    rotation += PI
+
+
 func rotate_towards(target: Vector2, away: bool, smooth: bool = true):
     print("[%s] Rotate towards/away from: %s" % [name, target])
     if (!smooth):
         reset_smooth_cam = true
     look_at(target)
-    rotation = rotation + PI / 2
     if away:
-        rotation = rotation + PI
+        turn_around()
     linear_velocity = Vector2()
     angular_velocity = 0
 
