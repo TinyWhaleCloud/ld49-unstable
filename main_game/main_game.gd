@@ -36,6 +36,7 @@ func handle_debug_keys(event):
         # F9: Respawn player at start position
         if event.scancode == KEY_F9:
             print("[Main] Respawning player")
+            $Player/Spaceship.reset_modules()
             $Player/Spaceship.reset_position($StartPosition.position)
         # F10: Spawn new asteroid
         if event.scancode == KEY_F10:
