@@ -32,7 +32,11 @@ shape = SubResource( 1 )
 position = Vector2( -1.5874, -1.5874 )
 frames = SubResource( 2 )
 
-[node name="PlanetBody" type="Area2D" parent="."]
+[node name="PlanetBody" type="Area2D" parent="." groups=[
+"InfoHavers",
+]]
+pause_mode = 2
+z_index = 100
 script = ExtResource( 3 )
 
 [node name="Planet" type="CollisionShape2D" parent="PlanetBody"]

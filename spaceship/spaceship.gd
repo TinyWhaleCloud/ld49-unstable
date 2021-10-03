@@ -150,3 +150,7 @@ func teleport_to(destination: Vector2):
 func destroy_hit_module(hit_module: ShipBaseModule):
     print("[%s] Body hit module: %s" % [name, hit_module])
     hit_module.destroy()
+
+
+func get_info():
+    return "This is your trusty (though not especially stable) spaceship.\nIt's really important that you do not break it."
