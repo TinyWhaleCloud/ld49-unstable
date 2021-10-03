@@ -4,6 +4,7 @@
 [ext_resource path="res://assets/LeaveButtonHigherRes.png" type="Texture" id=2]
 
 [node name="PlanetMenu" type="CanvasLayer"]
+layer = 3
 script = ExtResource( 1 )
 
 [node name="PopupMenu" type="Popup" parent="."]
@@ -81,9 +82,9 @@ custom_constants/margin_bottom = 20
 
 [node name="Label" type="Label" parent="PopupMenu/ColorRect/TabContainer/Ship Upgrades"]
 margin_left = 20.0
-margin_top = 263.0
+margin_top = 247.0
 margin_right = 597.0
-margin_bottom = 277.0
+margin_bottom = 261.0
 text = "This planet does not have any upgrades available at the moment."
 
 [node name="Potential Passengers" type="MarginContainer" parent="PopupMenu/ColorRect/TabContainer"]

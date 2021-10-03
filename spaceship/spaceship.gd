@@ -50,6 +50,8 @@ func _process(delta):
         zoom_delta += delta
     if Input.is_action_pressed("zoom_out"):
         zoom_delta -= delta
+    if Input.is_action_just_pressed("pause"):
+        toggle_pause()
 
     if zoom_delta != 0:
         change_zoom(zoom_delta)
@@ -59,6 +61,12 @@ func change_zoom(zoom_delta):
     var zoom_factor = min(zoom_max, max(zoom_min, $Camera2D.zoom.x - zoom_delta))
     print("[Spaceship] Zoom factor: ", zoom_factor)
     $Camera2D.zoom = Vector2(zoom_factor, zoom_factor)
+
+func toggle_pause():
+    if $ZomedOutCam.current:
+        $Camera2D.make_current()
+    else:
+        $ZomedOutCam.make_current()
 
 
 func _integrate_forces(state):
@@ -115,5 +123,6 @@ func rotate_towards(target: Vector2, away: bool, smooth: bool = true):
 
 
 func teleport_to(destination: Vector2):
+    # TODO: fix bug that makes player face wrong way after teleport (#32)
     reset_smooth_cam = true
     reset_new_position = destination

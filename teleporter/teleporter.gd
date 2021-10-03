@@ -10,7 +10,6 @@ func _ready():
 
 
 func _on_Teleporter_body_entered(body: RigidBody2D):
-    print('body entered teleporter: ' + body.get_class())
     if (body.has_method('teleport_to')):
         var new_destiantion = Vector2()
         if destination_x:
