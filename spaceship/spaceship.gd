@@ -6,7 +6,6 @@ signal hit
 
 # Define properties and internal variables
 export var thrust = 500
-var thrust_direction = Vector2(0, -1)
 var torque = 10000
 var reset_new_position = null
 var reset_smooth_cam = false
@@ -94,12 +93,16 @@ func _integrate_forces(state):
         reset_new_position = null
 
     # Thrust
-    var acceleration = 0
+    var force_dir = Vector2()
     if Input.is_action_pressed("ui_up"):
-        acceleration += thrust
+        force_dir.y -= 1
     if Input.is_action_pressed("ui_down"):
-        acceleration -= thrust
-    applied_force = acceleration * thrust_direction.rotated(rotation)
+        force_dir.y += 1
+    if Input.is_action_pressed("ship_thrust_left"):
+        force_dir.x -= 1
+    if Input.is_action_pressed("ship_thrust_right"):
+        force_dir.x += 1
+    applied_force = thrust * force_dir.normalized().rotated(rotation)
 
     # Rotation
     var rotation_dir = 0
