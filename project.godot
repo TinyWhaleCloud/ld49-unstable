@@ -14,6 +14,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://player/player.gd"
 }, {
+"base": "Area2D",
+"class": "ShipBaseModule",
+"language": "GDScript",
+"path": "res://spaceship/modules/base_module.gd"
+}, {
 "base": "RigidBody2D",
 "class": "Spaceship",
 "language": "GDScript",
@@ -21,6 +26,7 @@ _global_script_classes=[ {
 } ]
 _global_script_class_icons={
 "Player": "",
+"ShipBaseModule": "",
 "Spaceship": ""
 }
 

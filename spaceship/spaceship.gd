@@ -19,7 +19,7 @@ func _ready():
     var modules = [$Cockpit1, $Cockpit2, $Cockpit3, $Cockpit4, $Cockpit5, $EngineLeft, $EngineCenter, $EngineRight]
 
     for module in modules:
-        var shape_owner = create_shape_owner(self)
+        var shape_owner = create_shape_owner(module)
         shape_owner_add_shape(shape_owner, module.get_node("CollisionShape2D").shape)
         shape_owner_set_transform(shape_owner, Transform2D(0, module.position))
 
@@ -92,6 +92,12 @@ func _on_Spaceship_body_shape_entered(body_id: int, body: Node, body_shape: int,
 
     emit_signal("hit")
 
+    # Destroy ship module
+    var shape_owner = shape_find_owner(local_shape)
+    var hit_module = shape_owner_get_owner(shape_owner)
+    if hit_module is ShipBaseModule:
+        destroy_hit_module(hit_module, shape_owner)
+
     # Destroy asteroid on hit
     if body.has_method("destroy_on_hit"):
         body.destroy_on_hit()
@@ -105,3 +111,11 @@ func rotate_towards(target, away):
         rotation = rotation + PI
     linear_velocity = Vector2()
     angular_velocity = 0
+
+
+func destroy_hit_module(hit_module: ShipBaseModule, shape_owner: int):
+    print("[Spaceship] Body hit module: ", hit_module)
+    shape_owner_clear_shapes(shape_owner)
+    hit_module.destroy()
+
+    # TODO check if there are modules left o.o
