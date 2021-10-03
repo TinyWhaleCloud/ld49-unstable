@@ -3,6 +3,9 @@ export (PackedScene) var SpaceCookie
 export (PackedScene) var NuclearWaste
 export (PackedScene) var CarWaste
 
+signal asteroid_field
+
+
 export var width = 500
 export var height = 500
 
@@ -48,8 +51,10 @@ func spawn_asteroid():
 func _on_AsteroidSpawner_body_entered(body):
     if body is Spaceship:
         $Timer.start()
+        emit_signal("asteroid_field", true)
 
 
 func _on_AsteroidSpawner_body_exited(body):
     if body is Spaceship:
         $Timer.stop()
+        emit_signal("asteroid_field", false)

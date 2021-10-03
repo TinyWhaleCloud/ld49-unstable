@@ -40,4 +40,7 @@ position = Vector2( 0, 32 )
 [node name="EngineRight" parent="." instance=ExtResource( 3 )]
 position = Vector2( 64, 32 )
 
+[node name="ZomedOutCam" type="Camera2D" parent="."]
+zoom = Vector2( -5, -5 )
+
 [connection signal="body_shape_entered" from="." to="." method="_on_Spaceship_body_shape_entered"]
