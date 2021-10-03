@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://waypoint/arrow/waypoint_arrow.gd" type="Script" id=1]
+[ext_resource path="res://assets/Arrow.png" type="Texture" id=2]
+
+[node name="WaypointArrow" type="CanvasLayer"]
+pause_mode = 2
+script = ExtResource( 1 )
+
+[node name="Sprite" type="Sprite" parent="."]
+position = Vector2( 33.2341, 32.527 )
+rotation = 1.5708
+texture = ExtResource( 2 )

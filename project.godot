@@ -43,6 +43,16 @@ _global_script_classes=[ {
 "class": "Teleporter",
 "language": "GDScript",
 "path": "res://teleporter/teleporter.gd"
+}, {
+"base": "Area2D",
+"class": "Waypoint",
+"language": "GDScript",
+"path": "res://waypoint/waypoint.gd"
+}, {
+"base": "CanvasLayer",
+"class": "WaypointArrow",
+"language": "GDScript",
+"path": "res://waypoint/arrow/waypoint_arrow.gd"
 } ]
 _global_script_class_icons={
 "Hud": "",
@@ -51,7 +61,9 @@ _global_script_class_icons={
 "ShipBaseModule": "",
 "ShipModuleGrid": "",
 "Spaceship": "",
-"Teleporter": ""
+"Teleporter": "",
+"Waypoint": "",
+"WaypointArrow": ""
 }
 
 [application]
