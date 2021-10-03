@@ -8,6 +8,11 @@ signal module_removed(removed_module)
 # Preload module types
 const ModuleCockpit = preload("res://spaceship/modules/cockpit.tscn")
 const ModuleEngine = preload("res://spaceship/modules/engine.tscn")
+const ModuleFuelTank = preload("res://spaceship/modules/fuel_tank.tscn")
+const ModulePassengerBay = preload("res://spaceship/modules/passenger_bay.tscn")
+const ModuleBasicHull = preload("res://spaceship/modules/basic_hull.tscn")
+const ModuleBasicWingL = preload("res://spaceship/modules/basic_wing_left.tscn")
+const ModuleBasicWingR = preload("res://spaceship/modules/basic_wing_right.tscn")
 
 # Size of a module in pixel
 const GRID_SIZE = 32
@@ -15,27 +20,53 @@ const GRID_SIZE = 32
 # This is where we store our modules
 var module_list = []
 
-# Where is vector position 0, 0 (position of cockpit module)
-var center_position = GridPosition.new(2, 0)
+# Where is vector position 0, 0
+var center_position = GridPosition.new()
+
+# Default module layout to create initial modules
+var default_layout = [
+    [null,              ModuleBasicWingL,   ModuleBasicHull,    ModuleBasicWingR,   null],
+    [ModuleBasicWingL,  ModuleBasicHull,    ModuleCockpit,      ModuleBasicHull,    ModuleBasicWingR],
+    [ModuleBasicHull,   ModuleFuelTank,     ModulePassengerBay, ModuleFuelTank,     ModuleBasicHull],
+    [ModuleEngine,      null,               ModuleEngine,       null,               ModuleEngine],
+]
 
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
     # Create our modules
-    for i in range(5):
-        add_module(ModuleCockpit.instance(), GridPosition.new(i, 0))
+    create_modules_from_layout(default_layout)
 
-    add_module(ModuleEngine.instance(), GridPosition.new(0, 1))
-    add_module(ModuleEngine.instance(), GridPosition.new(2, 1))
-    add_module(ModuleEngine.instance(), GridPosition.new(4, 1))
+
+func create_modules_from_layout(layout: Array):
+    # Set center position to the first cockpit we find
+    center_position = find_center_position(layout)
+
+    # Create the modules
+    for row in layout.size():
+        for col in layout[row].size():
+            var module_class = layout[row][col]
+            if module_class != null:
+                add_module(module_class.instance(), GridPosition.new(row, col))
+
+
+func find_center_position(layout: Array) -> GridPosition:
+    # Set center position to the first cockpit we find
+    for row in layout.size():
+        for col in layout[row].size():
+            if layout[row][col] == ModuleCockpit:
+                print("[%s] Setting center position to cockpit at %d/%d" % [name, row, col])
+                return GridPosition.new(row, col)
+    # Fallback to current value
+    return center_position
 
 
 func add_module(new_module: ShipBaseModule, grid_position: GridPosition):
-    # TODO: Store in a 2D array
+    # TODO: Store in a 2D array...?
     module_list.append(new_module)
 
     # Set position and add to scene
-    new_module.position = Vector2(grid_position.x - center_position.x, grid_position.y - center_position.y) * GRID_SIZE
+    new_module.position = Vector2(grid_position.col - center_position.col, grid_position.row - center_position.row) * GRID_SIZE
     add_child(new_module)
 
     # Connect events
@@ -62,9 +93,9 @@ func _on_ShipBaseModule_destroyed(destroyed_module: ShipBaseModule):
 
 # Inner class to represent a position in the grid
 class GridPosition:
-    var x: int
-    var y: int
+    var row: int
+    var col: int
 
-    func _init(x: int = 0, y: int = 0):
-        self.x = x
-        self.y = y
+    func _init(row: int = 0, col: int = 0):
+        self.row = row
+        self.col = col
