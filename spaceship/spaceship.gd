@@ -23,6 +23,18 @@ func start(start_pos):
     position = start_pos
 
 
+func reset_modules():
+    print("[%s] Resetting all modules" % [name])
+
+    # Remove all collision shapes
+    for owner_id in get_shape_owners():
+        shape_owner_clear_shapes(owner_id)
+        remove_shape_owner(owner_id)
+
+    # Reset modules
+    $ModuleGrid.reset_all()
+
+
 func reset_position(start_pos):
     reset_new_position = start_pos
 
@@ -45,8 +57,6 @@ func _on_ModuleGrid_module_removed(removed_module: ShipBaseModule):
             print("[%s] Deleting shape owner ID %d" % [name, owner_id])
             shape_owner_clear_shapes(owner_id)
             remove_shape_owner(owner_id)
-
-    # TODO check if there is still a cockpit left o.o
 
 
 func _input(event):
