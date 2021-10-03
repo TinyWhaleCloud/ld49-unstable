@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://player/player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://main_game/main_game.gd" type="Script" id=2]
@@ -9,6 +9,7 @@
 [ext_resource path="res://destination/destination_menu/destination_menu.tscn" type="PackedScene" id=7]
 [ext_resource path="res://destination/types/shallow_space_seven/shallow_space_seven.tscn" type="PackedScene" id=8]
 [ext_resource path="res://assets/BackgroundStarryNightFar.png" type="Texture" id=9]
+[ext_resource path="res://teleporter/teleporter.tscn" type="PackedScene" id=10]
 [ext_resource path="res://assets/BackgroundFarFarAway.png" type="Texture" id=11]
 
 [node name="Main" type="Node"]
@@ -42,10 +43,10 @@ position = Vector2( -1226.57, -1076.13 )
 motion_scale = Vector2( 0.01, 0.01 )
 
 [node name="TextureRect" type="TextureRect" parent="ParallaxBackground/AnimatedStars"]
-margin_left = -13909.0
-margin_top = -7687.0
-margin_right = 14139.0
-margin_bottom = 8093.0
+margin_left = -13573.0
+margin_top = -7848.55
+margin_right = 14475.0
+margin_bottom = 7931.45
 texture = ExtResource( 11 )
 expand = true
 stretch_mode = 2
@@ -68,6 +69,28 @@ stretch_mode = 2
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="BottomTeleporter" parent="." instance=ExtResource( 10 )]
+position = Vector2( 341.827, 2200 )
+scale = Vector2( 25, 1 )
+destination_y = -1500
+
+[node name="TopTeleporter" parent="." instance=ExtResource( 10 )]
+position = Vector2( 292, -1700 )
+scale = Vector2( 25, 1 )
+destination_y = 2100
+
+[node name="LeftTeleporter" parent="." instance=ExtResource( 10 )]
+position = Vector2( -2600, 256 )
+rotation = 1.5708
+scale = Vector2( 15, 1 )
+destination_x = 3800
+
+[node name="RightTeleporter" parent="." instance=ExtResource( 10 )]
+position = Vector2( 3900, 256 )
+rotation = 1.5708
+scale = Vector2( 15, 1 )
+destination_x = -2500
 
 [connection signal="rotate_player" from="DestinationMenu" to="Player" method="_on_DestinationMenu_rotate_player"]
 [connection signal="pause" from="Goosington" to="." method="_on_Goosington_pause"]

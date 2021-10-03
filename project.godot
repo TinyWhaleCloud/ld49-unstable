@@ -23,11 +23,17 @@ _global_script_classes=[ {
 "class": "Spaceship",
 "language": "GDScript",
 "path": "res://spaceship/spaceship.gd"
+}, {
+"base": "Area2D",
+"class": "Teleporter",
+"language": "GDScript",
+"path": "res://teleporter/teleporter.gd"
 } ]
 _global_script_class_icons={
 "Player": "",
 "Rocket": "",
-"Spaceship": ""
+"Spaceship": "",
+"Teleporter": ""
 }
 
 [application]
