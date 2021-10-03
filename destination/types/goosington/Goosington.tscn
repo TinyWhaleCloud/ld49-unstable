@@ -1,7 +1,31 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://destination/destination.tscn" type="PackedScene" id=1]
 [ext_resource path="res://destination/types/goosington/Goosington.gd" type="Script" id=2]
+[ext_resource path="res://assets/AtmosphereColors.png" type="Texture" id=3]
+
+[sub_resource type="AtlasTexture" id=4]
+flags = 4
+atlas = ExtResource( 3 )
+region = Rect2( 0, 0, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=5]
+flags = 4
+atlas = ExtResource( 3 )
+region = Rect2( 64, 0, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=6]
+flags = 4
+atlas = ExtResource( 3 )
+region = Rect2( 128, 0, 64, 64 )
+
+[sub_resource type="SpriteFrames" id=7]
+animations = [ {
+"frames": [ SubResource( 4 ), SubResource( 5 ), SubResource( 6 ) ],
+"loop": true,
+"name": "default",
+"speed": 5.0
+} ]
 
 [sub_resource type="CircleShape2D" id=1]
 radius = 555.954
@@ -12,7 +36,10 @@ radius = 361.154
 [node name="Goosington" instance=ExtResource( 1 )]
 script = ExtResource( 2 )
 
-[node name="Atmosphere" parent="." index="0"]
+[node name="AtmosphereSprite" parent="." index="0"]
+frames = SubResource( 7 )
+
+[node name="Atmosphere" parent="." index="1"]
 shape = SubResource( 1 )
 
 [node name="Planet" parent="PlanetBody" index="0"]

@@ -9,6 +9,15 @@ var removing = false
 
 func _ready():
     stats = destination_stats.new('Base Destination', 100, 0,0, 'Normal', 'Bubble', 'This is the base destination that should not be rendered. Oopsie!', 0.5)
+    color_atmosphere()
+
+func color_atmosphere():
+    if (stats.friendliness_score < 100):
+        $AtmosphereSprite.frame = 0
+    elif(stats.friendliness_score <= 500):
+        $AtmosphereSprite.frame = 1
+    else:
+        $AtmosphereSprite.frame = 2
 
 
 func _on_BaseDestination_body_entered(body):
