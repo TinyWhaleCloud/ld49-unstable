@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://player/player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://main_game/main_game.gd" type="Script" id=2]
@@ -8,6 +8,8 @@
 [ext_resource path="res://destination/types/inhabitable_red/inhabitable_red.tscn" type="PackedScene" id=6]
 [ext_resource path="res://destination/destination_menu/destination_menu.tscn" type="PackedScene" id=7]
 [ext_resource path="res://destination/types/shallow_space_seven/shallow_space_seven.tscn" type="PackedScene" id=8]
+[ext_resource path="res://assets/BackgroundStarryNightFar.png" type="Texture" id=9]
+[ext_resource path="res://assets/BackgroundFarFarAway.png" type="Texture" id=11]
 
 [node name="Main" type="Node"]
 script = ExtResource( 2 )
@@ -23,16 +25,49 @@ position = Vector2( 880.523, 495.173 )
 [node name="DestinationMenu" parent="." instance=ExtResource( 7 )]
 
 [node name="Goosington" parent="." instance=ExtResource( 3 )]
-position = Vector2( 1025.69, -390.617 )
+position = Vector2( 1658.76, -399.597 )
 
 [node name="SuspicousCube" parent="." instance=ExtResource( 4 )]
-position = Vector2( -314.525, 451.23 )
+position = Vector2( -1576.17, 963.073 )
 
 [node name="InhabitableRed" parent="." instance=ExtResource( 6 )]
-position = Vector2( 1537.54, 796.948 )
+position = Vector2( 2668.98, 1259.4 )
 
 [node name="ShallowSpaceSeven" parent="." instance=ExtResource( 8 )]
-position = Vector2( -566.56, -505.916 )
+position = Vector2( -1226.57, -1076.13 )
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+
+[node name="AnimatedStars" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_scale = Vector2( 0.01, 0.01 )
+
+[node name="TextureRect" type="TextureRect" parent="ParallaxBackground/AnimatedStars"]
+margin_left = -13909.0
+margin_top = -7687.0
+margin_right = 14139.0
+margin_bottom = 8093.0
+texture = ExtResource( 11 )
+expand = true
+stretch_mode = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="StarOverlay" type="ParallaxLayer" parent="ParallaxBackground"]
+visible = false
+motion_scale = Vector2( 0.12, 0.12 )
+
+[node name="TextureRect" type="TextureRect" parent="ParallaxBackground/StarOverlay"]
+margin_left = -8353.0
+margin_top = -5089.0
+margin_right = 13040.0
+margin_bottom = 6469.0
+texture = ExtResource( 9 )
+expand = true
+stretch_mode = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [connection signal="rotate_player" from="DestinationMenu" to="Player" method="_on_DestinationMenu_rotate_player"]
 [connection signal="area_entered" from="Goosington" to="Goosington" method="_on_BaseDestination_area_entered"]
