@@ -36,3 +36,6 @@ func _on_DestructionTimer_timeout():
     $DestructionTimer.stop()
     if !$VisibilityNotifier2D.is_on_screen():
         queue_free()
+
+func get_info():
+    return "This is an asteroid.\nYou should avoid hitting it."
