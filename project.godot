@@ -68,6 +68,17 @@ Something something space taxi."
 run/main_scene="res://main_game/main_game.tscn"
 config/icon="res://icon.png"
 
+[display]
+
+window/size/width=1280
+window/size/height=786
+
+[importer_defaults]
+
+texture={
+"flags/filter": false
+}
+
 [input]
 
 ui_left={
