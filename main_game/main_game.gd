@@ -79,6 +79,8 @@ func _on_ShallowSpaceSeven_pause(stats, position):
 
 
 func _on_Player_earned_capitalism_units(amount, balance, reason):
+    if settings.sfx:
+        $MessageDialog/CapitalismUnitsEarnedSound.play()
     show_message_alert(reason, "You earned " + str(amount) + " Cu.\nYour new balance is: " + str(balance) + " Cu", 1)
 
 

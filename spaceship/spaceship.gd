@@ -24,10 +24,11 @@ var reset_smooth_cam = false
 var zoom_min = 0.5
 var zoom_max = 4
 
+var settings
 
-# Called when the node enters the scene tree for the first time.
+
 func _ready():
-    pass
+    settings = get_node("/root/Settings")
 
 
 # Initialize player to start a new game
@@ -69,6 +70,8 @@ func _on_ModuleGrid_module_added(added_module: ShipBaseModule):
 
 func _on_ModuleGrid_module_removed(removed_module: ShipBaseModule):
     print("[%s] Module removed: %s" % [name, removed_module])
+    if settings.sfx and !$ModuleRemovedSound.playing:
+        $ModuleRemovedSound.play()
 
     # Remove module shape from spaceship collision shapes
     for owner_id in get_shape_owners():
@@ -181,6 +184,9 @@ func _integrate_forces(state):
     if rotation_dir:
         var ship_total_torque = ship_total_thrust * TORQUE_PER_THRUST
         add_torque(rotation_dir * ship_total_torque)
+
+    if settings.sfx and ((move_forwards != 0 or move_sideways != 0 or rotation_dir != 0) and !$EngineSound.playing):
+        $EngineSound.play()
 
     # Engine exhaust flames animation
     for engine in intact_engines:
