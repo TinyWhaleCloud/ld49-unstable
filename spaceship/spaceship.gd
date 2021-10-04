@@ -28,10 +28,7 @@ var zoom_max = 4
 var total_fuel_capacity: float = 0.0
 var current_fuel: float = 0.0
 
-
-# Called when the node enters the scene tree for the first time.
-func _ready():
-    pass
+onready var settings = get_node("/root/Settings")
 
 
 # Initialize player to start a new game
@@ -80,6 +77,8 @@ func _on_ModuleGrid_module_added(added_module: ShipBaseModule):
 
 func _on_ModuleGrid_module_removed(removed_module: ShipBaseModule):
     print("[%s] Module removed: %s" % [name, removed_module])
+    if settings.sfx and !$ModuleRemovedSound.playing:
+        $ModuleRemovedSound.play()
 
     # Remove module shape from spaceship collision shapes
     for owner_id in get_shape_owners():
@@ -206,6 +205,9 @@ func _integrate_forces(state):
     # Consume fuel
     if (fuel_consumption > 0):
         consume_fuel(fuel_consumption * state.step)
+
+    if settings.sfx and ((move_forwards != 0 or move_sideways != 0 or rotation_dir != 0) and !$EngineSound.playing):
+        $EngineSound.play()
 
     # Engine exhaust flames animation
     for engine in intact_engines:
