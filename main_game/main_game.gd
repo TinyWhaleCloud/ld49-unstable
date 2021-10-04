@@ -12,8 +12,7 @@ func _ready():
     $Player.connect("capitalism_units_changed", $Hud/PlayerInfoPanel, "_on_Player_capitalism_units_changed")
 
     settings = get_node("/root/Settings")
-    $ParallaxBackground/StarOverlay.visible = settings.parallax_scrolling
-    $Player/Spaceship/Camera2D.rotating = settings.camera_rotation
+    update_settings()
 
     if !settings.skip_tutorial:
         settings.skip_tutorial = true
@@ -23,11 +22,35 @@ func _ready():
     new_game()
 
 
+func update_settings():
+    $ParallaxBackground/StarOverlay.visible = settings.parallax_scrolling
+    $Player/Spaceship/Camera2D.rotating = settings.camera_rotation
+
+
+func open_pause_menu():
+    print("Game paused!")
+
+    # Pause the game
+    get_tree().paused = true
+    $Hud/PlayerInfoPanel.visible = false
+
+    # Open pause screen
+    var pause_screen = preload("res://title/title.tscn").instance()
+    pause_screen.is_pause_screen = true
+    add_child(pause_screen)
+
+    # Wait until pause screen is closed
+    yield(pause_screen, "tree_exited")
+    print("Game unpaused!")
+    $Hud/PlayerInfoPanel.visible = true
+    update_settings()
+
+
 # Called on input events
 func _unhandled_input(event):
-    # Exit game (TODO: pause menu)
     if event.is_action_pressed("ui_cancel"):
-        get_tree().quit()
+        # Change to pause menu
+        open_pause_menu()
 
     # Debug mode: Do stuff with keys
     if OS.is_debug_build():
