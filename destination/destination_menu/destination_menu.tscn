@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://destination/destination_menu/destination_menu.gd" type="Script" id=1]
 [ext_resource path="res://assets/LeaveButtonHigherRes.png" type="Texture" id=2]
 [ext_resource path="res://passenger_pickup_option/passenger_pickup_option.tscn" type="PackedScene" id=3]
 [ext_resource path="res://destination/destination_menu/repair_option/repair_option.tscn" type="PackedScene" id=4]
+[ext_resource path="res://destination/destination_menu/fuel_station_tab/fuel_station_container.tscn" type="PackedScene" id=5]
 
 [node name="PlanetMenu" type="CanvasLayer"]
 layer = 3
@@ -60,7 +61,25 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="Fuel Station" type="MarginContainer" parent="PopupMenu/ColorRect/TabContainer"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 4.0
+margin_top = 38.0
+margin_right = -4.0
+margin_bottom = -4.0
+custom_constants/margin_right = 20
+custom_constants/margin_top = 20
+custom_constants/margin_left = 20
+custom_constants/margin_bottom = 20
+__meta__ = {
+"_editor_description_": ""
+}
+
+[node name="OptionContainer" parent="PopupMenu/ColorRect/TabContainer/Fuel Station" instance=ExtResource( 5 )]
+
 [node name="Ship Repairs" type="MarginContainer" parent="PopupMenu/ColorRect/TabContainer"]
+visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 4.0
@@ -106,13 +125,14 @@ margin_bottom = 572.0
 custom_constants/separation = 20
 
 [node name="No passengers" type="Label" parent="PopupMenu/ColorRect/TabContainer/Potential Passengers/OptionContainer"]
-margin_right = 577.0
-margin_bottom = 14.0
+margin_right = 691.0
+margin_bottom = 20.0
 text = "There are no passengers waiting here at the moment."
 
 [node name="AlreadyCarryingPassenger" type="Label" parent="PopupMenu/ColorRect/TabContainer/Potential Passengers/OptionContainer"]
-margin_right = 40.0
-margin_bottom = 14.0
+margin_top = 40.0
+margin_right = 691.0
+margin_bottom = 83.0
 text = "You can only carry one passenger at a time.
 Please deliver your current passenger to their destination."
 

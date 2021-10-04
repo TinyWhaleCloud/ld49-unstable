@@ -129,11 +129,12 @@ func show(stats, position):
     $PopupMenu/ColorRect/GridContainer/EconomyValue.text = stats.economy
     $PopupMenu/ColorRect/FlavorTextContainer/FlavorText.text = stats.flavor_text
     update_current_balance_label()
+    $"PopupMenu/ColorRect/TabContainer/Fuel Station/OptionContainer".update_labels()
     if show_passenger_options(stats.passengers):
-        $PopupMenu/ColorRect/TabContainer.current_tab = 1
+        $PopupMenu/ColorRect/TabContainer.current_tab = 2
     price_multiplicator = calculate_price_multiplicator(stats)
     if show_repair_options():
-        $PopupMenu/ColorRect/TabContainer.current_tab = 0
+        $PopupMenu/ColorRect/TabContainer.current_tab = 1
     target_position = position
     $PopupMenu.popup_centered()
 
