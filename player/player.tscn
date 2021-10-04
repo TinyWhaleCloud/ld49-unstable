@@ -3,7 +3,9 @@
 [ext_resource path="res://player/player.gd" type="Script" id=2]
 [ext_resource path="res://spaceship/spaceship.tscn" type="PackedScene" id=3]
 
-[node name="Player" type="Node"]
+[node name="Player" type="Node" groups=[
+"Player",
+]]
 script = ExtResource( 2 )
 
 [node name="Spaceship" parent="." instance=ExtResource( 3 )]

@@ -44,6 +44,10 @@ func reset_modules():
     $ModuleGrid.reset_all()
 
 
+func get_borked_modules():
+    return $ModuleGrid.get_borked_modules()
+
+
 func reset_position(start_pos):
     reset_new_position = start_pos
     reset_new_rotation = 0

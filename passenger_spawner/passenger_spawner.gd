@@ -7,12 +7,12 @@ const destinations = ['Inhabitable Red', 'Goosington', 'Suspicous Cube', 'Shallo
 const current_passengers = 0
 
 func _ready():
-    start(60)
+    start(15)
     for c in range(destinations.size()):
         spawn_passenger()
 
 func create_passenger(start, end):
-    return Passenger.new("Placeholder", 100, start, end)
+    return Passenger.new("Placeholder", floor(rand_range(50, 250)), start, end)
 
 func spawn_passenger():
     var start_destination = randi() % destinations.size()
@@ -22,6 +22,7 @@ func spawn_passenger():
         end_destination = randi() % destinations.size()
     start_destination = destinations[start_destination]
     end_destination = destinations[end_destination]
+    print("Passenger spawned at " + start_destination)
     emit_signal("passenger_spawned", start_destination, create_passenger(start_destination, end_destination))
 
 func _on_Timer_timeout():

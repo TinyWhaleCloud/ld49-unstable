@@ -97,6 +97,14 @@ func get_engines(only_intact: bool = true) -> Array:
     return engine_array
 
 
+func get_borked_modules():
+    var borked = Array()
+    for module in module_list:
+        if !module.is_intact():
+            borked.append(module)
+    return borked
+
+
 # Inner class to represent a position in the grid
 class GridPosition:
     var row: int
