@@ -2,11 +2,10 @@ extends Area2D
 class_name PlanetBody
 
 
-func _ready():
-    print("")
-
-
 func _on_PlanetBody_body_entered(body):
+    if (body is Spaceship):
+        var stats = get_parent().stats
+        body.handle_crash(stats.name)
     if (!body.has_method('blow_up')):
         print('Planet collision with object ' + body.name)
         body.queue_free()

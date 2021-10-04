@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=2]
+[gd_scene load_steps=21 format=2]
 
 [ext_resource path="res://player/player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://main_game/main_game.gd" type="Script" id=2]
@@ -18,6 +18,7 @@
 [ext_resource path="res://passenger_spawner/passenger_spawner.tscn" type="PackedScene" id=16]
 [ext_resource path="res://message/message.tscn" type="PackedScene" id=17]
 [ext_resource path="res://main_game/PurchaseHandler.gd" type="Script" id=18]
+[ext_resource path="res://game_over/game_over.tscn" type="PackedScene" id=19]
 
 [sub_resource type="CapsuleShape2D" id=1]
 
@@ -134,12 +135,16 @@ pause_mode = 2
 ]]
 script = ExtResource( 18 )
 
+[node name="GameOver" parent="." instance=ExtResource( 19 )]
+
+[connection signal="cockpit_destroyed" from="Player" to="." method="_on_Player_cockpit_destroyed"]
 [connection signal="earned_capitalism_units" from="Player" to="." method="_on_Player_earned_capitalism_units"]
 [connection signal="passenger_dead" from="Player" to="." method="_on_Player_passenger_dead"]
 [connection signal="passenger_dead" from="Player" to="Goosington" method="_on_Player_passenger_dead"]
 [connection signal="passenger_dead" from="Player" to="SuspicousCube" method="_on_Player_passenger_dead"]
 [connection signal="passenger_dead" from="Player" to="InhabitableRed" method="_on_Player_passenger_dead"]
 [connection signal="passenger_dead" from="Player" to="ShallowSpaceSeven" method="_on_Player_passenger_dead"]
+[connection signal="player_crashed" from="Player" to="." method="_on_Player_player_crashed"]
 [connection signal="asteroid_field" from="AsteroidSpawner" to="Hud" method="_on_AsteroidSpawner_asteroid_field"]
 [connection signal="mouse_entered" from="AsteroidSpawner" to="Hud" method="_on_AsteroidSpawner_mouse_entered"]
 [connection signal="passenger_picked_up" from="DestinationMenu" to="Player" method="_on_DestinationMenu_passenger_picked_up"]
