@@ -44,6 +44,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://spaceship/modules/base_module.gd"
 }, {
+"base": "ShipBaseModule",
+"class": "ShipEngine",
+"language": "GDScript",
+"path": "res://spaceship/modules/engine.gd"
+}, {
 "base": "Node2D",
 "class": "ShipModuleGrid",
 "language": "GDScript",
@@ -77,6 +82,7 @@ _global_script_class_icons={
 "Player": "",
 "Rocket": "",
 "ShipBaseModule": "",
+"ShipEngine": "",
 "ShipModuleGrid": "",
 "Spaceship": "",
 "Teleporter": "",
@@ -91,6 +97,17 @@ config/description="Ludum Dare 49 Jam.
 Something something space taxi."
 run/main_scene="res://main_game/main_game.tscn"
 config/icon="res://icon.png"
+
+[display]
+
+window/size/width=1280
+window/size/height=786
+
+[importer_defaults]
+
+texture={
+"flags/filter": false
+}
 
 [input]
 
@@ -156,6 +173,7 @@ common/enable_pause_aware_picking=true
 [rendering]
 
 quality/driver/driver_name="GLES2"
+2d/snapping/use_gpu_pixel_snap=true
 vram_compression/import_etc=true
 vram_compression/import_etc2=false
 environment/default_clear_color=Color( 0, 0, 0, 1 )

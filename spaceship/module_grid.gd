@@ -76,19 +76,25 @@ func add_module(new_module: ShipBaseModule, grid_position: GridPosition):
     emit_signal("module_added", new_module)
 
 
-func reset_module(module: ShipBaseModule):
-    module.show()
-    emit_signal("module_added", module)
-
-
 func reset_all():
     for module in module_list:
-        reset_module(module)
+        module.reset()
+        emit_signal("module_added", module)
 
 
 func _on_ShipBaseModule_destroyed(destroyed_module: ShipBaseModule):
     print("[%s] Module was destroyed: %s" % [name, destroyed_module])
     emit_signal("module_removed", destroyed_module)
+
+
+func get_engines(only_intact: bool = true) -> Array:
+    var engine_array = []
+
+    for module in module_list:
+        if module is ShipEngine and (not only_intact or module.is_intact()):
+            engine_array.append(module)
+
+    return engine_array
 
 
 # Inner class to represent a position in the grid
