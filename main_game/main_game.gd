@@ -1,10 +1,20 @@
 extends Node2D
 
 
+var settings
+
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
     randomize()
     $Player/Spaceship.connect("zoomed_out", $Hud, "_on_spaceship_zoomed_out")
+    settings = get_node("/root/Settings")
+    $ParallaxBackground/StarOverlay.visible = settings.parallax_scrolling
+    $Player/Spaceship/Camera2D.rotating = settings.camera_rotation
+
+    if !settings.skip_tutorial:
+        settings.skip_tutorial = true
+        print("Imagine we had a tutorial, that would be great, wouldn't it?")
     # Start game :)
     new_game()
 
@@ -22,6 +32,7 @@ func _unhandled_input(event):
 
 # Sets everything up for a new game
 func new_game():
+    print("new game")
     $Player.start($StartPosition.position)
 
 
