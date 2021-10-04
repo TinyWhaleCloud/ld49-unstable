@@ -1,0 +1,79 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://fonts/xolonium/Xolonium.tres" type="DynamicFont" id=1]
+[ext_resource path="res://hud/player_info_panel.gd" type="Script" id=2]
+
+[sub_resource type="StyleBoxFlat" id=1]
+bg_color = Color( 0.152941, 0.572549, 0, 1 )
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color( 0.8, 0.8, 0.8, 0 )
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[node name="PlayerInfoPanel" type="PanelContainer"]
+anchor_top = 1.0
+anchor_bottom = 1.0
+margin_left = 20.0
+margin_top = -120.0
+margin_right = 220.0
+margin_bottom = -20.0
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="GridContainer" type="GridContainer" parent="."]
+margin_left = 7.0
+margin_top = 7.0
+margin_right = 277.0
+margin_bottom = 93.0
+columns = 2
+
+[node name="LabelFuel" type="Label" parent="GridContainer"]
+margin_top = 6.0
+margin_right = 66.0
+margin_bottom = 26.0
+custom_fonts/font = ExtResource( 1 )
+text = "Fuel: "
+align = 2
+valign = 1
+
+[node name="FuelBar" type="ProgressBar" parent="GridContainer"]
+margin_left = 70.0
+margin_right = 270.0
+margin_bottom = 32.0
+rect_min_size = Vector2( 200, 32 )
+custom_styles/fg = SubResource( 1 )
+value = 50.0
+percent_visible = false
+
+[node name="FuelValueLabel" type="Label" parent="GridContainer/FuelBar"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+text = "??? / ???"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="LabelMoney" type="Label" parent="GridContainer"]
+margin_top = 36.0
+margin_right = 66.0
+margin_bottom = 56.0
+text = "Money: "
+align = 2
+valign = 1
+
+[node name="MoneyValueLabel" type="Label" parent="GridContainer"]
+margin_left = 70.0
+margin_top = 36.0
+margin_right = 270.0
+margin_bottom = 56.0
+text = "??? Cu"
+valign = 1

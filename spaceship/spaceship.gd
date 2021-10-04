@@ -6,6 +6,7 @@ signal hit
 signal passenger_dead(passenger)
 signal cockpit_destroyed()
 signal crashed(name)
+signal fuel_changed(total_capacity, current_fuel)
 
 # Constants
 const TORQUE_PER_THRUST = 35
@@ -39,6 +40,7 @@ func start(start_pos):
     position = start_pos
     rotation = 0
     current_fuel = total_fuel_capacity
+    emit_signal("fuel_changed", total_fuel_capacity, current_fuel)
 
 
 func reset_modules():
@@ -280,7 +282,6 @@ func get_info():
 
 
 # Fuel
-
 func update_fuel_capacity():
     var new_capacity = 0
     for tank in $ModuleGrid.get_fuel_tanks():
@@ -294,9 +295,10 @@ func update_fuel_capacity():
         print("[%s] Lost fuel capacity (%d -> %d), new fuel: %d" % [name, total_fuel_capacity, new_capacity, current_fuel])
 
     total_fuel_capacity = new_capacity
+    emit_signal("fuel_changed", total_fuel_capacity, current_fuel)
 
 func consume_fuel(fuel_amount):
     current_fuel -= fuel_amount
     if current_fuel < 0:
         current_fuel = 0
-    print("[%s] Consumed %f fuel -> %d / %d" % [name, fuel_amount, current_fuel, total_fuel_capacity])
+    emit_signal("fuel_changed", total_fuel_capacity, current_fuel)

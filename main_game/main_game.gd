@@ -5,6 +5,8 @@ extends Node2D
 func _ready():
     randomize()
     $Player/Spaceship.connect("zoomed_out", $Hud, "_on_spaceship_zoomed_out")
+    $Player/Spaceship.connect("fuel_changed", $Hud/PlayerInfoPanel, "_on_Spaceship_fuel_changed")
+    $Player.connect("capitalism_units_changed", $Hud/PlayerInfoPanel, "_on_Player_capitalism_units_changed")
     # Start game :)
     new_game()
 
