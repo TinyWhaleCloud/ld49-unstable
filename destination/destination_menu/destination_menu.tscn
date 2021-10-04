@@ -14,18 +14,17 @@ RepairOpt = ExtResource( 4 )
 [node name="PopupMenu" type="Popup" parent="."]
 pause_mode = 2
 visible = true
-anchor_left = 0.1
-anchor_top = 0.1
-anchor_right = 1.096
-anchor_bottom = 1.1
-margin_right = 0.0959473
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_right = -80.0
+margin_bottom = -86.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="ColorRect" type="Panel" parent="PopupMenu"]
-anchor_right = 1.002
-anchor_bottom = 1.002
+anchor_right = 1.0
+anchor_bottom = 1.0
 margin_right = -0.0401001
 margin_bottom = -0.200073
 __meta__ = {
@@ -65,7 +64,7 @@ __meta__ = {
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 4.0
-margin_top = 32.0
+margin_top = 38.0
 margin_right = -4.0
 margin_bottom = -4.0
 custom_constants/margin_right = 20
@@ -76,13 +75,13 @@ custom_constants/margin_bottom = 20
 [node name="OptionContainer" type="VBoxContainer" parent="PopupMenu/ColorRect/TabContainer/Ship Repairs"]
 margin_left = 20.0
 margin_top = 20.0
-margin_right = 761.0
-margin_bottom = 657.0
+margin_right = 711.0
+margin_bottom = 572.0
 custom_constants/separation = 20
 
 [node name="NoRepaisNeededLabel" type="Label" parent="PopupMenu/ColorRect/TabContainer/Ship Repairs/OptionContainer"]
-margin_right = 741.0
-margin_bottom = 14.0
+margin_right = 691.0
+margin_bottom = 20.0
 text = "You ship does not need any repairs currently."
 clip_text = true
 
@@ -91,7 +90,7 @@ visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 4.0
-margin_top = 32.0
+margin_top = 38.0
 margin_right = -4.0
 margin_bottom = -4.0
 custom_constants/margin_right = 20
@@ -102,8 +101,8 @@ custom_constants/margin_bottom = 20
 [node name="OptionContainer" type="VBoxContainer" parent="PopupMenu/ColorRect/TabContainer/Potential Passengers"]
 margin_left = 20.0
 margin_top = 20.0
-margin_right = 761.0
-margin_bottom = 657.0
+margin_right = 711.0
+margin_bottom = 572.0
 custom_constants/separation = 20
 
 [node name="No passengers" type="Label" parent="PopupMenu/ColorRect/TabContainer/Potential Passengers/OptionContainer"]
@@ -122,7 +121,7 @@ visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 4.0
-margin_top = 32.0
+margin_top = 38.0
 margin_right = -4.0
 margin_bottom = -4.0
 custom_constants/margin_right = 20
@@ -132,9 +131,9 @@ custom_constants/margin_bottom = 20
 
 [node name="Label" type="Label" parent="PopupMenu/ColorRect/TabContainer/Ship Upgrades"]
 margin_left = 20.0
-margin_top = 331.0
-margin_right = 761.0
-margin_bottom = 345.0
+margin_top = 286.0
+margin_right = 711.0
+margin_bottom = 306.0
 text = "This planet does not have any upgrades available at the moment."
 
 [node name="LeaveButton" type="Button" parent="PopupMenu/ColorRect"]
@@ -168,9 +167,9 @@ __meta__ = {
 
 [node name="FlavorText" type="Label" parent="PopupMenu/ColorRect/FlavorTextContainer"]
 margin_left = 7.0
-margin_top = 46.0
-margin_right = 385.434
-margin_bottom = 60.0
+margin_top = 37.0
+margin_right = 361.634
+margin_bottom = 57.0
 autowrap = true
 __meta__ = {
 "_edit_use_anchors_": false
@@ -182,9 +181,9 @@ anchor_top = 0.248
 anchor_right = 0.322
 anchor_bottom = 0.564
 margin_left = -0.440001
-margin_top = -0.0480042
-margin_right = -0.0840149
-margin_bottom = 0.0359802
+margin_top = 20.952
+margin_right = 1.17215
+margin_bottom = 21.036
 custom_constants/vseparation = 5
 custom_constants/hseparation = 70
 columns = 2
@@ -193,107 +192,107 @@ __meta__ = {
 }
 
 [node name="FriendlinessLabel" type="Label" parent="PopupMenu/ColorRect/GridContainer"]
-margin_right = 135.0
-margin_bottom = 14.0
+margin_right = 179.0
+margin_bottom = 20.0
 text = "Friendliness:"
 
 [node name="FriendlinessValue" type="Label" parent="PopupMenu/ColorRect/GridContainer"]
-margin_left = 205.0
-margin_right = 289.0
-margin_bottom = 14.0
+margin_left = 249.0
+margin_right = 364.0
+margin_bottom = 20.0
 text = "Neutral"
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="SpentLabel" type="Label" parent="PopupMenu/ColorRect/GridContainer"]
-margin_top = 19.0
-margin_right = 135.0
-margin_bottom = 33.0
+margin_top = 25.0
+margin_right = 179.0
+margin_bottom = 45.0
 text = "Units spent:"
 
 [node name="SpentValue" type="Label" parent="PopupMenu/ColorRect/GridContainer"]
-margin_left = 205.0
-margin_top = 19.0
-margin_right = 289.0
-margin_bottom = 33.0
+margin_left = 249.0
+margin_top = 25.0
+margin_right = 364.0
+margin_bottom = 45.0
 text = "0 Cu"
 
 [node name="TransportedLabel" type="Label" parent="PopupMenu/ColorRect/GridContainer"]
-margin_top = 38.0
-margin_right = 135.0
-margin_bottom = 52.0
+margin_top = 50.0
+margin_right = 179.0
+margin_bottom = 70.0
 text = "Transported:"
 
 [node name="TransportedValue" type="Label" parent="PopupMenu/ColorRect/GridContainer"]
-margin_left = 205.0
-margin_top = 38.0
-margin_right = 289.0
-margin_bottom = 52.0
+margin_left = 249.0
+margin_top = 50.0
+margin_right = 364.0
+margin_bottom = 70.0
 text = "0 Passengers"
 
 [node name="LineBreak1" type="Label" parent="PopupMenu/ColorRect/GridContainer"]
-margin_top = 57.0
-margin_right = 135.0
-margin_bottom = 71.0
+margin_top = 75.0
+margin_right = 179.0
+margin_bottom = 95.0
 
 [node name="LineBreak2" type="Label" parent="PopupMenu/ColorRect/GridContainer"]
-margin_left = 205.0
-margin_top = 57.0
-margin_right = 289.0
-margin_bottom = 71.0
+margin_left = 249.0
+margin_top = 75.0
+margin_right = 364.0
+margin_bottom = 95.0
 
 [node name="StabilityLabel" type="Label" parent="PopupMenu/ColorRect/GridContainer"]
-margin_top = 76.0
-margin_right = 135.0
-margin_bottom = 90.0
+margin_top = 100.0
+margin_right = 179.0
+margin_bottom = 120.0
 text = "Economic Stability:"
 
 [node name="StabilityValue" type="Label" parent="PopupMenu/ColorRect/GridContainer"]
-margin_left = 205.0
-margin_top = 76.0
-margin_right = 289.0
-margin_bottom = 90.0
+margin_left = 249.0
+margin_top = 100.0
+margin_right = 364.0
+margin_bottom = 120.0
 text = "Normal"
 
 [node name="EconomyLabel" type="Label" parent="PopupMenu/ColorRect/GridContainer"]
-margin_top = 95.0
-margin_right = 135.0
-margin_bottom = 109.0
+margin_top = 125.0
+margin_right = 179.0
+margin_bottom = 145.0
 text = "Economy:"
 
 [node name="EconomyValue" type="Label" parent="PopupMenu/ColorRect/GridContainer"]
-margin_left = 205.0
-margin_top = 95.0
-margin_right = 289.0
-margin_bottom = 109.0
+margin_left = 249.0
+margin_top = 125.0
+margin_right = 364.0
+margin_bottom = 145.0
 text = "Recession"
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="LineBreak3" type="Label" parent="PopupMenu/ColorRect/GridContainer"]
-margin_top = 114.0
-margin_right = 135.0
-margin_bottom = 128.0
+margin_top = 150.0
+margin_right = 179.0
+margin_bottom = 170.0
 
 [node name="LineBreak4" type="Label" parent="PopupMenu/ColorRect/GridContainer"]
-margin_left = 205.0
-margin_top = 114.0
-margin_right = 289.0
-margin_bottom = 128.0
+margin_left = 249.0
+margin_top = 150.0
+margin_right = 364.0
+margin_bottom = 170.0
 
 [node name="CurrentBalanceLabel" type="Label" parent="PopupMenu/ColorRect/GridContainer"]
-margin_top = 133.0
-margin_right = 135.0
-margin_bottom = 147.0
+margin_top = 175.0
+margin_right = 179.0
+margin_bottom = 195.0
 text = "Your current balance:"
 
 [node name="CurrentBalanceValue" type="Label" parent="PopupMenu/ColorRect/GridContainer"]
-margin_left = 205.0
-margin_top = 133.0
-margin_right = 289.0
-margin_bottom = 147.0
+margin_left = 249.0
+margin_top = 175.0
+margin_right = 364.0
+margin_bottom = 195.0
 
 [connection signal="hide" from="PopupMenu" to="." method="_on_PopupMenu_hide"]
 [connection signal="modal_closed" from="PopupMenu" to="." method="_on_PopupMenu_modal_closed"]
