@@ -5,6 +5,8 @@ signal destroyed
 
 # State
 var destroyed := false
+export var module_type: String
+export var base_price: float
 
 
 func is_intact() -> bool:

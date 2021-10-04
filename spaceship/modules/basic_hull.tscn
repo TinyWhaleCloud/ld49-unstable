@@ -4,6 +4,8 @@
 [ext_resource path="res://assets/PartBasicHull.png" type="Texture" id=2]
 
 [node name="BasicHull" instance=ExtResource( 1 )]
+module_type = "BasicHull"
+base_price = 10.0
 
 [node name="Sprite" parent="." index="0"]
 texture = ExtResource( 2 )

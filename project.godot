@@ -34,6 +34,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://player/player.gd"
 }, {
+"base": "GridContainer",
+"class": "RepairOption",
+"language": "GDScript",
+"path": "res://destination/destination_menu/repair_option/repair_option.gd"
+}, {
 "base": "RigidBody2D",
 "class": "Rocket",
 "language": "GDScript",
@@ -80,6 +85,7 @@ _global_script_class_icons={
 "PassengerSpawner": "",
 "PlanetBody": "",
 "Player": "",
+"RepairOption": "",
 "Rocket": "",
 "ShipBaseModule": "",
 "ShipEngine": "",
