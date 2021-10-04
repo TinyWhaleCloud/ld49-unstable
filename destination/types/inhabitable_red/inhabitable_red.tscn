@@ -16,7 +16,8 @@ animations = [ {
 } ]
 
 [sub_resource type="CapsuleShape2D" id=3]
-radius = 325.944
+radius = 255.234
+height = 151.396
 
 [node name="InhabitableRed" instance=ExtResource( 1 )]
 script = ExtResource( 3 )
@@ -28,6 +29,7 @@ shape = SubResource( 1 )
 frames = SubResource( 2 )
 
 [node name="Planet" parent="PlanetBody" index="0"]
-visible = false
-position = Vector2( 14.2865, 1.5874 )
+position = Vector2( 16.236, 7.15256e-06 )
+rotation = -0.856368
+scale = Vector2( 1.06261, 0.959686 )
 shape = SubResource( 3 )
