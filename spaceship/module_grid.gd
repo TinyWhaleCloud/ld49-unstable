@@ -76,14 +76,10 @@ func add_module(new_module: ShipBaseModule, grid_position: GridPosition):
     emit_signal("module_added", new_module)
 
 
-func reset_module(module: ShipBaseModule):
-    module.show()
-    emit_signal("module_added", module)
-
-
 func reset_all():
     for module in module_list:
-        reset_module(module)
+        module.reset()
+        emit_signal("module_added", module)
 
 
 func _on_ShipBaseModule_destroyed(destroyed_module: ShipBaseModule):

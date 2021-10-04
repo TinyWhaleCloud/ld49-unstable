@@ -154,6 +154,13 @@ func _integrate_forces(state):
         var ship_total_torque = ship_total_thrust * TORQUE_PER_THRUST
         add_torque(rotation_dir * ship_total_torque)
 
+    # Engine exhaust flames animation
+    for engine in intact_engines:
+        if move_forwards or move_sideways or rotation_dir:
+            engine.play_animation()
+        else:
+            engine.stop_animation()
+
     if reset_smooth_cam:
         $Camera2D.reset_smoothing()
         reset_smooth_cam = false

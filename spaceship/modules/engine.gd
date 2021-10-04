@@ -3,15 +3,26 @@ extends ShipBaseModule
 
 # Engine speed
 export var thrust = 200
-
-# TODO: flame animations when moving!!!!
-
+var animation_running = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-    pass # Replace with function body.
+    stop_animation(true)
 
+func reset():
+    .reset()
+    stop_animation(true)
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-#    pass
+func play_animation():
+    if not animation_running:
+        var flame = $ExhaustFlame
+        flame.show()
+        flame.play()
+        flame.frame = randi() % flame.frames.get_frame_count(flame.animation)
+        animation_running = true
+
+func stop_animation(always = false):
+    if animation_running or always:
+        $ExhaustFlame.stop()
+        $ExhaustFlame.hide()
+        animation_running = false
