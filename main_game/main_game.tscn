@@ -39,22 +39,78 @@ position = Vector2( 868, 600 )
 rotation = 0.755183
 scale = Vector2( 1.57974, 1.31394 )
 
+[node name="AsteroidSpawner8" parent="." instance=ExtResource( 5 )]
+position = Vector2( -513.503, -1432.58 )
+rotation = 0.351652
+scale = Vector2( 3.51861, -1.42139 )
+
+[node name="AsteroidSpawner7" parent="." instance=ExtResource( 5 )]
+position = Vector2( -2524.76, -439.737 )
+rotation = 0.879509
+scale = Vector2( -3.7372, 1.33202 )
+
+[node name="AsteroidSpawner9" parent="." instance=ExtResource( 5 )]
+position = Vector2( 2612.04, 815.192 )
+rotation = 0.906887
+scale = Vector2( 2.37233, 0.699089 )
+
 [node name="AsteroidSpawner2" parent="." instance=ExtResource( 5 )]
 position = Vector2( -3552, 2688 )
+
+[node name="AsteroidSpawner4" parent="." instance=ExtResource( 5 )]
+position = Vector2( -1254.41, 2299.87 )
+rotation = 0.220574
+scale = Vector2( 1.92784, 1.2402 )
+
+[node name="AsteroidSpawner6" parent="." instance=ExtResource( 5 )]
+position = Vector2( 7714.93, 4795.74 )
+rotation = 0.355128
+scale = Vector2( -2.07573, 11.1751 )
+
+[node name="AsteroidSpawner5" parent="." instance=ExtResource( 5 )]
+position = Vector2( -4984.35, 5089.24 )
+rotation = 0.220574
+scale = Vector2( 9.77026, 5.89869 )
+
+[node name="AsteroidSpawner3" parent="." instance=ExtResource( 5 )]
+position = Vector2( 515.586, 1730.79 )
+rotation = 0.165806
+scale = Vector2( 3.31204, 1.08505 )
+
+[node name="AsteroidSpawner10" parent="." instance=ExtResource( 5 )]
+position = Vector2( 4912.91, -3240.65 )
+rotation = 0.355128
+scale = Vector2( -11.2766, 7.76804 )
+
+[node name="AsteroidSpawner11" parent="." instance=ExtResource( 5 )]
+position = Vector2( -6243.34, -3791.81 )
+rotation = -0.653355
+scale = Vector2( 7.13185, -4.58069 )
+
+[node name="AsteroidSpawner12" parent="." instance=ExtResource( 5 )]
+position = Vector2( -6363.73, 777.499 )
+rotation = 1.18217
+scale = Vector2( 6.78555, 3.19571 )
+
+[node name="AsteroidSpawner13" parent="." instance=ExtResource( 5 )]
+position = Vector2( 2557.48, 5904.52 )
+rotation = -1.47955
+scale = Vector2( 3.15443, 11.199 )
 
 [node name="DestinationMenu" parent="." instance=ExtResource( 7 )]
 
 [node name="Goosington" parent="." instance=ExtResource( 3 )]
-position = Vector2( 1658.76, -399.597 )
+position = Vector2( 1482.76, -413.867 )
 
 [node name="SuspicousCube" parent="." instance=ExtResource( 4 )]
-position = Vector2( -1576.17, 963.073 )
+position = Vector2( -2954.18, 1490.11 )
 
 [node name="InhabitableRed" parent="." instance=ExtResource( 6 )]
-position = Vector2( 2668.98, 1259.4 )
+position = Vector2( 3728.79, 2370.1 )
 
 [node name="ShallowSpaceSeven" parent="." instance=ExtResource( 8 )]
-position = Vector2( -1226.57, -1076.13 )
+position = Vector2( -3050.86, -2710.44 )
+rotation = -0.0894907
 
 [node name="ParallaxBackground" type="ParallaxBackground" parent="."]
 
@@ -98,26 +154,26 @@ __meta__ = {
 }
 
 [node name="BottomTeleporter" parent="." instance=ExtResource( 10 )]
-position = Vector2( 0, 3000 )
-scale = Vector2( 80, 1 )
+position = Vector2( 152.219, 7471.42 )
+scale = Vector2( 145.581, 0.563181 )
 destination_y = -2800
 
 [node name="TopTeleporter" parent="." instance=ExtResource( 10 )]
-position = Vector2( 0, -3000 )
+position = Vector2( 133.191, -5911.18 )
 rotation = 3.14159
-scale = Vector2( 80, 1 )
+scale = Vector2( 179.78, 2.31719 )
 destination_y = 2800
 
 [node name="LeftTeleporter" parent="." instance=ExtResource( 10 )]
-position = Vector2( -4000, 0 )
+position = Vector2( -8794.88, 1350.94 )
 rotation = 1.5708
-scale = Vector2( 64, 1 )
+scale = Vector2( 120.455, 0.48407 )
 destination_x = 4300
 
 [node name="RightTeleporter" parent="." instance=ExtResource( 10 )]
-position = Vector2( 4500, 0 )
+position = Vector2( 9123.64, 818.174 )
 rotation = 4.71239
-scale = Vector2( 64, 1 )
+scale = Vector2( 129.921, 0.39209 )
 destination_x = -3800
 
 [node name="Hud" parent="." instance=ExtResource( 12 )]
@@ -164,8 +220,30 @@ stream = ExtResource( 20 )
 [connection signal="player_crashed" from="Player" to="." method="_on_Player_player_crashed"]
 [connection signal="asteroid_field" from="AsteroidSpawner" to="Hud" method="_on_AsteroidSpawner_asteroid_field"]
 [connection signal="mouse_entered" from="AsteroidSpawner" to="Hud" method="_on_AsteroidSpawner_mouse_entered"]
+[connection signal="asteroid_field" from="AsteroidSpawner8" to="Hud" method="_on_AsteroidSpawner_asteroid_field"]
+[connection signal="mouse_entered" from="AsteroidSpawner8" to="Hud" method="_on_AsteroidSpawner_mouse_entered"]
+[connection signal="asteroid_field" from="AsteroidSpawner7" to="Hud" method="_on_AsteroidSpawner_asteroid_field"]
+[connection signal="mouse_entered" from="AsteroidSpawner7" to="Hud" method="_on_AsteroidSpawner_mouse_entered"]
+[connection signal="asteroid_field" from="AsteroidSpawner9" to="Hud" method="_on_AsteroidSpawner_asteroid_field"]
+[connection signal="mouse_entered" from="AsteroidSpawner9" to="Hud" method="_on_AsteroidSpawner_mouse_entered"]
 [connection signal="asteroid_field" from="AsteroidSpawner2" to="Hud" method="_on_AsteroidSpawner_asteroid_field"]
 [connection signal="mouse_entered" from="AsteroidSpawner2" to="Hud" method="_on_AsteroidSpawner_mouse_entered"]
+[connection signal="asteroid_field" from="AsteroidSpawner4" to="Hud" method="_on_AsteroidSpawner_asteroid_field"]
+[connection signal="mouse_entered" from="AsteroidSpawner4" to="Hud" method="_on_AsteroidSpawner_mouse_entered"]
+[connection signal="asteroid_field" from="AsteroidSpawner6" to="Hud" method="_on_AsteroidSpawner_asteroid_field"]
+[connection signal="mouse_entered" from="AsteroidSpawner6" to="Hud" method="_on_AsteroidSpawner_mouse_entered"]
+[connection signal="asteroid_field" from="AsteroidSpawner5" to="Hud" method="_on_AsteroidSpawner_asteroid_field"]
+[connection signal="mouse_entered" from="AsteroidSpawner5" to="Hud" method="_on_AsteroidSpawner_mouse_entered"]
+[connection signal="asteroid_field" from="AsteroidSpawner3" to="Hud" method="_on_AsteroidSpawner_asteroid_field"]
+[connection signal="mouse_entered" from="AsteroidSpawner3" to="Hud" method="_on_AsteroidSpawner_mouse_entered"]
+[connection signal="asteroid_field" from="AsteroidSpawner10" to="Hud" method="_on_AsteroidSpawner_asteroid_field"]
+[connection signal="mouse_entered" from="AsteroidSpawner10" to="Hud" method="_on_AsteroidSpawner_mouse_entered"]
+[connection signal="asteroid_field" from="AsteroidSpawner11" to="Hud" method="_on_AsteroidSpawner_asteroid_field"]
+[connection signal="mouse_entered" from="AsteroidSpawner11" to="Hud" method="_on_AsteroidSpawner_mouse_entered"]
+[connection signal="asteroid_field" from="AsteroidSpawner12" to="Hud" method="_on_AsteroidSpawner_asteroid_field"]
+[connection signal="mouse_entered" from="AsteroidSpawner12" to="Hud" method="_on_AsteroidSpawner_mouse_entered"]
+[connection signal="asteroid_field" from="AsteroidSpawner13" to="Hud" method="_on_AsteroidSpawner_asteroid_field"]
+[connection signal="mouse_entered" from="AsteroidSpawner13" to="Hud" method="_on_AsteroidSpawner_mouse_entered"]
 [connection signal="passenger_picked_up" from="DestinationMenu" to="Player" method="_on_DestinationMenu_passenger_picked_up"]
 [connection signal="passenger_picked_up" from="DestinationMenu" to="Goosington" method="_on_DestinationMenu_passenger_picked_up"]
 [connection signal="passenger_picked_up" from="DestinationMenu" to="SuspicousCube" method="_on_DestinationMenu_passenger_picked_up"]
