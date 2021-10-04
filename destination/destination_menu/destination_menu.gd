@@ -14,6 +14,7 @@ var price_multiplicator
 func _ready():
     spaceship = get_spaceship()
     purchase_handler = get_purchase_handler()
+    get_viewport().connect("size_changed", self, "_on_viewport_resize")
 
 
 func getFriendlinessStringFromScore(score):
@@ -135,6 +136,11 @@ func show(stats, position):
         $PopupMenu/ColorRect/TabContainer.current_tab = 0
     target_position = position
     $PopupMenu.popup_centered()
+
+
+func _on_viewport_resize():
+    if $PopupMenu.visible:
+        $PopupMenu.popup_centered()
 
 
 func _on_PopupMenu_hide():
