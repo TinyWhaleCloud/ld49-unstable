@@ -1,0 +1,44 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://passenger_pickup_option/passenger_pickup_option.gd" type="Script" id=1]
+
+[node name="PassengerPickupOption" type="GridContainer"]
+margin_right = 266.0
+margin_bottom = 50.0
+custom_constants/vseparation = 1
+custom_constants/hseparation = 70
+columns = 2
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="EndLabel" type="Label" parent="."]
+margin_right = 78.0
+margin_bottom = 14.0
+text = "Destination:"
+
+[node name="EndValue" type="Label" parent="."]
+margin_left = 148.0
+margin_right = 148.0
+margin_bottom = 14.0
+
+[node name="PaymentLabel" type="Label" parent="."]
+margin_top = 15.0
+margin_right = 78.0
+margin_bottom = 29.0
+text = "Payout:"
+
+[node name="PaymentValue" type="Label" parent="."]
+margin_left = 148.0
+margin_top = 15.0
+margin_right = 148.0
+margin_bottom = 29.0
+
+[node name="PickupButton" type="Button" parent="."]
+margin_top = 30.0
+margin_right = 78.0
+margin_bottom = 50.0
+text = "Pick Up"
+
+[connection signal="pressed" from="PickupButton" to="." method="_on_PickupButton_pressed"]
