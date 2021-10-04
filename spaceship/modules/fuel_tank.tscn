@@ -1,9 +1,11 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://spaceship/modules/base_module.tscn" type="PackedScene" id=1]
 [ext_resource path="res://assets/PartFuelTank.png" type="Texture" id=2]
+[ext_resource path="res://spaceship/modules/fuel_tank.gd" type="Script" id=3]
 
 [node name="FuelTank" instance=ExtResource( 1 )]
+script = ExtResource( 3 )
 module_type = "fuel_tank"
 base_price = 200.0
 

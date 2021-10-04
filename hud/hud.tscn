@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://hud/hud.gd" type="Script" id=1]
 [ext_resource path="res://assets/WarningSign.png" type="Texture" id=2]
 [ext_resource path="res://assets/AsteroidsText.png" type="Texture" id=3]
+[ext_resource path="res://hud/player_info_panel.tscn" type="PackedScene" id=4]
 
 [node name="Hud" type="CanvasLayer"]
 pause_mode = 2
@@ -13,10 +14,10 @@ script = ExtResource( 1 )
 anchor_top = 0.169
 anchor_right = 0.162
 anchor_bottom = 0.242
-margin_left = 0.432373
-margin_top = -0.0775299
-margin_right = -0.455627
-margin_bottom = 0.122467
+margin_left = 64.0
+margin_top = -68.834
+margin_right = 63.112
+margin_bottom = -68.634
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -44,7 +45,6 @@ __meta__ = {
 }
 
 [node name="PausedContainer" type="Control" parent="."]
-visible = false
 margin_right = 40.0
 margin_bottom = 40.0
 __meta__ = {
@@ -70,9 +70,9 @@ __meta__ = {
 }
 
 [node name="Label" type="Label" parent="PausedContainer/PausePanel/MarginContainer"]
-margin_top = 58.0
+margin_top = 55.0
 margin_right = 310.0
-margin_bottom = 72.0
+margin_bottom = 75.0
 autowrap = true
 __meta__ = {
 "_edit_use_anchors_": false
@@ -86,3 +86,5 @@ text = "Paused"
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="PlayerInfoPanel" parent="." instance=ExtResource( 4 )]

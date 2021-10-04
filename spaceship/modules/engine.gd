@@ -3,6 +3,8 @@ extends ShipBaseModule
 
 # Engine speed
 export var thrust = 200
+export var fuel_consumption = 1
+
 var animation_running = false
 
 # Called when the node enters the scene tree for the first time.

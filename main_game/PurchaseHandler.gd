@@ -30,11 +30,10 @@ func purchase_item(price: float, name: String = "item"):
         print("[PurchaseHandler] Error: Player not found")
     else:
         var balance = player.capitalism_units
-        if balance < price:
-            emit_signal("cannot_afford", price, balance)
-            return false
-        else:
-            player.capitalism_units -= price
+        if player.pay_capitalism_units(price):
             emit_signal("item_purchased", name, price, balance - price)
             $PurchaseSuccessSound.play()
             return true
+        else:
+            emit_signal("cannot_afford", price, balance)
+            return false

@@ -37,10 +37,12 @@ func _process(delta):
         if $PausedContainer.visible:
             get_tree().paused = false
             $PausedContainer.visible = false
+            $PlayerInfoPanel.visible = true
             emit_signal("unpaused")
         else:
             get_tree().paused = true
             $PausedContainer.visible = true
+            $PlayerInfoPanel.visible = false
             emit_signal("paused")
     if $PausedContainer.visible:
         if info_seeker:

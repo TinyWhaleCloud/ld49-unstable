@@ -8,6 +8,9 @@ var settings
 func _ready():
     randomize()
     $Player/Spaceship.connect("zoomed_out", $Hud, "_on_spaceship_zoomed_out")
+    $Player/Spaceship.connect("fuel_changed", $Hud/PlayerInfoPanel, "_on_Spaceship_fuel_changed")
+    $Player.connect("capitalism_units_changed", $Hud/PlayerInfoPanel, "_on_Player_capitalism_units_changed")
+
     settings = get_node("/root/Settings")
     $ParallaxBackground/StarOverlay.visible = settings.parallax_scrolling
     $Player/Spaceship/Camera2D.rotating = settings.camera_rotation
@@ -15,6 +18,7 @@ func _ready():
     if !settings.skip_tutorial:
         settings.skip_tutorial = true
         print("Imagine we had a tutorial, that would be great, wouldn't it?")
+
     # Start game :)
     new_game()
 

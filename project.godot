@@ -9,6 +9,11 @@
 config_version=4
 
 _global_script_classes=[ {
+"base": "ShipBaseModule",
+"class": "FuelTank",
+"language": "GDScript",
+"path": "res://spaceship/modules/fuel_tank.gd"
+}, {
 "base": "CanvasLayer",
 "class": "GameOver",
 "language": "GDScript",
@@ -90,6 +95,7 @@ _global_script_classes=[ {
 "path": "res://waypoint/arrow/waypoint_arrow.gd"
 } ]
 _global_script_class_icons={
+"FuelTank": "",
 "GameOver": "",
 "Hud": "",
 "PassengerPickupOption": "",
@@ -124,6 +130,10 @@ Settings="*res://Settings.gd"
 
 window/size/width=1280
 window/size/height=786
+
+[gui]
+
+theme/custom_font="res://fonts/xolonium/Xolonium.tres"
 
 [importer_defaults]
 
