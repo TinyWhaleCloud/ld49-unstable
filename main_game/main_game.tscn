@@ -135,6 +135,11 @@ pause_mode = 2
 script = ExtResource( 18 )
 
 [connection signal="earned_capitalism_units" from="Player" to="." method="_on_Player_earned_capitalism_units"]
+[connection signal="passenger_dead" from="Player" to="." method="_on_Player_passenger_dead"]
+[connection signal="passenger_dead" from="Player" to="Goosington" method="_on_Player_passenger_dead"]
+[connection signal="passenger_dead" from="Player" to="SuspicousCube" method="_on_Player_passenger_dead"]
+[connection signal="passenger_dead" from="Player" to="InhabitableRed" method="_on_Player_passenger_dead"]
+[connection signal="passenger_dead" from="Player" to="ShallowSpaceSeven" method="_on_Player_passenger_dead"]
 [connection signal="asteroid_field" from="AsteroidSpawner" to="Hud" method="_on_AsteroidSpawner_asteroid_field"]
 [connection signal="mouse_entered" from="AsteroidSpawner" to="Hud" method="_on_AsteroidSpawner_mouse_entered"]
 [connection signal="passenger_picked_up" from="DestinationMenu" to="Player" method="_on_DestinationMenu_passenger_picked_up"]
