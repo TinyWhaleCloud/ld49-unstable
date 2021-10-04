@@ -10,11 +10,11 @@ signal crashed(name)
 
 # Constants
 const TORQUE_PER_THRUST = 35
+const DISTANCE_AFTER_PLANET_MENU = 32
+const VELOCITY_AFTER_PLANET_MENU = 200
 
 # Define properties and internal variables
-export var thrust = 500
 export var current_passenger = {"name": "nobody"}
-var torque = 10000
 export var emergency_thrust = 50
 
 var reset_new_position = null
@@ -213,32 +213,35 @@ func handle_crash(name):
     emit_signal("crashed", name)
 
 
+func reset_smooth_cam():
+    # Temporarily disable camera smoothing to avoid nauseous camera jumps
+    $Camera2D.smoothing_enabled = false
+    reset_smooth_cam = true
+
+
 func look_at(target: Vector2):
     .look_at(target)
     rotation += PI / 2
 
-func turn_around():
+func look_away_from(target: Vector2):
+    look_at(target)
     rotation += PI
 
 
-func rotate_towards(target: Vector2, away: bool, smooth: bool = true):
-    print("[%s] Rotate towards/away from: %s" % [name, target])
-    if (!smooth):
-        reset_smooth_cam = true
-    look_at(target)
-    if away:
-        turn_around()
-    linear_velocity = Vector2()
+func rotate_after_planet_menu(planet: Vector2):
+    print("[%s] Rotate away from planet %s" % [name, planet])
+    reset_smooth_cam()
+    look_away_from(planet)
+    # Give a small boost forward
+    reset_new_position = position + Vector2(0, -DISTANCE_AFTER_PLANET_MENU).rotated(rotation)
+    linear_velocity = Vector2(0, -VELOCITY_AFTER_PLANET_MENU).rotated(rotation)
     angular_velocity = 0
 
 
 func teleport_to(destination: Vector2):
     # Actual movement must be done in _integrate_forces
     reset_new_position = destination
-
-    # Temporarily disable camera smoothing to avoid nauseous camera jumps
-    $Camera2D.smoothing_enabled = false
-    reset_smooth_cam = true
+    reset_smooth_cam()
 
 
 func destroy_hit_module(hit_module: ShipBaseModule):

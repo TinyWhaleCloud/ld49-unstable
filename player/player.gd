@@ -28,7 +28,7 @@ func _on_spaceship_passenger_dead(passenger):
     emit_signal("passenger_dead", passenger)
 
 func _on_DestinationMenu_rotate_player(target, away):
-    $Spaceship.rotate_towards(target, away, false)
+    $Spaceship.rotate_after_planet_menu(target)
 
 func _on_Hud_unpaused():
     $Spaceship.toggle_pause()

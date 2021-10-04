@@ -9,6 +9,7 @@ export var stats = {}
 
 var targets = []
 var removing = false
+var player_currently_in_atmosphere = false
 
 func _ready():
     stats = destination_stats.new('Base Destination', 100, 0,0, 'Normal', 'Bubble', 'This is the base destination that should not be rendered. Oopsie!', 0.5, [])
@@ -27,15 +28,31 @@ func handle_spaceship_entering(spaceship: RigidBody2D):
         return true
     return stats.friendliness_score >= 100
 
+func handle_spaceship_leaving():
+    # Clear flag that player is currently in the atmosphere after a short timeout
+    yield(get_tree().create_timer(0.1), "timeout")
+    player_currently_in_atmosphere = false
+    print("[%s] Spaceship left the atmosphere" % stats.name)
+
 func _on_BaseDestination_body_entered(body):
-    if (body is Spaceship and handle_spaceship_entering(body)):
-            emit_signal('pause', stats, position)
+    # Don't do anything if the player is already (or still) here
+    if player_currently_in_atmosphere:
+        return
+
+    if body is Spaceship and handle_spaceship_entering(body):
+        print("[%s] Spaceship entered the atmosphere" % stats.name)
+        player_currently_in_atmosphere = true
+        emit_signal('pause', stats, position)
     elif (!body.has_method('blow_up')):
         if (targets.size() == 0):
             $TargetingTimer.start(stats.aggression)
         targets.append(body)
 
 func _on_BaseDestination_body_exited(body):
+    if body is Spaceship:
+        # Avoid planet menu if it was just closed by setting a timer (asynchronously)
+        handle_spaceship_leaving()
+
     # Catch a race condition when multiple bodies leave at the same time
     while(removing):
         pass
