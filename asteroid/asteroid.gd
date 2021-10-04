@@ -4,32 +4,42 @@ extends RigidBody2D
 export var min_speed = 50
 export var max_speed = 200
 
-
-# Called when the node enters the scene tree for the first time.
-func _ready():
-    pass # Replace with function body.
-
-
-# Called when the asteroid leaves the visible screen
-func _on_VisibilityNotifier2D_screen_exited():
-    $DestructionTimer.start(5)
-
+var reset_new_position = null
 
 # Initializes a newly spawned asteroid
-func spawn(start_pos):
-    # Set start position
-    position = start_pos
+func spawn(start_pos, start_rotation = null, start_velocity = null):
+    # Default: Randomize direction and velocity
+    if start_rotation == null:
+        start_rotation = rand_range(0, 2 * PI)
+    if start_velocity == null:
+        start_velocity = rand_range(min_speed, max_speed)
 
-    # Randomize direction and movement
-    rotation = rand_range(0, 2 * PI)
-    linear_velocity = Vector2(rand_range(min_speed, max_speed), 0)
-    linear_velocity = linear_velocity.rotated(rotation)
+    # Set start position, rotation and velocity
+    position = start_pos
+    rotation = start_rotation
+    linear_velocity = Vector2(start_velocity, 0).rotated(rotation)
 
 
 # Destroys asteroid on hit
 func destroy_on_hit():
     queue_free()
 
+
+func _integrate_forces(state):
+    # Reset asteroid position after teleport
+    if reset_new_position is Vector2:
+        state.transform = Transform2D(rotation, reset_new_position)
+        reset_new_position = null
+
+
+func teleport_to(destination: Vector2):
+    # Actual movement must be done in _integrate_forces
+    reset_new_position = destination
+
+
+# Called when the asteroid leaves the visible screen
+func _on_VisibilityNotifier2D_screen_exited():
+    $DestructionTimer.start(5)
 
 # Destroy asteroid 5 seconds after it left the screen if it has not re-entered
 func _on_DestructionTimer_timeout():
