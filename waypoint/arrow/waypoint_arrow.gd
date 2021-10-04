@@ -50,6 +50,9 @@ func _process(delta):
         # Rotate arrow from spaceship towards the waypoint
         $Sprite.rotation = PI/2 + spaceship.get_angle_to(current_waypoint_position)
 
+        if not spaceship.get_node("Camera2D").rotating:
+            $Sprite.rotation += spaceship.rotation
+
         # Get location on BorderPath corresponding to the angle of the arrow
         $BorderPath/ArrowLocation.unit_offset = $Sprite.rotation / (2 * PI)
         $Sprite.position = $BorderPath/ArrowLocation.position
