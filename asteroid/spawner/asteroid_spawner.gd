@@ -38,13 +38,13 @@ func spawn_asteroid():
     else:
         asteroid = SpaceCookie.instance()
 
-    add_child(asteroid)
-
-    # Randomize asteroid position
-    var asteroid_position = Vector2(
+    # Randomize asteroid position (relative to spawner origin)
+    var asteroid_position = position + Vector2(
         rand_range($CollisionShape2D.shape.extents.x * -1, $CollisionShape2D.shape.extents.x),
         rand_range($CollisionShape2D.shape.extents.y * -1, $CollisionShape2D.shape.extents.y)
     )
+
+    $"/root/Main".add_child(asteroid)
     asteroid.spawn(asteroid_position)
 
 

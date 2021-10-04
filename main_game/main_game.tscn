@@ -31,6 +31,9 @@ position = Vector2( 768, 768 )
 [node name="AsteroidSpawner" parent="." instance=ExtResource( 5 )]
 position = Vector2( 880.523, 495.173 )
 
+[node name="AsteroidSpawner2" parent="." instance=ExtResource( 5 )]
+position = Vector2( -3392, 2760 )
+
 [node name="DestinationMenu" parent="." instance=ExtResource( 7 )]
 
 [node name="Goosington" parent="." instance=ExtResource( 3 )]
@@ -131,6 +134,8 @@ pause_mode = 2
 [connection signal="earned_capitalism_units" from="Player" to="." method="_on_Player_earned_capitalism_units"]
 [connection signal="asteroid_field" from="AsteroidSpawner" to="Hud" method="_on_AsteroidSpawner_asteroid_field"]
 [connection signal="mouse_entered" from="AsteroidSpawner" to="Hud" method="_on_AsteroidSpawner_mouse_entered"]
+[connection signal="asteroid_field" from="AsteroidSpawner2" to="Hud" method="_on_AsteroidSpawner_asteroid_field"]
+[connection signal="mouse_entered" from="AsteroidSpawner2" to="Hud" method="_on_AsteroidSpawner_mouse_entered"]
 [connection signal="passenger_picked_up" from="DestinationMenu" to="Player" method="_on_DestinationMenu_passenger_picked_up"]
 [connection signal="passenger_picked_up" from="DestinationMenu" to="Goosington" method="_on_DestinationMenu_passenger_picked_up"]
 [connection signal="passenger_picked_up" from="DestinationMenu" to="SuspicousCube" method="_on_DestinationMenu_passenger_picked_up"]
