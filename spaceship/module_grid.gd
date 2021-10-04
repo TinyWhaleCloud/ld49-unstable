@@ -91,6 +91,16 @@ func _on_ShipBaseModule_destroyed(destroyed_module: ShipBaseModule):
     emit_signal("module_removed", destroyed_module)
 
 
+func get_engines(only_intact: bool = true) -> Array:
+    var engine_array = []
+
+    for module in module_list:
+        if module is ShipEngine and (not only_intact or module.is_intact()):
+            engine_array.append(module)
+
+    return engine_array
+
+
 # Inner class to represent a position in the grid
 class GridPosition:
     var row: int

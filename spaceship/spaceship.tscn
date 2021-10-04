@@ -19,7 +19,7 @@ smoothing_enabled = true
 [node name="ModuleGrid" parent="." instance=ExtResource( 1 )]
 
 [node name="ZoomedOutCam" type="Camera2D" parent="."]
-zoom = Vector2( -5, -5 )
+zoom = Vector2( 5, 5 )
 
 [connection signal="body_shape_entered" from="." to="." method="_on_Spaceship_body_shape_entered"]
 [connection signal="module_added" from="ModuleGrid" to="." method="_on_ModuleGrid_module_added"]
