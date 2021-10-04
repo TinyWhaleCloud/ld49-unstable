@@ -304,3 +304,13 @@ func consume_fuel(fuel_amount):
     if current_fuel < 0:
         current_fuel = 0
     emit_signal("fuel_changed", total_fuel_capacity, current_fuel)
+
+func tanks_are_full() -> bool:
+    return current_fuel >= total_fuel_capacity
+
+func refill_fuel(refill_amount = null):
+    if refill_amount == null:
+        current_fuel = total_fuel_capacity
+    else:
+        current_fuel = min(current_fuel + refill_amount, total_fuel_capacity)
+    emit_signal("fuel_changed", total_fuel_capacity, current_fuel)

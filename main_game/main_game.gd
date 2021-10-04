@@ -81,6 +81,9 @@ func handle_debug_keys(event):
         # F10: Spawn new asteroid
         elif event.scancode == KEY_F10:
             spawn_asteroid()
+        elif event.scancode == KEY_F11:
+            print("[Main] Debug key: refilling fuel")
+            $Player/Spaceship.refill_fuel(null)
         elif event.scancode == KEY_F5:
             show_game_over('Debug')
 

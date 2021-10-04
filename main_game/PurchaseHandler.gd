@@ -1,3 +1,4 @@
+class_name PurchaseHandler
 extends Node2D
 signal cannot_afford(price, balance)
 signal item_purchased(name, price, balance)
