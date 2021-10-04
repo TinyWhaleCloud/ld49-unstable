@@ -8,12 +8,10 @@
 radius = 360.76
 
 [sub_resource type="AtlasTexture" id=2]
-flags = 4
 atlas = ExtResource( 2 )
 region = Rect2( 0, 0, 320, 320 )
 
 [sub_resource type="AtlasTexture" id=3]
-flags = 4
 atlas = ExtResource( 2 )
 region = Rect2( 320, 0, 320, 320 )
 
@@ -26,7 +24,7 @@ animations = [ {
 } ]
 
 [sub_resource type="CircleShape2D" id=5]
-radius = 168.825
+radius = 146.835
 
 [node name="ShallowSpaceSeven" instance=ExtResource( 1 )]
 script = ExtResource( 3 )
@@ -37,10 +35,10 @@ shape = SubResource( 1 )
 
 [node name="Sprite" parent="." index="1"]
 frames = SubResource( 4 )
-frame = 1
 playing = true
 
 [node name="Planet" parent="PlanetBody" index="0"]
-visible = false
-position = Vector2( 17.4614, -15.874 )
+position = Vector2( 23.8253, -25.7735 )
+rotation = -0.394058
+scale = Vector2( 1.03912, 1.12307 )
 shape = SubResource( 5 )
