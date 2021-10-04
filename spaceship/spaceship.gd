@@ -4,6 +4,9 @@ extends RigidBody2D
 # Define signals
 signal hit
 signal passenger_dead(passenger)
+signal cockpit_destroyed()
+signal crashed(name)
+
 
 # Constants
 const TORQUE_PER_THRUST = 35
@@ -76,6 +79,8 @@ func _on_ModuleGrid_module_removed(removed_module: ShipBaseModule):
     if removed_module.module_type == "PassengerBay" and current_passenger.name != "nobody":
         emit_signal("passenger_dead", current_passenger)
         current_passenger = {"name": "nobody"}
+    elif removed_module.module_type == "Cockpit":
+        emit_signal("cockpit_destroyed")
 
 
 func _input(event):
@@ -203,6 +208,9 @@ func _on_Spaceship_body_shape_entered(body_id: int, body: Node, body_shape: int,
     # Destroy asteroid on hit
     if body.has_method("destroy_on_hit"):
         body.destroy_on_hit()
+
+func handle_crash(name):
+    emit_signal("crashed", name)
 
 
 func look_at(target: Vector2):

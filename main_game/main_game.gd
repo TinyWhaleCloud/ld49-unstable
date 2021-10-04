@@ -43,6 +43,8 @@ func handle_debug_keys(event):
         # F10: Spawn new asteroid
         elif event.scancode == KEY_F10:
             spawn_asteroid()
+        elif event.scancode == KEY_F5:
+            show_game_over('Debug')
 
 
 func _on_BaseDestination_pause(stats, position):
@@ -91,3 +93,15 @@ func _on_PurchaseHandler_item_purchased(name, price, balance):
 
 func _on_Player_passenger_dead(passenger):
     show_message_alert("Passenger module destroyed", "Your passenger module was hit.\nThe passenger inside did not survive the impact.\nThe people of " + passenger.end + " aren't happy about this.", 2.5)
+
+func show_game_over(reason):
+    $GameOver.set_stats(reason, $Player.passengers_total, $Player.capitalism_units)
+    $GameOver/GameOverPopup.popup_centered()
+
+
+func _on_Player_cockpit_destroyed():
+    show_game_over("Cockpit destroyed")
+
+
+func _on_Player_player_crashed(on):
+    show_game_over("Crashed into " + on)

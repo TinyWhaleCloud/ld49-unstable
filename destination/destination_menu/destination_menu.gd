@@ -86,7 +86,7 @@ func calculate_price_multiplicator(stats):
         multiplicator *= 1.2
     else:
         print("No multiplicator chage for economy: " + stats.economy)
-    print("Planet price multiplicator: %d" % multiplicator)
+    print("Planet price multiplicator: %d" % [multiplicator])
     return multiplicator
 
 

@@ -10,6 +10,11 @@ config_version=4
 
 _global_script_classes=[ {
 "base": "CanvasLayer",
+"class": "GameOver",
+"language": "GDScript",
+"path": "res://game_over/game_over.gd"
+}, {
+"base": "CanvasLayer",
 "class": "Hud",
 "language": "GDScript",
 "path": "res://hud/hud.gd"
@@ -80,6 +85,7 @@ _global_script_classes=[ {
 "path": "res://waypoint/arrow/waypoint_arrow.gd"
 } ]
 _global_script_class_icons={
+"GameOver": "",
 "Hud": "",
 "PassengerPickupOption": "",
 "PassengerSpawner": "",
