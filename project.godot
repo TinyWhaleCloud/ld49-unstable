@@ -121,6 +121,10 @@ config/icon="res://icon.png"
 window/size/width=1280
 window/size/height=786
 
+[gui]
+
+theme/custom_font="res://fonts/xolonium/Xolonium.tres"
+
 [importer_defaults]
 
 texture={
