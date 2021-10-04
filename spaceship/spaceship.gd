@@ -8,6 +8,7 @@ signal cockpit_destroyed()
 signal crashed(name)
 signal fuel_changed(total_capacity, current_fuel)
 
+
 # Constants
 const TORQUE_PER_THRUST = 35
 const DISTANCE_AFTER_PLANET_MENU = 32

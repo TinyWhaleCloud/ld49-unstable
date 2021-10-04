@@ -102,68 +102,68 @@ __meta__ = {
 }
 
 [node name="CameraRotationLabel" type="Label" parent="Popup/ColorRect/SettingsContainer"]
-margin_top = 13.0
-margin_right = 105.0
-margin_bottom = 27.0
+margin_top = 10.0
+margin_right = 138.0
+margin_bottom = 30.0
 text = "Camera Rotation"
 
 [node name="CameraRotation" type="CheckButton" parent="Popup/ColorRect/SettingsContainer"]
-margin_left = 115.0
-margin_right = 191.0
+margin_left = 148.0
+margin_right = 224.0
 margin_bottom = 40.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="ParallaxScrollingLabel" type="Label" parent="Popup/ColorRect/SettingsContainer"]
-margin_left = 201.0
-margin_top = 13.0
-margin_right = 366.0
-margin_bottom = 27.0
+margin_left = 234.0
+margin_top = 10.0
+margin_right = 441.0
+margin_bottom = 30.0
 text = "ParallaxScrolling"
 
 [node name="ParallaxScrolling" type="CheckButton" parent="Popup/ColorRect/SettingsContainer"]
-margin_left = 376.0
-margin_right = 452.0
+margin_left = 451.0
+margin_right = 527.0
 margin_bottom = 40.0
 
 [node name="SfxLabel" type="Label" parent="Popup/ColorRect/SettingsContainer"]
-margin_top = 57.0
-margin_right = 105.0
-margin_bottom = 71.0
+margin_top = 55.0
+margin_right = 138.0
+margin_bottom = 75.0
 text = "SFX"
 
 [node name="Sfx" type="CheckButton" parent="Popup/ColorRect/SettingsContainer"]
-margin_left = 115.0
+margin_left = 148.0
 margin_top = 44.0
-margin_right = 191.0
-margin_bottom = 84.0
+margin_right = 224.0
+margin_bottom = 87.0
 
 [node name="MusicLabel" type="Label" parent="Popup/ColorRect/SettingsContainer"]
-margin_left = 201.0
-margin_top = 48.0
-margin_right = 366.0
-margin_bottom = 79.0
+margin_left = 234.0
+margin_top = 44.0
+margin_right = 441.0
+margin_bottom = 87.0
 text = "Music
 (not actually implemeted)"
 
 [node name="Music" type="CheckButton" parent="Popup/ColorRect/SettingsContainer"]
-margin_left = 376.0
+margin_left = 451.0
 margin_top = 44.0
-margin_right = 452.0
-margin_bottom = 84.0
+margin_right = 527.0
+margin_bottom = 87.0
 
 [node name="SkipTutorialLabel" type="Label" parent="Popup/ColorRect/SettingsContainer"]
 margin_top = 101.0
-margin_right = 105.0
-margin_bottom = 115.0
+margin_right = 138.0
+margin_bottom = 121.0
 text = "Skip Tutorial"
 
 [node name="SkipTutorial" type="CheckButton" parent="Popup/ColorRect/SettingsContainer"]
-margin_left = 115.0
-margin_top = 88.0
-margin_right = 191.0
-margin_bottom = 128.0
+margin_left = 148.0
+margin_top = 91.0
+margin_right = 224.0
+margin_bottom = 131.0
 
 [node name="MetaLabel" type="Label" parent="Popup/ColorRect"]
 margin_left = 349.0
