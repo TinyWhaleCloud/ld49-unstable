@@ -14,6 +14,8 @@ var torque = 10000
 export var emergency_thrust = 50
 
 var reset_new_position = null
+var reset_new_rotation = null
+var reset_clear_velocity = false
 var reset_smooth_cam = false
 var zoom_min = 0.5
 var zoom_max = 4
@@ -48,6 +50,8 @@ func get_borked_modules():
 
 func reset_position(start_pos):
     reset_new_position = start_pos
+    reset_new_rotation = 0
+    reset_clear_velocity = true
 
 
 func _on_ModuleGrid_module_added(added_module: ShipBaseModule):
@@ -106,12 +110,19 @@ func toggle_pause():
 
 
 func _integrate_forces(state):
-    # Reset player position?
-    if reset_new_position is Vector2:
-        state.transform = Transform2D(0, reset_new_position)
+    # Reset player position and/or velocity?
+    if reset_new_position != null or reset_new_rotation != null:
+        state.transform = Transform2D(
+            reset_new_rotation if reset_new_rotation is int else rotation,
+            reset_new_position if reset_new_position is Vector2 else position
+        )
+    if reset_clear_velocity:
         state.linear_velocity = Vector2()
         state.angular_velocity = 0
-        reset_new_position = null
+
+    reset_new_position = null
+    reset_new_rotation = null
+    reset_clear_velocity = false
 
     # Reset current forces
     applied_force = Vector2()
@@ -170,7 +181,8 @@ func _integrate_forces(state):
             engine.stop_animation()
 
     if reset_smooth_cam:
-        $Camera2D.reset_smoothing()
+        $Camera2D.call_deferred("reset_smoothing")
+        $Camera2D.call_deferred("smoothing_enabled", true)
         reset_smooth_cam = false
 
 
@@ -209,9 +221,12 @@ func rotate_towards(target: Vector2, away: bool, smooth: bool = true):
 
 
 func teleport_to(destination: Vector2):
-    # TODO: fix bug that makes player face wrong way after teleport (#32)
-    reset_smooth_cam = true
+    # Actual movement must be done in _integrate_forces
     reset_new_position = destination
+
+    # Temporarily disable camera smoothing to avoid nauseous camera jumps
+    $Camera2D.smoothing_enabled = false
+    reset_smooth_cam = true
 
 
 func destroy_hit_module(hit_module: ShipBaseModule):

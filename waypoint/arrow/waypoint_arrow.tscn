@@ -11,3 +11,8 @@ script = ExtResource( 1 )
 position = Vector2( 33.2341, 32.527 )
 rotation = 1.5708
 texture = ExtResource( 2 )
+
+[node name="BorderPath" type="Path2D" parent="."]
+curve = null
+
+[node name="ArrowLocation" type="PathFollow2D" parent="BorderPath"]
