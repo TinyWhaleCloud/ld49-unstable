@@ -12,7 +12,7 @@ func _ready():
         spawn_passenger()
 
 func create_passenger(start, end):
-    return Passenger.new("Placeholder", 100, start, end)
+    return Passenger.new("Placeholder", floor(rand_range(50, 250)), start, end)
 
 func spawn_passenger():
     var start_destination = randi() % destinations.size()

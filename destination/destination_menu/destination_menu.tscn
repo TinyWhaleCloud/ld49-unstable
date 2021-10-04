@@ -76,11 +76,12 @@ custom_constants/margin_bottom = 20
 [node name="OptionContainer" type="VBoxContainer" parent="PopupMenu/ColorRect/TabContainer/Ship Repairs"]
 margin_left = 20.0
 margin_top = 20.0
-margin_right = 597.0
-margin_bottom = 489.0
+margin_right = 761.0
+margin_bottom = 657.0
+custom_constants/separation = 20
 
 [node name="NoRepaisNeededLabel" type="Label" parent="PopupMenu/ColorRect/TabContainer/Ship Repairs/OptionContainer"]
-margin_right = 577.0
+margin_right = 741.0
 margin_bottom = 14.0
 text = "You ship does not need any repairs currently."
 clip_text = true
@@ -101,8 +102,9 @@ custom_constants/margin_bottom = 20
 [node name="OptionContainer" type="VBoxContainer" parent="PopupMenu/ColorRect/TabContainer/Potential Passengers"]
 margin_left = 20.0
 margin_top = 20.0
-margin_right = 597.0
-margin_bottom = 489.0
+margin_right = 761.0
+margin_bottom = 657.0
+custom_constants/separation = 20
 
 [node name="No passengers" type="Label" parent="PopupMenu/ColorRect/TabContainer/Potential Passengers/OptionContainer"]
 margin_right = 577.0
@@ -130,9 +132,9 @@ custom_constants/margin_bottom = 20
 
 [node name="Label" type="Label" parent="PopupMenu/ColorRect/TabContainer/Ship Upgrades"]
 margin_left = 20.0
-margin_top = 247.0
-margin_right = 597.0
-margin_bottom = 261.0
+margin_top = 331.0
+margin_right = 761.0
+margin_bottom = 345.0
 text = "This planet does not have any upgrades available at the moment."
 
 [node name="LeaveButton" type="Button" parent="PopupMenu/ColorRect"]
@@ -166,9 +168,9 @@ __meta__ = {
 
 [node name="FlavorText" type="Label" parent="PopupMenu/ColorRect/FlavorTextContainer"]
 margin_left = 7.0
-margin_top = 34.0
-margin_right = 307.0
-margin_bottom = 48.0
+margin_top = 46.0
+margin_right = 385.434
+margin_bottom = 60.0
 autowrap = true
 __meta__ = {
 "_edit_use_anchors_": false
@@ -191,13 +193,13 @@ __meta__ = {
 }
 
 [node name="FriendlinessLabel" type="Label" parent="PopupMenu/ColorRect/GridContainer"]
-margin_right = 130.0
+margin_right = 135.0
 margin_bottom = 14.0
 text = "Friendliness:"
 
 [node name="FriendlinessValue" type="Label" parent="PopupMenu/ColorRect/GridContainer"]
-margin_left = 200.0
-margin_right = 284.0
+margin_left = 205.0
+margin_right = 289.0
 margin_bottom = 14.0
 text = "Neutral"
 __meta__ = {
@@ -206,64 +208,64 @@ __meta__ = {
 
 [node name="SpentLabel" type="Label" parent="PopupMenu/ColorRect/GridContainer"]
 margin_top = 19.0
-margin_right = 130.0
+margin_right = 135.0
 margin_bottom = 33.0
 text = "Units spent:"
 
 [node name="SpentValue" type="Label" parent="PopupMenu/ColorRect/GridContainer"]
-margin_left = 200.0
+margin_left = 205.0
 margin_top = 19.0
-margin_right = 284.0
+margin_right = 289.0
 margin_bottom = 33.0
 text = "0 Cu"
 
 [node name="TransportedLabel" type="Label" parent="PopupMenu/ColorRect/GridContainer"]
 margin_top = 38.0
-margin_right = 130.0
+margin_right = 135.0
 margin_bottom = 52.0
 text = "Transported:"
 
 [node name="TransportedValue" type="Label" parent="PopupMenu/ColorRect/GridContainer"]
-margin_left = 200.0
+margin_left = 205.0
 margin_top = 38.0
-margin_right = 284.0
+margin_right = 289.0
 margin_bottom = 52.0
 text = "0 Passengers"
 
 [node name="LineBreak1" type="Label" parent="PopupMenu/ColorRect/GridContainer"]
 margin_top = 57.0
-margin_right = 130.0
+margin_right = 135.0
 margin_bottom = 71.0
 
 [node name="LineBreak2" type="Label" parent="PopupMenu/ColorRect/GridContainer"]
-margin_left = 200.0
+margin_left = 205.0
 margin_top = 57.0
-margin_right = 284.0
+margin_right = 289.0
 margin_bottom = 71.0
 
 [node name="StabilityLabel" type="Label" parent="PopupMenu/ColorRect/GridContainer"]
 margin_top = 76.0
-margin_right = 130.0
+margin_right = 135.0
 margin_bottom = 90.0
 text = "Economic Stability:"
 
 [node name="StabilityValue" type="Label" parent="PopupMenu/ColorRect/GridContainer"]
-margin_left = 200.0
+margin_left = 205.0
 margin_top = 76.0
-margin_right = 284.0
+margin_right = 289.0
 margin_bottom = 90.0
 text = "Normal"
 
 [node name="EconomyLabel" type="Label" parent="PopupMenu/ColorRect/GridContainer"]
 margin_top = 95.0
-margin_right = 130.0
+margin_right = 135.0
 margin_bottom = 109.0
 text = "Economy:"
 
 [node name="EconomyValue" type="Label" parent="PopupMenu/ColorRect/GridContainer"]
-margin_left = 200.0
+margin_left = 205.0
 margin_top = 95.0
-margin_right = 284.0
+margin_right = 289.0
 margin_bottom = 109.0
 text = "Recession"
 __meta__ = {
@@ -272,25 +274,25 @@ __meta__ = {
 
 [node name="LineBreak3" type="Label" parent="PopupMenu/ColorRect/GridContainer"]
 margin_top = 114.0
-margin_right = 130.0
+margin_right = 135.0
 margin_bottom = 128.0
 
 [node name="LineBreak4" type="Label" parent="PopupMenu/ColorRect/GridContainer"]
-margin_left = 200.0
+margin_left = 205.0
 margin_top = 114.0
-margin_right = 284.0
+margin_right = 289.0
 margin_bottom = 128.0
 
 [node name="CurrentBalanceLabel" type="Label" parent="PopupMenu/ColorRect/GridContainer"]
 margin_top = 133.0
-margin_right = 130.0
+margin_right = 135.0
 margin_bottom = 147.0
-text = "You current balance:"
+text = "Your current balance:"
 
 [node name="CurrentBalanceValue" type="Label" parent="PopupMenu/ColorRect/GridContainer"]
-margin_left = 200.0
+margin_left = 205.0
 margin_top = 133.0
-margin_right = 284.0
+margin_right = 289.0
 margin_bottom = 147.0
 
 [connection signal="hide" from="PopupMenu" to="." method="_on_PopupMenu_hide"]

@@ -3,9 +3,11 @@
 [ext_resource path="res://destination/destination_menu/repair_option/repair_option.gd" type="Script" id=1]
 
 [node name="RepairOption" type="GridContainer"]
-margin_right = 459.0
-margin_bottom = 52.0
-custom_constants/vseparation = 5
+anchor_right = 0.359
+anchor_bottom = 0.098
+margin_right = -0.52002
+margin_bottom = -25.028
+custom_constants/vseparation = 1
 custom_constants/hseparation = 50
 columns = 2
 script = ExtResource( 1 )
@@ -24,21 +26,32 @@ margin_right = 161.0
 margin_bottom = 14.0
 
 [node name="PartPriceLabel" type="Label" parent="."]
-margin_top = 19.0
+margin_top = 15.0
 margin_right = 111.0
-margin_bottom = 33.0
+margin_bottom = 29.0
 text = "Price:"
 
 [node name="PartPriceValue" type="Label" parent="."]
 margin_left = 161.0
-margin_top = 19.0
+margin_top = 15.0
 margin_right = 161.0
-margin_bottom = 33.0
+margin_bottom = 29.0
+
+[node name="LineBreak2" type="Label" parent="."]
+margin_top = 30.0
+margin_right = 111.0
+margin_bottom = 44.0
+
+[node name="LineBreak1" type="Label" parent="."]
+margin_left = 161.0
+margin_top = 30.0
+margin_right = 161.0
+margin_bottom = 44.0
 
 [node name="BuyButton" type="Button" parent="."]
-margin_top = 38.0
+margin_top = 45.0
 margin_right = 111.0
-margin_bottom = 58.0
+margin_bottom = 65.0
 text = "Purchase repair"
 
 [connection signal="pressed" from="BuyButton" to="." method="_on_BuyButton_pressed"]
