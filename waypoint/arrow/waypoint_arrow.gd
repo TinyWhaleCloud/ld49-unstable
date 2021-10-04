@@ -81,3 +81,11 @@ func _on_Hud_paused():
 
 func _on_Hud_unpaused():
     $Sprite.visible = visible_after_pause
+
+
+func _on_Waypoint_waypoint_shown(new_waypoint_position):
+    current_waypoint_position = new_waypoint_position
+    if visible_after_pause and !$Sprite.visible:
+        pass
+    else:
+        $Sprite.visible = true

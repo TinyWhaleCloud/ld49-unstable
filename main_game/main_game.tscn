@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=2]
+[gd_scene load_steps=19 format=2]
 
 [ext_resource path="res://player/player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://main_game/main_game.gd" type="Script" id=2]
@@ -15,6 +15,8 @@
 [ext_resource path="res://waypoint/waypoint.tscn" type="PackedScene" id=13]
 [ext_resource path="res://waypoint/arrow/waypoint_arrow.tscn" type="PackedScene" id=14]
 [ext_resource path="res://main_game/InfoSeeker.gd" type="Script" id=15]
+[ext_resource path="res://passenger_spawner/passenger_spawner.tscn" type="PackedScene" id=16]
+[ext_resource path="res://message/message.tscn" type="PackedScene" id=17]
 
 [sub_resource type="CapsuleShape2D" id=1]
 
@@ -112,13 +114,36 @@ script = ExtResource( 15 )
 [node name="CollisionShape2D" type="CollisionShape2D" parent="InfoSeeker"]
 shape = SubResource( 1 )
 
+[node name="PassengerSpawner" parent="." instance=ExtResource( 16 )]
+
+[node name="MessageDialog" parent="." instance=ExtResource( 17 )]
+pause_mode = 2
+
+[connection signal="earned_capitalism_units" from="Player" to="." method="_on_Player_earned_capitalism_units"]
 [connection signal="asteroid_field" from="AsteroidSpawner" to="Hud" method="_on_AsteroidSpawner_asteroid_field"]
 [connection signal="mouse_entered" from="AsteroidSpawner" to="Hud" method="_on_AsteroidSpawner_mouse_entered"]
+[connection signal="passenger_picked_up" from="DestinationMenu" to="Player" method="_on_DestinationMenu_passenger_picked_up"]
+[connection signal="passenger_picked_up" from="DestinationMenu" to="Goosington" method="_on_DestinationMenu_passenger_picked_up"]
+[connection signal="passenger_picked_up" from="DestinationMenu" to="SuspicousCube" method="_on_DestinationMenu_passenger_picked_up"]
+[connection signal="passenger_picked_up" from="DestinationMenu" to="InhabitableRed" method="_on_DestinationMenu_passenger_picked_up"]
+[connection signal="passenger_picked_up" from="DestinationMenu" to="ShallowSpaceSeven" method="_on_DestinationMenu_passenger_picked_up"]
 [connection signal="rotate_player" from="DestinationMenu" to="Player" method="_on_DestinationMenu_rotate_player"]
+[connection signal="passenger_dropped_off" from="Goosington" to="Player" method="_on_Goosington_passenger_dropped_off"]
+[connection signal="passenger_dropped_off" from="Goosington" to="Waypoint" method="_on_Goosington_passenger_dropped_off"]
 [connection signal="pause" from="Goosington" to="." method="_on_Goosington_pause"]
+[connection signal="set_waypoint" from="Goosington" to="Waypoint" method="_on_Goosington_set_waypoint"]
+[connection signal="passenger_dropped_off" from="SuspicousCube" to="Player" method="_on_SuspicousCube_passenger_dropped_off"]
+[connection signal="passenger_dropped_off" from="SuspicousCube" to="Waypoint" method="_on_SuspicousCube_passenger_dropped_off"]
 [connection signal="pause" from="SuspicousCube" to="." method="_on_SuspicousCube_pause"]
+[connection signal="set_waypoint" from="SuspicousCube" to="Waypoint" method="_on_SuspicousCube_set_waypoint"]
+[connection signal="passenger_dropped_off" from="InhabitableRed" to="Player" method="_on_InhabitableRed_passenger_dropped_off"]
+[connection signal="passenger_dropped_off" from="InhabitableRed" to="Waypoint" method="_on_InhabitableRed_passenger_dropped_off"]
 [connection signal="pause" from="InhabitableRed" to="." method="_on_InhabitableRed_pause"]
+[connection signal="set_waypoint" from="InhabitableRed" to="Waypoint" method="_on_InhabitableRed_set_waypoint"]
+[connection signal="passenger_dropped_off" from="ShallowSpaceSeven" to="Player" method="_on_ShallowSpaceSeven_passenger_dropped_off"]
+[connection signal="passenger_dropped_off" from="ShallowSpaceSeven" to="Waypoint" method="_on_ShallowSpaceSeven_passenger_dropped_off"]
 [connection signal="pause" from="ShallowSpaceSeven" to="." method="_on_ShallowSpaceSeven_pause"]
+[connection signal="set_waypoint" from="ShallowSpaceSeven" to="Waypoint" method="_on_ShallowSpaceSeven_set_waypoint"]
 [connection signal="paused" from="Hud" to="WaypointArrow" method="_on_Hud_paused"]
 [connection signal="unpaused" from="Hud" to="Player" method="_on_Hud_unpaused"]
 [connection signal="unpaused" from="Hud" to="WaypointArrow" method="_on_Hud_unpaused"]
@@ -126,3 +151,8 @@ shape = SubResource( 1 )
 [connection signal="waypoint_set" from="Hud" to="WaypointArrow" method="_on_Hud_waypoint_set"]
 [connection signal="waypoint_removed" from="Waypoint" to="Hud" method="_on_Waypoint_waypoint_removed"]
 [connection signal="waypoint_removed" from="Waypoint" to="WaypointArrow" method="_on_Waypoint_waypoint_removed"]
+[connection signal="waypoint_shown" from="Waypoint" to="WaypointArrow" method="_on_Waypoint_waypoint_shown"]
+[connection signal="passenger_spawned" from="PassengerSpawner" to="Goosington" method="_on_PassengerSpawner_passenger_spawned"]
+[connection signal="passenger_spawned" from="PassengerSpawner" to="SuspicousCube" method="_on_PassengerSpawner_passenger_spawned"]
+[connection signal="passenger_spawned" from="PassengerSpawner" to="InhabitableRed" method="_on_PassengerSpawner_passenger_spawned"]
+[connection signal="passenger_spawned" from="PassengerSpawner" to="ShallowSpaceSeven" method="_on_PassengerSpawner_passenger_spawned"]

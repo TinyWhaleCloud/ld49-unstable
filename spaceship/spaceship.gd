@@ -8,7 +8,11 @@ signal hit
 const TORQUE_PER_THRUST = 35
 
 # Define properties and internal variables
+export var thrust = 500
+export var current_passenger = {"name": "nobody"}
+var torque = 10000
 export var emergency_thrust = 50
+
 var reset_new_position = null
 var reset_smooth_cam = false
 var zoom_min = 0.5
@@ -212,4 +216,7 @@ func destroy_hit_module(hit_module: ShipBaseModule):
 
 
 func get_info():
-    return "This is your trusty (though not especially stable) spaceship.\nIt's really important that you do not break it."
+    var info = "This is your trusty (though not especially stable) spaceship.\nIt's really important that you do not break it."
+    if current_passenger.name != 'nobody':
+        info += '\n\nCurrent passenger destination: ' + current_passenger.end
+    return info

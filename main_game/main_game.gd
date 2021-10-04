@@ -38,8 +38,10 @@ func handle_debug_keys(event):
             print("[Main] Respawning player")
             $Player/Spaceship.reset_modules()
             $Player/Spaceship.reset_position($StartPosition.position)
+        elif event.scancode == KEY_F12:
+            show_message_alert("debug alert", "this is some debug text", 2)
         # F10: Spawn new asteroid
-        if event.scancode == KEY_F10:
+        elif event.scancode == KEY_F10:
             spawn_asteroid()
 
 
@@ -61,3 +63,19 @@ func _on_InhabitableRed_pause(stats, position):
 
 func _on_ShallowSpaceSeven_pause(stats, position):
     $DestinationMenu.show(stats, position)
+
+
+func _on_Player_earned_capitalism_units(amount, balance, reason):
+    show_message_alert(reason, "You earned " + str(amount) + " Cu.\nYour new balance is: " + str(balance) + " Cu", 1)
+
+
+func show_message_alert(title, text, timeout):
+    $MessageDialog/MessageWindow/CenterContainer/Label.text = text
+    $MessageDialog/MessageWindow.window_title = title
+    $MessageDialog/MessageWindow.popup_centered()
+    $MessageDialog/MessageWindow.get_close_button().connect("pressed", self, "_on_message_closed")
+    $MessageDialog/MessageTimer.start(timeout)
+
+
+func _on_message_closed():
+    $MessageDialog/MessageWindow.hide()
