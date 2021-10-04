@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/purchase_failure.wav-c6d4a17c401bea075ab4a236bf08ab2d.sample"
+
+[deps]
+
+source_file="res://sound/purchase_failure.wav"
+dest_files=[ "res://.import/purchase_failure.wav-c6d4a17c401bea075ab4a236bf08ab2d.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0
