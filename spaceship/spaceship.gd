@@ -4,9 +4,11 @@ extends RigidBody2D
 # Define signals
 signal hit
 
+# Constants
+const TORQUE_PER_THRUST = 35
+
 # Define properties and internal variables
-export var thrust = 500
-var torque = 10000
+export var emergency_thrust = 50
 var reset_new_position = null
 var reset_smooth_cam = false
 var zoom_min = 0.5
@@ -21,6 +23,7 @@ func _ready():
 # Initialize player to start a new game
 func start(start_pos):
     position = start_pos
+    rotation = 0
 
 
 func reset_modules():
@@ -102,17 +105,43 @@ func _integrate_forces(state):
         state.angular_velocity = 0
         reset_new_position = null
 
-    # Thrust
-    var force_dir = Vector2()
+    # Reset current forces
+    applied_force = Vector2()
+    applied_torque = 0
+
+    # Thrust direction
+    var move_forwards = 0
+    var move_sideways = 0
     if Input.is_action_pressed("ui_up"):
-        force_dir.y -= 1
+        move_forwards = 1
     if Input.is_action_pressed("ui_down"):
-        force_dir.y += 1
+        move_forwards = -1
     if Input.is_action_pressed("ship_thrust_left"):
-        force_dir.x -= 1
+        move_sideways = -1
     if Input.is_action_pressed("ship_thrust_right"):
-        force_dir.x += 1
-    applied_force = thrust * force_dir.normalized().rotated(rotation)
+        move_sideways = +1
+
+    # Get all (intact) engines
+    var intact_engines = $ModuleGrid.get_engines()
+    var ship_total_thrust = 0
+
+    # Combine both x and y movement, normalize
+    var force_dir = Vector2(move_sideways, -move_forwards).normalized()
+    var force_dir_forwards = force_dir.y * Vector2(0, 1).rotated(rotation) if move_forwards else null
+    var force_dir_sideways = force_dir.x * Vector2(1, 0).rotated(rotation) if move_sideways else null
+
+    # Apply engine forces (if there are any left intact)
+    if not intact_engines.empty():
+        for engine in intact_engines:
+            ship_total_thrust += engine.thrust
+            if force_dir_forwards:
+                add_force(engine.position.rotated(rotation), force_dir_forwards * engine.thrust)
+            if force_dir_sideways:
+                add_central_force(force_dir_sideways * engine.thrust)
+    else:
+        # "Emergency thrust": Small thrust from the spaceship itself when no engines are left intact
+        ship_total_thrust += emergency_thrust
+        add_central_force(force_dir.rotated(rotation) * emergency_thrust)
 
     # Rotation
     var rotation_dir = 0
@@ -120,7 +149,17 @@ func _integrate_forces(state):
         rotation_dir -= 1
     if Input.is_action_pressed("ui_right"):
         rotation_dir += 1
-    applied_torque = rotation_dir * torque
+
+    if rotation_dir:
+        var ship_total_torque = ship_total_thrust * TORQUE_PER_THRUST
+        add_torque(rotation_dir * ship_total_torque)
+
+    # Engine exhaust flames animation
+    for engine in intact_engines:
+        if move_forwards or move_sideways or rotation_dir:
+            engine.play_animation()
+        else:
+            engine.stop_animation()
 
     if reset_smooth_cam:
         $Camera2D.reset_smoothing()
