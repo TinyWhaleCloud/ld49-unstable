@@ -7,6 +7,7 @@
 [ext_resource path="res://fonts/xolonium/Xolonium_big.tres" type="DynamicFont" id=5]
 
 [node name="Title" type="Node2D"]
+pause_mode = 2
 script = ExtResource( 1 )
 
 [node name="ParallaxBackground" type="ParallaxBackground" parent="."]
@@ -87,7 +88,7 @@ margin_top = 185.49
 margin_right = -335.398
 margin_bottom = -220.51
 custom_fonts/font = ExtResource( 5 )
-text = "Start Game"
+text = "Start game"
 __meta__ = {
 "_edit_use_anchors_": false
 }

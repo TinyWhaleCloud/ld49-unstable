@@ -1,6 +1,7 @@
 extends Node2D
 class_name Title
 
+export var is_pause_screen = false
 var settings
 
 onready var settings_container = $CanvasLayer/CenterContainer/ColorRect/SettingsContainer
@@ -13,6 +14,13 @@ func _ready():
     settings_container.get_node("Music").pressed = settings.music
     settings_container.get_node("SkipTutorial").pressed = settings.skip_tutorial
 
+    if is_pause_screen:
+        $CanvasLayer/CenterContainer/ColorRect/StartGameButton.text = "Continue game"
+
+
+func _unhandled_input(event):
+    if event.is_action_pressed("ui_cancel"):
+        get_tree().quit()
 
 
 func _process(delta):
@@ -22,7 +30,13 @@ func _process(delta):
 
 
 func _on_StartGameButton_pressed():
-    get_tree().change_scene("res://main_game/main_game.tscn")
+    if is_pause_screen:
+        # Continue game (unpause)
+        get_tree().paused = false
+        queue_free()
+    else:
+        # Start new game
+        get_tree().change_scene("res://main_game/main_game.tscn")
 
 
 func _on_CameraRotation_pressed():
