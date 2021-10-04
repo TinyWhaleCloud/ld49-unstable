@@ -88,6 +88,10 @@ func handle_passenger_picked_up_signal(passenger):
                 stats.passengers.remove(c)
                 return
 
+func handle_passenger_dead(passenger):
+    if (passenger.end == stats.name):
+        stats.friendliness_score -= 50
+
 
 class destination_stats:
     export var name = ''

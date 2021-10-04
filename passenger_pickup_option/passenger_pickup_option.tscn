@@ -3,8 +3,10 @@
 [ext_resource path="res://passenger_pickup_option/passenger_pickup_option.gd" type="Script" id=1]
 
 [node name="PassengerPickupOption" type="GridContainer"]
-margin_right = 266.0
-margin_bottom = 50.0
+anchor_right = 0.208
+anchor_bottom = 0.083
+margin_right = -0.23999
+margin_bottom = -15.238
 custom_constants/vseparation = 1
 custom_constants/hseparation = 70
 columns = 2
@@ -14,31 +16,42 @@ __meta__ = {
 }
 
 [node name="EndLabel" type="Label" parent="."]
-margin_right = 78.0
+margin_right = 105.0
 margin_bottom = 14.0
 text = "Destination:"
 
 [node name="EndValue" type="Label" parent="."]
-margin_left = 148.0
-margin_right = 148.0
+margin_left = 175.0
+margin_right = 175.0
 margin_bottom = 14.0
 
 [node name="PaymentLabel" type="Label" parent="."]
 margin_top = 15.0
-margin_right = 78.0
+margin_right = 105.0
 margin_bottom = 29.0
-text = "Payout:"
+text = "Possible Payout:"
 
 [node name="PaymentValue" type="Label" parent="."]
-margin_left = 148.0
+margin_left = 175.0
 margin_top = 15.0
-margin_right = 148.0
+margin_right = 175.0
 margin_bottom = 29.0
 
-[node name="PickupButton" type="Button" parent="."]
+[node name="LineBreak" type="Label" parent="."]
 margin_top = 30.0
-margin_right = 78.0
-margin_bottom = 50.0
+margin_right = 105.0
+margin_bottom = 44.0
+
+[node name="LineBreak2" type="Label" parent="."]
+margin_left = 175.0
+margin_top = 30.0
+margin_right = 175.0
+margin_bottom = 44.0
+
+[node name="PickupButton" type="Button" parent="."]
+margin_top = 45.0
+margin_right = 105.0
+margin_bottom = 65.0
 text = "Pick Up"
 
 [connection signal="pressed" from="PickupButton" to="." method="_on_PickupButton_pressed"]

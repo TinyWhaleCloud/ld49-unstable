@@ -3,6 +3,7 @@ extends RigidBody2D
 
 # Define signals
 signal hit
+signal passenger_dead(passenger)
 
 # Constants
 const TORQUE_PER_THRUST = 35
@@ -44,6 +45,10 @@ func reset_modules():
     $ModuleGrid.reset_all()
 
 
+func get_borked_modules():
+    return $ModuleGrid.get_borked_modules()
+
+
 func reset_position(start_pos):
     reset_new_position = start_pos
     reset_new_rotation = 0
@@ -68,6 +73,9 @@ func _on_ModuleGrid_module_removed(removed_module: ShipBaseModule):
             print("[%s] Deleting shape owner ID %d" % [name, owner_id])
             shape_owner_clear_shapes(owner_id)
             remove_shape_owner(owner_id)
+    if removed_module.module_type == "PassengerBay" and current_passenger.name != "nobody":
+        emit_signal("passenger_dead", current_passenger)
+        current_passenger = {"name": "nobody"}
 
 
 func _input(event):

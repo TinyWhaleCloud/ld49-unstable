@@ -69,6 +69,10 @@ func _on_Player_earned_capitalism_units(amount, balance, reason):
     show_message_alert(reason, "You earned " + str(amount) + " Cu.\nYour new balance is: " + str(balance) + " Cu", 1)
 
 
+func _on_PurchaseHandler_cannot_afford(price, balance):
+    show_message_alert("Item too expensive", "The item you are attempting to purchase costs " + str(price) +  "Cu.\nYou only have" + str(balance) + " Capitalism Units.", 1)
+
+
 func show_message_alert(title, text, timeout):
     $MessageDialog/MessageWindow/CenterContainer/Label.text = text
     $MessageDialog/MessageWindow.window_title = title
@@ -79,3 +83,11 @@ func show_message_alert(title, text, timeout):
 
 func _on_message_closed():
     $MessageDialog/MessageWindow.hide()
+
+
+func _on_PurchaseHandler_item_purchased(name, price, balance):
+    show_message_alert(name + " purchased", "Purchase successful.\n" + str(price) + " Cu have been withdrawn from your account.\nYou now have " + str(balance) + " Capitalism Units.", 2)
+
+
+func _on_Player_passenger_dead(passenger):
+    show_message_alert("Passenger module destroyed", "Your passenger module was hit.\nThe passenger inside did not survive the impact.\nThe people of " + passenger.end + " aren't happy about this.", 2.5)
