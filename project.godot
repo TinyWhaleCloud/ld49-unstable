@@ -9,6 +9,11 @@
 config_version=4
 
 _global_script_classes=[ {
+"base": "ShipBaseModule",
+"class": "FuelTank",
+"language": "GDScript",
+"path": "res://spaceship/modules/fuel_tank.gd"
+}, {
 "base": "CanvasLayer",
 "class": "GameOver",
 "language": "GDScript",
@@ -85,6 +90,7 @@ _global_script_classes=[ {
 "path": "res://waypoint/arrow/waypoint_arrow.gd"
 } ]
 _global_script_class_icons={
+"FuelTank": "",
 "GameOver": "",
 "Hud": "",
 "PassengerPickupOption": "",

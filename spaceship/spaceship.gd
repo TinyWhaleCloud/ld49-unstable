@@ -7,7 +7,6 @@ signal passenger_dead(passenger)
 signal cockpit_destroyed()
 signal crashed(name)
 
-
 # Constants
 const TORQUE_PER_THRUST = 35
 const DISTANCE_AFTER_PLANET_MENU = 32
@@ -24,6 +23,10 @@ var reset_smooth_cam = false
 var zoom_min = 0.5
 var zoom_max = 4
 
+# Fuel
+var total_fuel_capacity: float = 0.0
+var current_fuel: float = 0.0
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -32,8 +35,10 @@ func _ready():
 
 # Initialize player to start a new game
 func start(start_pos):
+    print("[%s] Starting on position %s with a fuel capacity of %d" % [name, start_pos, total_fuel_capacity])
     position = start_pos
     rotation = 0
+    current_fuel = total_fuel_capacity
 
 
 func reset_modules():
@@ -66,6 +71,10 @@ func _on_ModuleGrid_module_added(added_module: ShipBaseModule):
     shape_owner_add_shape(shape_owner_id, added_module.get_shape())
     shape_owner_set_transform(shape_owner_id, Transform2D(0, added_module.position))
 
+    if added_module is FuelTank:
+        # Recalculate fuel
+        update_fuel_capacity()
+
 
 func _on_ModuleGrid_module_removed(removed_module: ShipBaseModule):
     print("[%s] Module removed: %s" % [name, removed_module])
@@ -76,11 +85,15 @@ func _on_ModuleGrid_module_removed(removed_module: ShipBaseModule):
             print("[%s] Deleting shape owner ID %d" % [name, owner_id])
             shape_owner_clear_shapes(owner_id)
             remove_shape_owner(owner_id)
+
     if removed_module.module_type == "PassengerBay" and current_passenger.name != "nobody":
         emit_signal("passenger_dead", current_passenger)
         current_passenger = {"name": "nobody"}
     elif removed_module.module_type == "Cockpit":
         emit_signal("cockpit_destroyed")
+    elif removed_module is FuelTank:
+        # Recalculate fuel
+        update_fuel_capacity()
 
 
 func _input(event):
@@ -152,6 +165,8 @@ func _integrate_forces(state):
     # Get all (intact) engines
     var intact_engines = $ModuleGrid.get_engines()
     var ship_total_thrust = 0
+    var ship_total_fuel_consumption = 0
+    var fuel_consumption = 0
 
     # Combine both x and y movement, normalize
     var force_dir = Vector2(move_sideways, -move_forwards).normalized()
@@ -159,15 +174,18 @@ func _integrate_forces(state):
     var force_dir_sideways = force_dir.x * Vector2(1, 0).rotated(rotation) if move_sideways else null
 
     # Apply engine forces (if there are any left intact)
-    if not intact_engines.empty():
+    if not intact_engines.empty() and current_fuel > 0:
         for engine in intact_engines:
             ship_total_thrust += engine.thrust
+            ship_total_fuel_consumption += engine.fuel_consumption
             if force_dir_forwards:
                 add_force(engine.position.rotated(rotation), force_dir_forwards * engine.thrust)
+                fuel_consumption += engine.fuel_consumption
             if force_dir_sideways:
                 add_central_force(force_dir_sideways * engine.thrust)
+                fuel_consumption += engine.fuel_consumption
     else:
-        # "Emergency thrust": Small thrust from the spaceship itself when no engines are left intact
+        # "Emergency thrust": Small thrust from the spaceship itself when no engines are left intact (or fuel empty)
         ship_total_thrust += emergency_thrust
         add_central_force(force_dir.rotated(rotation) * emergency_thrust)
 
@@ -181,10 +199,15 @@ func _integrate_forces(state):
     if rotation_dir:
         var ship_total_torque = ship_total_thrust * TORQUE_PER_THRUST
         add_torque(rotation_dir * ship_total_torque)
+        fuel_consumption += 0.5 * ship_total_fuel_consumption
+
+    # Consume fuel
+    if (fuel_consumption > 0):
+        consume_fuel(fuel_consumption * state.step)
 
     # Engine exhaust flames animation
     for engine in intact_engines:
-        if move_forwards or move_sideways or rotation_dir:
+        if (move_forwards or move_sideways or rotation_dir) and current_fuel > 0:
             engine.play_animation()
         else:
             engine.stop_animation()
@@ -254,3 +277,26 @@ func get_info():
     if current_passenger.name != 'nobody':
         info += '\n\nCurrent passenger destination: ' + current_passenger.end
     return info
+
+
+# Fuel
+
+func update_fuel_capacity():
+    var new_capacity = 0
+    for tank in $ModuleGrid.get_fuel_tanks():
+        new_capacity += tank.capacity
+
+    # If capacity got smaller, remove some fuel
+    if new_capacity <= 0:
+        current_fuel = 0
+    elif new_capacity < total_fuel_capacity and total_fuel_capacity != 0:
+        current_fuel *= new_capacity / total_fuel_capacity
+        print("[%s] Lost fuel capacity (%d -> %d), new fuel: %d" % [name, total_fuel_capacity, new_capacity, current_fuel])
+
+    total_fuel_capacity = new_capacity
+
+func consume_fuel(fuel_amount):
+    current_fuel -= fuel_amount
+    if current_fuel < 0:
+        current_fuel = 0
+    print("[%s] Consumed %f fuel -> %d / %d" % [name, fuel_amount, current_fuel, total_fuel_capacity])

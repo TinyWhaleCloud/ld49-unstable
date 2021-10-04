@@ -89,13 +89,17 @@ func _on_ShipBaseModule_destroyed(destroyed_module: ShipBaseModule):
 
 func get_engines(only_intact: bool = true) -> Array:
     var engine_array = []
-
     for module in module_list:
         if module is ShipEngine and (not only_intact or module.is_intact()):
             engine_array.append(module)
-
     return engine_array
 
+func get_fuel_tanks(only_intact: bool = true) -> Array:
+    var tank_array = []
+    for module in module_list:
+        if module is FuelTank and (not only_intact or module.is_intact()):
+            tank_array.append(module)
+    return tank_array
 
 func get_borked_modules():
     var borked = Array()
