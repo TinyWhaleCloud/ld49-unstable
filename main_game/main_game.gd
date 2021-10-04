@@ -1,6 +1,6 @@
 extends Node2D
 
-
+export (PackedScene) var Tut
 var settings
 
 
@@ -16,8 +16,8 @@ func _ready():
 
     if !settings.skip_tutorial:
         settings.skip_tutorial = true
-        print("Imagine we had a tutorial, that would be great, wouldn't it?")
-
+        var tuti = Tut.instance()
+        self.add_child(tuti)
     # Start game :)
     new_game()
 

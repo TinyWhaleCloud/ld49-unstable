@@ -70,6 +70,7 @@ __meta__ = {
 position = Vector2( 449.811, 172.485 )
 scale = Vector2( 0.811496, 0.871024 )
 frames = SubResource( 8 )
+frame = 2
 playing = true
 
 [node name="TextureButton" type="TextureButton" parent="GameOverPopup/ColorRect"]
