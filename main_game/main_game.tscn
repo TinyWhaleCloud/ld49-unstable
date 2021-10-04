@@ -28,10 +28,15 @@ script = ExtResource( 2 )
 [node name="Player" parent="." instance=ExtResource( 1 )]
 
 [node name="StartPosition" type="Position2D" parent="."]
-position = Vector2( 768, 768 )
+position = Vector2( 224, 880 )
 
 [node name="AsteroidSpawner" parent="." instance=ExtResource( 5 )]
-position = Vector2( 880.523, 495.173 )
+position = Vector2( 868, 600 )
+rotation = 0.755183
+scale = Vector2( 1.57974, 1.31394 )
+
+[node name="AsteroidSpawner2" parent="." instance=ExtResource( 5 )]
+position = Vector2( -3552, 2688 )
 
 [node name="DestinationMenu" parent="." instance=ExtResource( 7 )]
 
@@ -147,6 +152,8 @@ script = ExtResource( 18 )
 [connection signal="player_crashed" from="Player" to="." method="_on_Player_player_crashed"]
 [connection signal="asteroid_field" from="AsteroidSpawner" to="Hud" method="_on_AsteroidSpawner_asteroid_field"]
 [connection signal="mouse_entered" from="AsteroidSpawner" to="Hud" method="_on_AsteroidSpawner_mouse_entered"]
+[connection signal="asteroid_field" from="AsteroidSpawner2" to="Hud" method="_on_AsteroidSpawner_asteroid_field"]
+[connection signal="mouse_entered" from="AsteroidSpawner2" to="Hud" method="_on_AsteroidSpawner_mouse_entered"]
 [connection signal="passenger_picked_up" from="DestinationMenu" to="Player" method="_on_DestinationMenu_passenger_picked_up"]
 [connection signal="passenger_picked_up" from="DestinationMenu" to="Goosington" method="_on_DestinationMenu_passenger_picked_up"]
 [connection signal="passenger_picked_up" from="DestinationMenu" to="SuspicousCube" method="_on_DestinationMenu_passenger_picked_up"]
