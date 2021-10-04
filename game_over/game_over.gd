@@ -21,3 +21,8 @@ func _on_GameOverPopup_popup_hide():
 func _on_TitleButton_pressed():
     to_title = true
     get_tree().change_scene("res://title/title.tscn")
+
+
+func _on_GameOverPopup_about_to_show():
+    if get_node("/root/Settings").sfx:
+        $GameOverSound.play()

@@ -36,4 +36,5 @@ func purchase_item(price: float, name: String = "item"):
         else:
             player.capitalism_units -= price
             emit_signal("item_purchased", name, price, balance - price)
+            $PurchaseSuccessSound.play()
             return true
