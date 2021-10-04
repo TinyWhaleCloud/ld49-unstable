@@ -14,6 +14,16 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://hud/hud.gd"
 }, {
+"base": "GridContainer",
+"class": "PassengerPickupOption",
+"language": "GDScript",
+"path": "res://passenger_pickup_option/passenger_pickup_option.gd"
+}, {
+"base": "Timer",
+"class": "PassengerSpawner",
+"language": "GDScript",
+"path": "res://passenger_spawner/passenger_spawner.gd"
+}, {
 "base": "Area2D",
 "class": "PlanetBody",
 "language": "GDScript",
@@ -61,6 +71,8 @@ _global_script_classes=[ {
 } ]
 _global_script_class_icons={
 "Hud": "",
+"PassengerPickupOption": "",
+"PassengerSpawner": "",
 "PlanetBody": "",
 "Player": "",
 "Rocket": "",

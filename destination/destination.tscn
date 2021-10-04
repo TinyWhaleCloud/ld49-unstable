@@ -19,7 +19,9 @@ animations = [ {
 [sub_resource type="CircleShape2D" id=3]
 radius = 361.154
 
-[node name="BaseDestination" type="Area2D"]
+[node name="BaseDestination" type="Area2D" groups=[
+"Destination",
+]]
 position = Vector2( -0.235977, -7.62939e-06 )
 script = ExtResource( 2 )
 Rocket = ExtResource( 4 )

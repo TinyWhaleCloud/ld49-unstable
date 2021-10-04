@@ -1,0 +1,31 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://message/message.gd" type="Script" id=1]
+
+[node name="MessageDialog" type="CanvasLayer"]
+layer = 3
+script = ExtResource( 1 )
+
+[node name="MessageWindow" type="WindowDialog" parent="."]
+visible = true
+margin_right = 266.0
+margin_bottom = 133.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CenterContainer" type="CenterContainer" parent="MessageWindow"]
+margin_left = 15.0
+margin_top = 20.0
+margin_right = 40.0
+margin_bottom = 40.0
+
+[node name="Label" type="Label" parent="MessageWindow/CenterContainer"]
+margin_left = 12.0
+margin_top = 3.0
+margin_right = 12.0
+margin_bottom = 17.0
+
+[node name="MessageTimer" type="Timer" parent="."]
+
+[connection signal="timeout" from="MessageTimer" to="." method="_on_MessageTimer_timeout"]

@@ -28,7 +28,7 @@ func get_info():
     return  "Name:                       " + stats.name + "\n" +\
             "Friendliness:             " + getFriendlinessStringFromScore(stats.friendliness_score) + "\n" +\
             "Economy:                  " + stats.economy + "\n" +\
-            "Passengers waiting:  0" + "\n" +\
+            "Passengers waiting:  " + str(stats.passengers.size()) + "\n" +\
             "Fuel price:                100Cu/l"
 
 
