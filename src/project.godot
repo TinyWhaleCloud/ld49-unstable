@@ -9,15 +9,20 @@
 config_version=4
 
 _global_script_classes=[ {
+"base": "RigidBody2D",
+"class": "BaseAsteroid",
+"language": "GDScript",
+"path": "res://objects/asteroid/BaseAsteroid.gd"
+}, {
 "base": "ShipBaseModule",
 "class": "FuelTank",
 "language": "GDScript",
 "path": "res://spaceship/modules/fuel_tank.gd"
 }, {
-"base": "CanvasLayer",
+"base": "Reference",
 "class": "GameOver",
 "language": "GDScript",
-"path": "res://game_over/game_over.gd"
+"path": "res://screens/game_over/GameOver.gd"
 }, {
 "base": "CanvasLayer",
 "class": "Hud",
@@ -47,7 +52,7 @@ _global_script_classes=[ {
 "base": "Node2D",
 "class": "PurchaseHandler",
 "language": "GDScript",
-"path": "res://main_game/PurchaseHandler.gd"
+"path": "res://screens/main_game/PurchaseHandler.gd"
 }, {
 "base": "GridContainer",
 "class": "RepairOption",
@@ -57,7 +62,7 @@ _global_script_classes=[ {
 "base": "RigidBody2D",
 "class": "Rocket",
 "language": "GDScript",
-"path": "res://rocket/rocket.gd"
+"path": "res://objects/rocket/Rocket.gd"
 }, {
 "base": "Area2D",
 "class": "ShipBaseModule",
@@ -82,12 +87,12 @@ _global_script_classes=[ {
 "base": "Area2D",
 "class": "Teleporter",
 "language": "GDScript",
-"path": "res://teleporter/teleporter.gd"
+"path": "res://objects/teleporter/Teleporter.gd"
 }, {
 "base": "Node2D",
-"class": "Title",
+"class": "TitleScreen",
 "language": "GDScript",
-"path": "res://title/title.gd"
+"path": "res://screens/title/TitleScreen.gd"
 }, {
 "base": "Area2D",
 "class": "Waypoint",
@@ -100,6 +105,7 @@ _global_script_classes=[ {
 "path": "res://waypoint/arrow/waypoint_arrow.gd"
 } ]
 _global_script_class_icons={
+"BaseAsteroid": "",
 "FuelTank": "",
 "GameOver": "",
 "Hud": "",
@@ -115,7 +121,7 @@ _global_script_class_icons={
 "ShipModuleGrid": "",
 "Spaceship": "",
 "Teleporter": "",
-"Title": "",
+"TitleScreen": "",
 "Waypoint": "",
 "WaypointArrow": ""
 }
@@ -125,7 +131,7 @@ _global_script_class_icons={
 config/name="ld49-unstable"
 config/description="Ludum Dare 49 Jam.
 Something something space taxi."
-run/main_scene="res://title/title.tscn"
+run/main_scene="res://screens/title/TitleScreen.tscn"
 config/icon="res://icon.png"
 
 [autoload]

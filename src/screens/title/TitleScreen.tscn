@@ -1,0 +1,189 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://screens/title/TitleScreen.gd" type="Script" id=1]
+[ext_resource path="res://assets/BackgroundFarFarAway.png" type="Texture" id=2]
+[ext_resource path="res://assets/BackgroundStarryNightFar.png" type="Texture" id=3]
+[ext_resource path="res://fonts/xolonium/Xolonium_big.tres" type="DynamicFont" id=4]
+
+[node name="TitleScreen" type="Node2D"]
+pause_mode = 2
+script = ExtResource( 1 )
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+
+[node name="ParallaxBackground" type="ParallaxLayer" parent="ParallaxBackground"]
+
+[node name="TextureRect" type="TextureRect" parent="ParallaxBackground/ParallaxBackground"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -4033.42
+margin_top = -1920.81
+margin_right = 4311.58
+margin_bottom = 2584.19
+texture = ExtResource( 2 )
+expand = true
+stretch_mode = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
+
+[node name="TextureRect" type="TextureRect" parent="ParallaxBackground/ParallaxLayer"]
+margin_left = -4382.41
+margin_top = -2060.66
+margin_right = 4327.59
+margin_bottom = 2587.34
+texture = ExtResource( 3 )
+expand = true
+stretch_mode = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Camera2D" type="Camera2D" parent="."]
+anchor_mode = 0
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="CenterContainer" type="CenterContainer" parent="CanvasLayer"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+rect_min_size = Vector2( 840, 500 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer/CenterContainer"]
+margin_left = 220.0
+margin_top = 143.0
+margin_right = 1060.0
+margin_bottom = 643.0
+rect_min_size = Vector2( 840, 500 )
+color = Color( 0.0666667, 0.054902, 0.176471, 0.615686 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="GameName" type="Label" parent="CanvasLayer/CenterContainer/ColorRect"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = 64.0
+margin_bottom = -344.0
+custom_fonts/font = ExtResource( 4 )
+text = "Hunk o' Junk
+(until we come up with a better name)"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="StartGameButton" type="Button" parent="CanvasLayer/CenterContainer/ColorRect"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 305.602
+margin_top = 185.49
+margin_right = -335.398
+margin_bottom = -220.51
+custom_fonts/font = ExtResource( 4 )
+text = "Start game"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="SettingsContainer" type="GridContainer" parent="CanvasLayer/CenterContainer/ColorRect"]
+anchor_left = 0.186
+anchor_top = 0.619
+anchor_right = 0.796
+anchor_bottom = 0.835
+margin_left = -0.216003
+margin_top = -0.214996
+margin_right = -0.376038
+margin_bottom = 0.0249939
+custom_constants/hseparation = 10
+columns = 4
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CameraRotationLabel" type="Label" parent="CanvasLayer/CenterContainer/ColorRect/SettingsContainer"]
+margin_top = 10.0
+margin_right = 138.0
+margin_bottom = 30.0
+text = "Camera Rotation"
+
+[node name="CameraRotation" type="CheckButton" parent="CanvasLayer/CenterContainer/ColorRect/SettingsContainer"]
+margin_left = 148.0
+margin_right = 224.0
+margin_bottom = 40.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ParallaxScrollingLabel" type="Label" parent="CanvasLayer/CenterContainer/ColorRect/SettingsContainer"]
+margin_left = 234.0
+margin_top = 10.0
+margin_right = 451.0
+margin_bottom = 30.0
+text = "Parallax Scrolling"
+
+[node name="ParallaxScrolling" type="CheckButton" parent="CanvasLayer/CenterContainer/ColorRect/SettingsContainer"]
+margin_left = 461.0
+margin_right = 537.0
+margin_bottom = 40.0
+
+[node name="SfxLabel" type="Label" parent="CanvasLayer/CenterContainer/ColorRect/SettingsContainer"]
+margin_top = 55.0
+margin_right = 138.0
+margin_bottom = 75.0
+text = "SFX"
+
+[node name="Sfx" type="CheckButton" parent="CanvasLayer/CenterContainer/ColorRect/SettingsContainer"]
+margin_left = 148.0
+margin_top = 44.0
+margin_right = 224.0
+margin_bottom = 87.0
+
+[node name="MusicLabel" type="Label" parent="CanvasLayer/CenterContainer/ColorRect/SettingsContainer"]
+margin_left = 234.0
+margin_top = 44.0
+margin_right = 451.0
+margin_bottom = 87.0
+text = "Music
+(not actually implemented)"
+
+[node name="Music" type="CheckButton" parent="CanvasLayer/CenterContainer/ColorRect/SettingsContainer"]
+margin_left = 461.0
+margin_top = 44.0
+margin_right = 537.0
+margin_bottom = 87.0
+disabled = true
+
+[node name="SkipTutorialLabel" type="Label" parent="CanvasLayer/CenterContainer/ColorRect/SettingsContainer"]
+margin_top = 101.0
+margin_right = 138.0
+margin_bottom = 121.0
+text = "Skip Tutorial"
+
+[node name="SkipTutorial" type="CheckButton" parent="CanvasLayer/CenterContainer/ColorRect/SettingsContainer"]
+margin_left = 148.0
+margin_top = 91.0
+margin_right = 224.0
+margin_bottom = 131.0
+
+[node name="MetaLabel" type="Label" parent="CanvasLayer/CenterContainer/ColorRect"]
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = -41.0
+margin_bottom = -5.0
+text = "Ludum Dare 49 entry by TinyWhaleCloud (@binaryDiv and @dysphoricUnicorn) "
+align = 2
+valign = 2
+
+[connection signal="pressed" from="CanvasLayer/CenterContainer/ColorRect/StartGameButton" to="." method="_on_StartGameButton_pressed"]
+[connection signal="pressed" from="CanvasLayer/CenterContainer/ColorRect/SettingsContainer/CameraRotation" to="." method="_on_CameraRotation_pressed"]
+[connection signal="pressed" from="CanvasLayer/CenterContainer/ColorRect/SettingsContainer/ParallaxScrolling" to="." method="_on_ParallaxScrolling_pressed"]
+[connection signal="pressed" from="CanvasLayer/CenterContainer/ColorRect/SettingsContainer/Sfx" to="." method="_on_Sfx_pressed"]
+[connection signal="pressed" from="CanvasLayer/CenterContainer/ColorRect/SettingsContainer/Music" to="." method="_on_Music_pressed"]
+[connection signal="pressed" from="CanvasLayer/CenterContainer/ColorRect/SettingsContainer/SkipTutorial" to="." method="_on_SkipTutorial_pressed"]

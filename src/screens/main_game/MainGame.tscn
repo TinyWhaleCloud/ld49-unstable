@@ -1,0 +1,280 @@
+[gd_scene load_steps=24 format=2]
+
+[ext_resource path="res://assets/BackgroundStarryNightFar.png" type="Texture" id=1]
+[ext_resource path="res://destination/types/suspicious_cube/SuspicousCube.tscn" type="PackedScene" id=2]
+[ext_resource path="res://sound/passenger_delivered.wav" type="AudioStream" id=3]
+[ext_resource path="res://player/player.tscn" type="PackedScene" id=4]
+[ext_resource path="res://sound/purchase_success.wav" type="AudioStream" id=5]
+[ext_resource path="res://objects/asteroid/spawner/AsteroidSpawner.tscn" type="PackedScene" id=6]
+[ext_resource path="res://tutorial/tutorial.tscn" type="PackedScene" id=7]
+[ext_resource path="res://screens/main_game/MainGame.gd" type="Script" id=8]
+[ext_resource path="res://assets/BackgroundFarFarAway.png" type="Texture" id=9]
+[ext_resource path="res://destination/destination_menu/destination_menu.tscn" type="PackedScene" id=10]
+[ext_resource path="res://destination/types/inhabitable_red/inhabitable_red.tscn" type="PackedScene" id=11]
+[ext_resource path="res://screens/main_game/InfoSeeker.gd" type="Script" id=12]
+[ext_resource path="res://screens/main_game/PurchaseHandler.gd" type="Script" id=13]
+[ext_resource path="res://objects/teleporter/Teleporter.tscn" type="PackedScene" id=14]
+[ext_resource path="res://hud/hud.tscn" type="PackedScene" id=15]
+[ext_resource path="res://message/message.tscn" type="PackedScene" id=16]
+[ext_resource path="res://waypoint/arrow/waypoint_arrow.tscn" type="PackedScene" id=17]
+[ext_resource path="res://waypoint/waypoint.tscn" type="PackedScene" id=18]
+[ext_resource path="res://screens/game_over/GameOver.tscn" type="PackedScene" id=19]
+[ext_resource path="res://passenger_spawner/passenger_spawner.tscn" type="PackedScene" id=20]
+[ext_resource path="res://destination/types/shallow_space_seven/shallow_space_seven.tscn" type="PackedScene" id=21]
+[ext_resource path="res://destination/types/goosington/Goosington.tscn" type="PackedScene" id=22]
+
+[sub_resource type="CapsuleShape2D" id=1]
+
+[node name="Main" type="Node2D"]
+script = ExtResource( 8 )
+Tut = ExtResource( 7 )
+
+[node name="Player" parent="." instance=ExtResource( 4 )]
+
+[node name="StartPosition" type="Position2D" parent="."]
+position = Vector2( 224, 880 )
+
+[node name="AsteroidSpawner" parent="." instance=ExtResource( 6 )]
+position = Vector2( 868, 600 )
+rotation = 0.755183
+scale = Vector2( 1.57974, 1.31394 )
+
+[node name="AsteroidSpawner8" parent="." instance=ExtResource( 6 )]
+position = Vector2( -513.503, -1432.58 )
+rotation = 0.351652
+scale = Vector2( 3.51861, -1.42139 )
+
+[node name="AsteroidSpawner7" parent="." instance=ExtResource( 6 )]
+position = Vector2( -2524.76, -439.737 )
+rotation = 0.879509
+scale = Vector2( -3.7372, 1.33202 )
+
+[node name="AsteroidSpawner9" parent="." instance=ExtResource( 6 )]
+position = Vector2( 2612.04, 815.192 )
+rotation = 0.906887
+scale = Vector2( 2.37233, 0.699089 )
+
+[node name="AsteroidSpawner2" parent="." instance=ExtResource( 6 )]
+position = Vector2( -3552, 2688 )
+
+[node name="AsteroidSpawner4" parent="." instance=ExtResource( 6 )]
+position = Vector2( -1254.41, 2299.87 )
+rotation = 0.220574
+scale = Vector2( 1.92784, 1.2402 )
+
+[node name="AsteroidSpawner6" parent="." instance=ExtResource( 6 )]
+position = Vector2( 7714.93, 4795.74 )
+rotation = 0.355128
+scale = Vector2( -2.07573, 11.1751 )
+
+[node name="AsteroidSpawner5" parent="." instance=ExtResource( 6 )]
+position = Vector2( -4984.35, 5089.24 )
+rotation = 0.220574
+scale = Vector2( 9.77026, 5.89869 )
+
+[node name="AsteroidSpawner3" parent="." instance=ExtResource( 6 )]
+position = Vector2( 515.586, 1730.79 )
+rotation = 0.165806
+scale = Vector2( 3.31204, 1.08505 )
+
+[node name="AsteroidSpawner10" parent="." instance=ExtResource( 6 )]
+position = Vector2( 4912.91, -3240.65 )
+rotation = 0.355128
+scale = Vector2( -11.2766, 7.76804 )
+
+[node name="AsteroidSpawner11" parent="." instance=ExtResource( 6 )]
+position = Vector2( -6243.34, -3791.81 )
+rotation = -0.653355
+scale = Vector2( 7.13185, -4.58069 )
+
+[node name="AsteroidSpawner12" parent="." instance=ExtResource( 6 )]
+position = Vector2( -6363.73, 777.499 )
+rotation = 1.18217
+scale = Vector2( 6.78555, 3.19571 )
+
+[node name="AsteroidSpawner13" parent="." instance=ExtResource( 6 )]
+position = Vector2( 2557.48, 5904.52 )
+rotation = -1.47955
+scale = Vector2( 3.15443, 11.199 )
+
+[node name="DestinationMenu" parent="." instance=ExtResource( 10 )]
+
+[node name="Goosington" parent="." instance=ExtResource( 22 )]
+position = Vector2( 1482.76, -413.867 )
+
+[node name="SuspicousCube" parent="." instance=ExtResource( 2 )]
+position = Vector2( -2954.18, 1490.11 )
+
+[node name="InhabitableRed" parent="." instance=ExtResource( 11 )]
+position = Vector2( 3728.79, 2370.1 )
+
+[node name="ShallowSpaceSeven" parent="." instance=ExtResource( 21 )]
+position = Vector2( -3050.86, -2710.44 )
+rotation = -0.0894907
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+
+[node name="AnimatedStars" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_scale = Vector2( 0.01, 0.01 )
+__meta__ = {
+"_edit_group_": true,
+"_edit_lock_": true
+}
+
+[node name="TextureRect" type="TextureRect" parent="ParallaxBackground/AnimatedStars"]
+margin_left = -13576.0
+margin_top = -7856.0
+margin_right = 14472.0
+margin_bottom = 7924.0
+texture = ExtResource( 9 )
+expand = true
+stretch_mode = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="StarOverlay" type="ParallaxLayer" parent="ParallaxBackground"]
+visible = false
+motion_scale = Vector2( 0.12, 0.12 )
+__meta__ = {
+"_edit_group_": true,
+"_edit_lock_": true
+}
+
+[node name="TextureRect" type="TextureRect" parent="ParallaxBackground/StarOverlay"]
+margin_left = -8353.0
+margin_top = -5089.0
+margin_right = 13040.0
+margin_bottom = 6469.0
+texture = ExtResource( 1 )
+expand = true
+stretch_mode = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="BottomTeleporter" parent="." instance=ExtResource( 14 )]
+position = Vector2( 152.219, 7471.42 )
+scale = Vector2( 145.581, 0.563181 )
+destination_y = -2800
+
+[node name="TopTeleporter" parent="." instance=ExtResource( 14 )]
+position = Vector2( 133.191, -5911.18 )
+rotation = 3.14159
+scale = Vector2( 179.78, 2.31719 )
+destination_y = 2800
+
+[node name="LeftTeleporter" parent="." instance=ExtResource( 14 )]
+position = Vector2( -8794.88, 1350.94 )
+rotation = 1.5708
+scale = Vector2( 120.455, 0.48407 )
+destination_x = 4300
+
+[node name="RightTeleporter" parent="." instance=ExtResource( 14 )]
+position = Vector2( 9123.64, 818.174 )
+rotation = 4.71239
+scale = Vector2( 129.921, 0.39209 )
+destination_x = -3800
+
+[node name="Hud" parent="." instance=ExtResource( 15 )]
+
+[node name="Waypoint" parent="." instance=ExtResource( 18 )]
+
+[node name="WaypointArrow" parent="." instance=ExtResource( 17 )]
+
+[node name="InfoSeeker" type="Area2D" parent="." groups=[
+"InfoSeeker",
+]]
+script = ExtResource( 12 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InfoSeeker"]
+shape = SubResource( 1 )
+
+[node name="PassengerSpawner" parent="." instance=ExtResource( 20 )]
+
+[node name="MessageDialog" parent="." instance=ExtResource( 16 )]
+pause_mode = 2
+
+[node name="CapitalismUnitsEarnedSound" type="AudioStreamPlayer2D" parent="MessageDialog"]
+pause_mode = 2
+stream = ExtResource( 3 )
+
+[node name="PurchaseHandler" type="Node2D" parent="." groups=[
+"PurchaseHandler",
+]]
+script = ExtResource( 13 )
+
+[node name="PurchaseSuccessSound" type="AudioStreamPlayer2D" parent="PurchaseHandler"]
+pause_mode = 2
+stream = ExtResource( 5 )
+
+[node name="GameOver" parent="." instance=ExtResource( 19 )]
+
+[connection signal="cockpit_destroyed" from="Player" to="." method="_on_Player_cockpit_destroyed"]
+[connection signal="earned_capitalism_units" from="Player" to="." method="_on_Player_earned_capitalism_units"]
+[connection signal="passenger_dead" from="Player" to="." method="_on_Player_passenger_dead"]
+[connection signal="passenger_dead" from="Player" to="Goosington" method="_on_Player_passenger_dead"]
+[connection signal="passenger_dead" from="Player" to="SuspicousCube" method="_on_Player_passenger_dead"]
+[connection signal="passenger_dead" from="Player" to="InhabitableRed" method="_on_Player_passenger_dead"]
+[connection signal="passenger_dead" from="Player" to="ShallowSpaceSeven" method="_on_Player_passenger_dead"]
+[connection signal="player_crashed" from="Player" to="." method="_on_Player_player_crashed"]
+[connection signal="asteroid_field" from="AsteroidSpawner" to="Hud" method="_on_AsteroidSpawner_asteroid_field"]
+[connection signal="mouse_entered" from="AsteroidSpawner" to="Hud" method="_on_AsteroidSpawner_mouse_entered"]
+[connection signal="asteroid_field" from="AsteroidSpawner8" to="Hud" method="_on_AsteroidSpawner_asteroid_field"]
+[connection signal="mouse_entered" from="AsteroidSpawner8" to="Hud" method="_on_AsteroidSpawner_mouse_entered"]
+[connection signal="asteroid_field" from="AsteroidSpawner7" to="Hud" method="_on_AsteroidSpawner_asteroid_field"]
+[connection signal="mouse_entered" from="AsteroidSpawner7" to="Hud" method="_on_AsteroidSpawner_mouse_entered"]
+[connection signal="asteroid_field" from="AsteroidSpawner9" to="Hud" method="_on_AsteroidSpawner_asteroid_field"]
+[connection signal="mouse_entered" from="AsteroidSpawner9" to="Hud" method="_on_AsteroidSpawner_mouse_entered"]
+[connection signal="asteroid_field" from="AsteroidSpawner2" to="Hud" method="_on_AsteroidSpawner_asteroid_field"]
+[connection signal="mouse_entered" from="AsteroidSpawner2" to="Hud" method="_on_AsteroidSpawner_mouse_entered"]
+[connection signal="asteroid_field" from="AsteroidSpawner4" to="Hud" method="_on_AsteroidSpawner_asteroid_field"]
+[connection signal="mouse_entered" from="AsteroidSpawner4" to="Hud" method="_on_AsteroidSpawner_mouse_entered"]
+[connection signal="asteroid_field" from="AsteroidSpawner6" to="Hud" method="_on_AsteroidSpawner_asteroid_field"]
+[connection signal="mouse_entered" from="AsteroidSpawner6" to="Hud" method="_on_AsteroidSpawner_mouse_entered"]
+[connection signal="asteroid_field" from="AsteroidSpawner5" to="Hud" method="_on_AsteroidSpawner_asteroid_field"]
+[connection signal="mouse_entered" from="AsteroidSpawner5" to="Hud" method="_on_AsteroidSpawner_mouse_entered"]
+[connection signal="asteroid_field" from="AsteroidSpawner3" to="Hud" method="_on_AsteroidSpawner_asteroid_field"]
+[connection signal="mouse_entered" from="AsteroidSpawner3" to="Hud" method="_on_AsteroidSpawner_mouse_entered"]
+[connection signal="asteroid_field" from="AsteroidSpawner10" to="Hud" method="_on_AsteroidSpawner_asteroid_field"]
+[connection signal="mouse_entered" from="AsteroidSpawner10" to="Hud" method="_on_AsteroidSpawner_mouse_entered"]
+[connection signal="asteroid_field" from="AsteroidSpawner11" to="Hud" method="_on_AsteroidSpawner_asteroid_field"]
+[connection signal="mouse_entered" from="AsteroidSpawner11" to="Hud" method="_on_AsteroidSpawner_mouse_entered"]
+[connection signal="asteroid_field" from="AsteroidSpawner12" to="Hud" method="_on_AsteroidSpawner_asteroid_field"]
+[connection signal="mouse_entered" from="AsteroidSpawner12" to="Hud" method="_on_AsteroidSpawner_mouse_entered"]
+[connection signal="asteroid_field" from="AsteroidSpawner13" to="Hud" method="_on_AsteroidSpawner_asteroid_field"]
+[connection signal="mouse_entered" from="AsteroidSpawner13" to="Hud" method="_on_AsteroidSpawner_mouse_entered"]
+[connection signal="passenger_picked_up" from="DestinationMenu" to="Player" method="_on_DestinationMenu_passenger_picked_up"]
+[connection signal="passenger_picked_up" from="DestinationMenu" to="Goosington" method="_on_DestinationMenu_passenger_picked_up"]
+[connection signal="passenger_picked_up" from="DestinationMenu" to="SuspicousCube" method="_on_DestinationMenu_passenger_picked_up"]
+[connection signal="passenger_picked_up" from="DestinationMenu" to="InhabitableRed" method="_on_DestinationMenu_passenger_picked_up"]
+[connection signal="passenger_picked_up" from="DestinationMenu" to="ShallowSpaceSeven" method="_on_DestinationMenu_passenger_picked_up"]
+[connection signal="rotate_player" from="DestinationMenu" to="Player" method="_on_DestinationMenu_rotate_player"]
+[connection signal="passenger_dropped_off" from="Goosington" to="Player" method="_on_Goosington_passenger_dropped_off"]
+[connection signal="passenger_dropped_off" from="Goosington" to="Waypoint" method="_on_Goosington_passenger_dropped_off"]
+[connection signal="pause" from="Goosington" to="." method="_on_Goosington_pause"]
+[connection signal="set_waypoint" from="Goosington" to="Waypoint" method="_on_Goosington_set_waypoint"]
+[connection signal="passenger_dropped_off" from="SuspicousCube" to="Player" method="_on_SuspicousCube_passenger_dropped_off"]
+[connection signal="passenger_dropped_off" from="SuspicousCube" to="Waypoint" method="_on_SuspicousCube_passenger_dropped_off"]
+[connection signal="pause" from="SuspicousCube" to="." method="_on_SuspicousCube_pause"]
+[connection signal="set_waypoint" from="SuspicousCube" to="Waypoint" method="_on_SuspicousCube_set_waypoint"]
+[connection signal="passenger_dropped_off" from="InhabitableRed" to="Player" method="_on_InhabitableRed_passenger_dropped_off"]
+[connection signal="passenger_dropped_off" from="InhabitableRed" to="Waypoint" method="_on_InhabitableRed_passenger_dropped_off"]
+[connection signal="pause" from="InhabitableRed" to="." method="_on_InhabitableRed_pause"]
+[connection signal="set_waypoint" from="InhabitableRed" to="Waypoint" method="_on_InhabitableRed_set_waypoint"]
+[connection signal="passenger_dropped_off" from="ShallowSpaceSeven" to="Player" method="_on_ShallowSpaceSeven_passenger_dropped_off"]
+[connection signal="passenger_dropped_off" from="ShallowSpaceSeven" to="Waypoint" method="_on_ShallowSpaceSeven_passenger_dropped_off"]
+[connection signal="pause" from="ShallowSpaceSeven" to="." method="_on_ShallowSpaceSeven_pause"]
+[connection signal="set_waypoint" from="ShallowSpaceSeven" to="Waypoint" method="_on_ShallowSpaceSeven_set_waypoint"]
+[connection signal="paused" from="Hud" to="WaypointArrow" method="_on_Hud_paused"]
+[connection signal="unpaused" from="Hud" to="Player" method="_on_Hud_unpaused"]
+[connection signal="unpaused" from="Hud" to="WaypointArrow" method="_on_Hud_unpaused"]
+[connection signal="waypoint_set" from="Hud" to="Waypoint" method="_on_Hud_waypoint_set"]
+[connection signal="waypoint_set" from="Hud" to="WaypointArrow" method="_on_Hud_waypoint_set"]
+[connection signal="waypoint_removed" from="Waypoint" to="Hud" method="_on_Waypoint_waypoint_removed"]
+[connection signal="waypoint_removed" from="Waypoint" to="WaypointArrow" method="_on_Waypoint_waypoint_removed"]
+[connection signal="waypoint_shown" from="Waypoint" to="WaypointArrow" method="_on_Waypoint_waypoint_shown"]
+[connection signal="passenger_spawned" from="PassengerSpawner" to="Goosington" method="_on_PassengerSpawner_passenger_spawned"]
+[connection signal="passenger_spawned" from="PassengerSpawner" to="SuspicousCube" method="_on_PassengerSpawner_passenger_spawned"]
+[connection signal="passenger_spawned" from="PassengerSpawner" to="InhabitableRed" method="_on_PassengerSpawner_passenger_spawned"]
+[connection signal="passenger_spawned" from="PassengerSpawner" to="ShallowSpaceSeven" method="_on_PassengerSpawner_passenger_spawned"]
