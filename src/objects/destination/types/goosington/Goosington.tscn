@@ -1,0 +1,25 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://objects/destination/BaseDestination.tscn" type="PackedScene" id=1]
+[ext_resource path="res://objects/destination/types/goosington/Goosington.gd" type="Script" id=2]
+
+[sub_resource type="CircleShape2D" id=1]
+radius = 555.954
+
+[sub_resource type="CapsuleShape2D" id=2]
+radius = 322.823
+height = 72.2712
+
+[node name="Goosington" instance=ExtResource( 1 )]
+script = ExtResource( 2 )
+stats = {
+}
+
+[node name="Atmosphere" parent="." index="0"]
+shape = SubResource( 1 )
+
+[node name="Planet" parent="PlanetBody" index="0"]
+position = Vector2( -2.24854, -0.129745 )
+rotation = -0.878975
+scale = Vector2( 0.872126, 0.988853 )
+shape = SubResource( 2 )

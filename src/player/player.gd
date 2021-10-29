@@ -66,7 +66,7 @@ func pay_capitalism_units(amount) -> bool:
 func _on_Goosington_passenger_dropped_off():
     handle_passenger_drop_off()
 
-func _on_SuspicousCube_passenger_dropped_off():
+func _on_SuspiciousCube_passenger_dropped_off():
     handle_passenger_drop_off()
 
 func _on_InhabitableRed_passenger_dropped_off():

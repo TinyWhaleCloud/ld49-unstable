@@ -31,7 +31,7 @@ func handle_set_event(new_position):
 func _on_Goosington_set_waypoint(new_position):
     handle_set_event(new_position)
 
-func _on_SuspicousCube_set_waypoint(new_position):
+func _on_SuspiciousCube_set_waypoint(new_position):
     handle_set_event(new_position)
 
 func _on_InhabitableRed_set_waypoint(new_position):
@@ -47,7 +47,7 @@ func hide_waypoint():
 func _on_Goosington_passenger_dropped_off():
     hide_waypoint()
 
-func _on_SuspicousCube_passenger_dropped_off():
+func _on_SuspiciousCube_passenger_dropped_off():
     hide_waypoint()
 
 func _on_InhabitableRed_passenger_dropped_off():
