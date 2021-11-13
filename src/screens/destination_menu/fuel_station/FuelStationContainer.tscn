@@ -1,0 +1,91 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://screens/destination_menu/fuel_station/FuelStationContainer.gd" type="Script" id=1]
+
+[node name="FuelStationOptionContainer" type="VBoxContainer"]
+margin_left = 20.0
+margin_top = 20.0
+margin_right = 711.0
+margin_bottom = 572.0
+custom_constants/separation = 20
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="RefillInfoLabel" type="Label" parent="."]
+margin_right = 691.0
+margin_bottom = 20.0
+text = "Here you can refill your spaceship's fuel tanks."
+clip_text = true
+
+[node name="GridContainer" type="GridContainer" parent="."]
+margin_top = 40.0
+margin_right = 691.0
+margin_bottom = 108.0
+columns = 2
+
+[node name="LabelCurrentFuel" type="Label" parent="GridContainer"]
+margin_right = 218.0
+margin_bottom = 20.0
+text = "Current fuel: "
+
+[node name="FuelLevelValue" type="Label" parent="GridContainer"]
+margin_left = 222.0
+margin_right = 306.0
+margin_bottom = 20.0
+text = "??? / ???"
+
+[node name="LabelPricePerUnit" type="Label" parent="GridContainer"]
+margin_top = 24.0
+margin_right = 218.0
+margin_bottom = 44.0
+text = "Price per fuel liter:"
+
+[node name="PricePerUnit" type="Label" parent="GridContainer"]
+margin_left = 222.0
+margin_top = 24.0
+margin_right = 306.0
+margin_bottom = 44.0
+text = "??? Cu/l"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="LabelFullRefillPrice" type="Label" parent="GridContainer"]
+margin_top = 48.0
+margin_right = 218.0
+margin_bottom = 68.0
+text = "Price for a complete refill: "
+
+[node name="FullRefillPrice" type="Label" parent="GridContainer"]
+margin_left = 222.0
+margin_top = 48.0
+margin_right = 306.0
+margin_bottom = 68.0
+text = "??? Cu"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="AlreadyFullLabel" type="Label" parent="."]
+margin_top = 128.0
+margin_right = 691.0
+margin_bottom = 148.0
+text = "Your tanks are full!"
+
+[node name="NotEnoughCuLabel" type="Label" parent="."]
+margin_top = 168.0
+margin_right = 691.0
+margin_bottom = 211.0
+text = "You don't have enough capitalism units for a complete refill.
+You can spend your whole savings to buy as much fuel as possible though!"
+
+[node name="BuyFuelButton" type="Button" parent="."]
+margin_top = 231.0
+margin_right = 364.0
+margin_bottom = 257.0
+size_flags_horizontal = 0
+text = "Buy ??? liters of fuel now for only ??? Cu!"
+
+[connection signal="pressed" from="BuyFuelButton" to="." method="_on_BuyFuelButton_pressed"]

@@ -1,4 +1,6 @@
 # General stuff
+.idea
+.vscode
 /_tmp
 
 # Godot-specific ignores
@@ -14,4 +16,4 @@ export_presets.cfg
 data_*/
 
 # Distribution files
-/_dist
+/releases

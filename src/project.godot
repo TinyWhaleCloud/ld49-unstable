@@ -1,0 +1,230 @@
+; Engine configuration file.
+; It's best edited using the editor UI and not directly,
+; since the parameters that go here are not all obvious.
+;
+; Format:
+;   [section] ; section goes between []
+;   param=value ; assign values to parameters
+
+config_version=4
+
+_global_script_classes=[ {
+"base": "RigidBody2D",
+"class": "BaseAsteroid",
+"language": "GDScript",
+"path": "res://objects/asteroid/BaseAsteroid.gd"
+}, {
+"base": "Area2D",
+"class": "BaseDestination",
+"language": "GDScript",
+"path": "res://objects/destination/BaseDestination.gd"
+}, {
+"base": "ShipBaseModule",
+"class": "FuelTank",
+"language": "GDScript",
+"path": "res://spaceship/modules/fuel_tank.gd"
+}, {
+"base": "Reference",
+"class": "GameOver",
+"language": "GDScript",
+"path": "res://screens/game_over/GameOver.gd"
+}, {
+"base": "CanvasLayer",
+"class": "Hud",
+"language": "GDScript",
+"path": "res://hud/hud.gd"
+}, {
+"base": "GridContainer",
+"class": "PassengerPickupOption",
+"language": "GDScript",
+"path": "res://screens/destination_menu/passenger_pickup/PassengerPickupOption.gd"
+}, {
+"base": "Timer",
+"class": "PassengerSpawner",
+"language": "GDScript",
+"path": "res://objects/passenger_spawner/PassengerSpawner.gd"
+}, {
+"base": "Area2D",
+"class": "PlanetBody",
+"language": "GDScript",
+"path": "res://objects/destination/PlanetBody.gd"
+}, {
+"base": "Node",
+"class": "Player",
+"language": "GDScript",
+"path": "res://player/player.gd"
+}, {
+"base": "Node2D",
+"class": "PurchaseHandler",
+"language": "GDScript",
+"path": "res://screens/main_game/PurchaseHandler.gd"
+}, {
+"base": "GridContainer",
+"class": "RepairOption",
+"language": "GDScript",
+"path": "res://screens/destination_menu/ship_repairs/RepairOption.gd"
+}, {
+"base": "RigidBody2D",
+"class": "Rocket",
+"language": "GDScript",
+"path": "res://objects/rocket/Rocket.gd"
+}, {
+"base": "Area2D",
+"class": "ShipBaseModule",
+"language": "GDScript",
+"path": "res://spaceship/modules/base_module.gd"
+}, {
+"base": "ShipBaseModule",
+"class": "ShipEngine",
+"language": "GDScript",
+"path": "res://spaceship/modules/engine.gd"
+}, {
+"base": "Node2D",
+"class": "ShipModuleGrid",
+"language": "GDScript",
+"path": "res://spaceship/module_grid.gd"
+}, {
+"base": "RigidBody2D",
+"class": "Spaceship",
+"language": "GDScript",
+"path": "res://spaceship/spaceship.gd"
+}, {
+"base": "Area2D",
+"class": "Teleporter",
+"language": "GDScript",
+"path": "res://objects/teleporter/Teleporter.gd"
+}, {
+"base": "Node2D",
+"class": "TitleScreen",
+"language": "GDScript",
+"path": "res://screens/title/TitleScreen.gd"
+}, {
+"base": "Area2D",
+"class": "Waypoint",
+"language": "GDScript",
+"path": "res://waypoint/waypoint.gd"
+}, {
+"base": "CanvasLayer",
+"class": "WaypointArrow",
+"language": "GDScript",
+"path": "res://waypoint/arrow/waypoint_arrow.gd"
+} ]
+_global_script_class_icons={
+"BaseAsteroid": "",
+"BaseDestination": "",
+"FuelTank": "",
+"GameOver": "",
+"Hud": "",
+"PassengerPickupOption": "",
+"PassengerSpawner": "",
+"PlanetBody": "",
+"Player": "",
+"PurchaseHandler": "",
+"RepairOption": "",
+"Rocket": "",
+"ShipBaseModule": "",
+"ShipEngine": "",
+"ShipModuleGrid": "",
+"Spaceship": "",
+"Teleporter": "",
+"TitleScreen": "",
+"Waypoint": "",
+"WaypointArrow": ""
+}
+
+[application]
+
+config/name="ld49-unstable"
+config/description="Ludum Dare 49 Jam.
+Something something space taxi."
+run/main_scene="res://screens/title/TitleScreen.tscn"
+config/icon="res://icon.png"
+
+[autoload]
+
+Settings="*res://Settings.gd"
+
+[display]
+
+window/size/width=1280
+window/size/height=786
+
+[gui]
+
+theme/custom_font="res://fonts/xolonium/Xolonium.tres"
+
+[importer_defaults]
+
+texture={
+"flags/filter": false
+}
+
+[input]
+
+ui_left={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":16777231,"unicode":0,"echo":false,"script":null)
+, Object(InputEventJoypadButton,"resource_local_to_scene":false,"resource_name":"","device":0,"button_index":14,"pressure":0.0,"pressed":false,"script":null)
+, Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":65,"unicode":0,"echo":false,"script":null)
+ ]
+}
+ui_right={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":16777233,"unicode":0,"echo":false,"script":null)
+, Object(InputEventJoypadButton,"resource_local_to_scene":false,"resource_name":"","device":0,"button_index":15,"pressure":0.0,"pressed":false,"script":null)
+, Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":68,"unicode":0,"echo":false,"script":null)
+ ]
+}
+ui_up={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":16777232,"unicode":0,"echo":false,"script":null)
+, Object(InputEventJoypadButton,"resource_local_to_scene":false,"resource_name":"","device":0,"button_index":12,"pressure":0.0,"pressed":false,"script":null)
+, Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":87,"unicode":0,"echo":false,"script":null)
+ ]
+}
+ui_down={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":16777234,"unicode":0,"echo":false,"script":null)
+, Object(InputEventJoypadButton,"resource_local_to_scene":false,"resource_name":"","device":0,"button_index":13,"pressure":0.0,"pressed":false,"script":null)
+, Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":83,"unicode":0,"echo":false,"script":null)
+ ]
+}
+zoom_in={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":16777235,"unicode":0,"echo":false,"script":null)
+ ]
+}
+zoom_out={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":16777236,"unicode":0,"echo":false,"script":null)
+ ]
+}
+pause={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":32,"unicode":0,"echo":false,"script":null)
+ ]
+}
+ship_thrust_left={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":81,"unicode":0,"echo":false,"script":null)
+ ]
+}
+ship_thrust_right={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":69,"unicode":0,"echo":false,"script":null)
+ ]
+}
+
+[physics]
+
+common/enable_pause_aware_picking=true
+2d/default_gravity_vector=Vector2( 0, 0 )
+
+[rendering]
+
+quality/driver/driver_name="GLES2"
+2d/snapping/use_gpu_pixel_snap=true
+vram_compression/import_etc=true
+vram_compression/import_etc2=false
+environment/default_clear_color=Color( 0, 0, 0, 1 )
+environment/default_environment="res://default_env.tres"
