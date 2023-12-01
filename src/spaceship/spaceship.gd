@@ -155,9 +155,9 @@ func _integrate_forces(state):
     # Thrust direction
     var move_forwards = 0
     var move_sideways = 0
-    if Input.is_action_pressed("ui_up"):
+    if Input.is_action_pressed("ship_accelerate"):
         move_forwards = 1
-    if Input.is_action_pressed("ui_down"):
+    if Input.is_action_pressed("ship_decelerate"):
         move_forwards = -1
     if Input.is_action_pressed("ship_thrust_left"):
         move_sideways = -1
@@ -193,9 +193,9 @@ func _integrate_forces(state):
 
     # Rotation
     var rotation_dir = 0
-    if Input.is_action_pressed("ui_left"):
+    if Input.is_action_pressed("ship_turn_left"):
         rotation_dir -= 1
-    if Input.is_action_pressed("ui_right"):
+    if Input.is_action_pressed("ship_turn_right"):
         rotation_dir += 1
 
     if rotation_dir:

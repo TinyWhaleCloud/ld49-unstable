@@ -26,14 +26,14 @@ func _process(delta):
         if steps[current_step_index].auto_advance == 1:
             var input_index = steps[current_step_index].auto_advance_data
             # TODO: zoom events don't get caught for some reason, so fix that before using them
-            if (Input.is_action_pressed("ui_up") and input_index == 0) \
-                or (Input.is_action_pressed("ui_down") and input_index == 1) \
+            if (Input.is_action_pressed("ship_accelerate") and input_index == 0) \
+                or (Input.is_action_pressed("ship_decelerate") and input_index == 1) \
                 or (Input.is_action_pressed("ship_thrust_left") and input_index == 2) \
                 or (Input.is_action_pressed("ship_thrust_right") and input_index == 3) \
                 or (Input.is_action_pressed("zoom_in") and input_index == 4) \
                 or (Input.is_action_pressed("zoom_out") and input_index == 5) \
                 or (Input.is_action_pressed("pause") and input_index == 6) \
-                or (Input.is_action_pressed("ui_left") and input_index == 7):
+                or (Input.is_action_pressed("ship_turn_left") and input_index == 7):
                 advance_tutorial_step()
 
 

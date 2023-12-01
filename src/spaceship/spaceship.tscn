@@ -5,9 +5,7 @@
 [ext_resource path="res://sound/exhaust.wav" type="AudioStream" id=3]
 [ext_resource path="res://sound/explosion.wav" type="AudioStream" id=4]
 
-[node name="Spaceship" type="RigidBody2D" groups=[
-"Spaceship",
-]]
+[node name="Spaceship" type="RigidBody2D" groups=["Spaceship"]]
 gravity_scale = 0.0
 contacts_reported = 100
 contact_monitor = true

@@ -17,9 +17,12 @@ func _ready():
     if is_pause_screen:
         $CanvasLayer/CenterContainer/ColorRect/StartGameButton.text = "Continue game"
 
+    # Set focus to start button to allow control via keyboard/controller
+    $CanvasLayer/CenterContainer/ColorRect/StartGameButton.grab_focus()
+
 
 func _unhandled_input(event):
-    if event.is_action_pressed("ui_cancel"):
+    if event.is_action_pressed("ui_quit"):
         get_tree().quit()
 
 
