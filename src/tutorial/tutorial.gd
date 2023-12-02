@@ -3,21 +3,74 @@ extends CanvasLayer
 
 var current_step_index = 0
 
-onready var steps = [
-    TutorialStep.new('Welcome to space!', 'Your objective is to fly passengers from planet to planet.', 0, 3),
-    TutorialStep.new('However, you will need to watch out!\nHitting asteroids will damage your ship.', '(your ship is not that stable, sadly)', 0, 3.5),
-    TutorialStep.new('But first things first.', 'Press W to accelerate', 1, 0),
-    TutorialStep.new('Nicely done!\nIt almost looks like you played a video game before!', 'Press S to decellerate', 1, 1),
-    TutorialStep.new('You can also turn your ship!', 'To do so press A or D', 1, 7),
-    TutorialStep.new('Alright!\nDid you know you can also strave?', 'Press Q to strave left and E to strave right', 1, 2),
-    TutorialStep.new('You have access to a super advanced map.', 'Press [Space] to open it', 1, 6),
-    TutorialStep.new('If you hover on a planet, you can see info about it', 'You should be extra careful when getting close to hostile planets.', 0, 5),
-    TutorialStep.new('You can also click anywhere on the map\nIf you want to set a waypoint.', 'Press [Space] again to leave the map.', 1, 6),
-    TutorialStep.new('If you want to get some of that mappy feeling\nbut don\'t want to pause the game', 'Use the scroll wheel to zoom', 0, 5),
-    TutorialStep.new('Looks like you are ready to start you space adventure!', 'Have fun and remember that this game was made in a single weekend.', 0, 5)
-   ]
+var steps = null
 
 func _ready():
+    # Show either keyboard keys or controller keys depending on whether a controller is connected
+    var use_controller_layout = Input.get_connected_joypads().size() > 0
+
+    # Generate tutorial messages
+    steps = [
+        TutorialStep.new(
+            'Welcome to space!',
+            'Your objective is to fly passengers from planet to planet.',
+            0, 3
+        ),
+        TutorialStep.new(
+            'However, you will need to watch out!\nHitting asteroids will damage your ship.',
+            '(your ship is not that stable, sadly)',
+            0, 3.5
+        ),
+        TutorialStep.new(
+            'But first things first.',
+            'Press [%s] to accelerate.' % ('R2' if use_controller_layout else 'W'),
+            1, 0
+        ),
+        TutorialStep.new(
+            'Nicely done!\nIt almost looks like you played a video game before!',
+            'Press [%s] to decelerate.' % ('L2' if use_controller_layout else 'S'),
+            1, 1
+        ),
+        TutorialStep.new(
+            'You can also turn your ship!',
+            'To do so, use the left stick.' if use_controller_layout else 'To do so, press [A] or [D].',
+            1, 7
+        ),
+        TutorialStep.new(
+            'Alright!\nDid you know you can also strafe?',
+            'Press [%s] to strafe left and [%s] to strafe right.' % [
+                'L1' if use_controller_layout else 'Q',
+                'R1' if use_controller_layout else 'E'
+            ],
+            1, 2
+        ),
+        TutorialStep.new(
+            'You have access to a super advanced map.',
+            'Press [%s] to open it' % ('Start' if use_controller_layout else 'Space'),
+            1, 6
+        ),
+        TutorialStep.new(
+            'If you hover on a planet, you can see info about it',
+            'You should be extra careful when getting close to hostile planets.',
+            0, 5
+        ),
+        TutorialStep.new(
+            'You can also click anywhere on the map\nIf you want to set a waypoint.',
+            'Press [%s] again to leave the map.' % ('Start' if use_controller_layout else 'Space'),
+            1, 6
+        ),
+        TutorialStep.new(
+            'If you want to get some of that mappy feeling\nbut don\'t want to pause the game',
+            'Use [Up] and [Down] to zoom.' if use_controller_layout else 'Use the scroll wheel to zoom.',
+            0, 5
+        ),
+        TutorialStep.new(
+            'Looks like you are ready to start you space adventure!',
+            'Have fun and remember that this game was made in a single weekend.',
+            0, 5
+        )
+   ]
+
     $NextInfoTimer.start(1)
     render_tutorial_step()
 
@@ -26,6 +79,12 @@ func _process(delta):
         if steps[current_step_index].auto_advance == 1:
             var input_index = steps[current_step_index].auto_advance_data
             # TODO: zoom events don't get caught for some reason, so fix that before using them
+
+            var left_stick_moved = Vector2(
+                -Input.get_joy_axis(0, JOY_AXIS_1),
+                Input.get_joy_axis(0, JOY_AXIS_0)
+            ).length_squared() > 0.5
+
             if (Input.is_action_pressed("ship_accelerate") and input_index == 0) \
                 or (Input.is_action_pressed("ship_decelerate") and input_index == 1) \
                 or (Input.is_action_pressed("ship_thrust_left") and input_index == 2) \
@@ -33,7 +92,8 @@ func _process(delta):
                 or (Input.is_action_pressed("zoom_in") and input_index == 4) \
                 or (Input.is_action_pressed("zoom_out") and input_index == 5) \
                 or (Input.is_action_pressed("pause") and input_index == 6) \
-                or (Input.is_action_pressed("ship_turn_left") and input_index == 7):
+                or (Input.is_action_pressed("ship_turn_left") and input_index == 7) \
+                or (left_stick_moved and input_index == 7):
                 advance_tutorial_step()
 
 
