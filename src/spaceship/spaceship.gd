@@ -13,6 +13,8 @@ signal fuel_changed(total_capacity, current_fuel)
 const TORQUE_PER_THRUST = 35
 const DISTANCE_AFTER_PLANET_MENU = 32
 const VELOCITY_AFTER_PLANET_MENU = 200
+const ANALOG_STICK_DEADZONE = 0.5
+const ANALOG_ROTATION_DEADZONE = 0.2
 
 # Define properties and internal variables
 export var current_passenger = {"name": "nobody"}
@@ -197,6 +199,23 @@ func _integrate_forces(state):
         rotation_dir -= 1
     if Input.is_action_pressed("ship_turn_right"):
         rotation_dir += 1
+
+    # Rotation via left analog stick
+    var left_stick_vector = Vector2(
+        -Input.get_joy_axis(0, JOY_AXIS_1),
+        Input.get_joy_axis(0, JOY_AXIS_0)
+    )
+
+    if left_stick_vector.length_squared() > ANALOG_STICK_DEADZONE:
+        var left_stick_angle = left_stick_vector.angle()
+        var rotation_delta = left_stick_angle - rotation
+
+        # Find the shortest rotation (e.g. rotate -40° instead of +320° to get from 160° to -160°)
+        if abs(rotation_delta) > PI:
+            rotation_delta -= sign(rotation_delta) * 2 * PI
+
+        if abs(rotation_delta) > ANALOG_ROTATION_DEADZONE:
+            rotation_dir = sign(rotation_delta)
 
     if rotation_dir:
         var ship_total_torque = ship_total_thrust * TORQUE_PER_THRUST
