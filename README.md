@@ -1,11 +1,13 @@
 # Hunk o' junk
 
 ## Meta
+
 Game for the Ludum Dare 49 game jam with the topic "Unstable".
 
 We made this game within 72 hours and using a game engine that we had never really used before.  
 Making this game was a great learning experience. -Something you can see in how often code style has changed within the project.  
 This whole weekend was very fun and we're probably going to be updating the game in the future.
+
 
 ## About the game
 
@@ -18,7 +20,9 @@ What will you chose? A quick and fuel efficient ride or a safe one that is less 
 
 Just a small tip: You do not want to piss off the geese.
 
-
-
 Made by [DysphoricUnicorn](https://github.com/DysphoricUnicorn) and [binaryDiv](https://github.com/binaryDiv).
 
+
+## Dependencies
+
+This project requires **Godot 3.3**. Compiling it with Godot 3.4 or higher will result in broken collision detection.
