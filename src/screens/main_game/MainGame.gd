@@ -48,7 +48,7 @@ func open_pause_menu():
 
 # Called on input events
 func _unhandled_input(event):
-    if event.is_action_pressed("ui_cancel"):
+    if event.is_action_pressed("ui_quit"):
         # Change to pause menu
         open_pause_menu()
 

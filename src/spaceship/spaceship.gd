@@ -13,6 +13,8 @@ signal fuel_changed(total_capacity, current_fuel)
 const TORQUE_PER_THRUST = 35
 const DISTANCE_AFTER_PLANET_MENU = 32
 const VELOCITY_AFTER_PLANET_MENU = 200
+const ANALOG_STICK_DEADZONE = 0.5
+const ANALOG_ROTATION_DEADZONE = 0.2
 
 # Define properties and internal variables
 export var current_passenger = {"name": "nobody"}
@@ -155,9 +157,9 @@ func _integrate_forces(state):
     # Thrust direction
     var move_forwards = 0
     var move_sideways = 0
-    if Input.is_action_pressed("ui_up"):
+    if Input.is_action_pressed("ship_accelerate"):
         move_forwards = 1
-    if Input.is_action_pressed("ui_down"):
+    if Input.is_action_pressed("ship_decelerate"):
         move_forwards = -1
     if Input.is_action_pressed("ship_thrust_left"):
         move_sideways = -1
@@ -193,10 +195,35 @@ func _integrate_forces(state):
 
     # Rotation
     var rotation_dir = 0
-    if Input.is_action_pressed("ui_left"):
+    if Input.is_action_pressed("ship_turn_left"):
         rotation_dir -= 1
-    if Input.is_action_pressed("ui_right"):
+    if Input.is_action_pressed("ship_turn_right"):
         rotation_dir += 1
+
+    # Rotation via left analog stick
+    if settings.camera_rotation:
+        # When camera rotation is on, just turn left/right if the stick is pushed left/right (like with keyboard controls)
+        var left_stick_x = Input.get_joy_axis(0, JOY_AXIS_0)
+
+        if abs(left_stick_x) > ANALOG_STICK_DEADZONE:
+            rotation_dir = sign(left_stick_x)
+    else:
+        # When camera rotation is off, rotate ship into the current direction of the stick
+        var left_stick_vector = Vector2(
+            -Input.get_joy_axis(0, JOY_AXIS_1),
+            Input.get_joy_axis(0, JOY_AXIS_0)
+        )
+
+        if left_stick_vector.length_squared() > ANALOG_STICK_DEADZONE:
+            var left_stick_angle = left_stick_vector.angle()
+            var rotation_delta = left_stick_angle - rotation
+
+            # Find the shortest rotation (e.g. rotate -40° instead of +320° to get from 160° to -160°)
+            if abs(rotation_delta) > PI:
+                rotation_delta -= sign(rotation_delta) * 2 * PI
+
+            if abs(rotation_delta) > ANALOG_ROTATION_DEADZONE:
+                rotation_dir = sign(rotation_delta)
 
     if rotation_dir:
         var ship_total_torque = ship_total_thrust * TORQUE_PER_THRUST
