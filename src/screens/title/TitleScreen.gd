@@ -30,6 +30,9 @@ func _process(delta):
 
 
 func _on_StartGameButton_pressed():
+    # Persist settings
+    Settings.save_settings()
+
     if is_pause_screen:
         # Continue game (unpause)
         get_tree().paused = false
